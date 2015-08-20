@@ -9,7 +9,7 @@
 		<p>Status: <%= current_user.number_statuses%></p>
 		<p> Find me at <%= current_user.location %></p>
 		<%= image_tag(current_user.avatar) %>
-		<%= link_to "Profile", current_user %>
+		<%= link_to "current_user_show", current_user %>	
 	<%else%>
 		<div class="twitterSignIn">
 			<h1>Welcome to XYZ! Please sign in using Twitter to get started with your own website!</h1>

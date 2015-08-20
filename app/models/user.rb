@@ -13,8 +13,19 @@ class User < ActiveRecord::Base
   		user.uid = auth.uid
   		user.username = auth.info.nickname
   		user.location = auth.info.location
+
+      # NORMALIZE NAME
+      fullName = auth.info.name.split
   		user.full_name = auth.info.name 
-  		user.twitter_avatar = auth.info.image
+      user.first_name = fullName[0]
+      user.last_name = fullName[1]
+
+      # NORMALIZE IMAGE
+      avatar = auth.info.image
+      avatar.slice! "_normal"
+  		user.twitter_avatar = avatar
+
+
   		user.bio = auth.info.description
       user.rating = auth.extra.raw_info.favourites_count
       user.number_followers = auth.extra.raw_info.followers_count

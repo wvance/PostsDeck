@@ -1,0 +1,72 @@
+<div class="row fullHeight" id="top">
+	<div id="navBar" class="col-xs-12 col-sm-5 col-md-4 col-lg-3 center">
+		<div class="sideBarSection">
+			<div class="profile">
+				<div class="profileName avatar">
+					<%= image_tag @user.twitter_avatar, :class=>"profileImg img-circle"%>
+					<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
+					<div class="twitterInfo" class="links">
+						<%= link_to @twitterLink, :target=>"_blank" do%>
+							<h5>@<%= @user.username %></h5>
+							<h6>
+								<%= @user.rating%> <i class="fa fa-star"></i>
+								<%= @user.number_statuses%> <i class="fa fa-comment"></i>
+								<%= @user.number_followers%> <i class="fa fa-users"></i>
+							</h6>
+						<%end%>
+					</div>
+				</div>
+			</div>
+			<hr class="navBreak">
+			<div class="navBarLinks">
+				<ul class="links">
+					<li>
+						<h3><a href="#projects">Projects</a></h3>
+					</li>	
+					<li>
+						<h3><a href="#map">Blog</a></h3>
+					</li>
+					<li>
+						<h3><a href="#connect">Connect</a></h3>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<!-- ABOUT ME -->
+	<div class="aboutMeCol col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-lg-6">
+		<% if current_user.id == @user.id%>
+			<div class="adminBar right">
+		  	<h4>
+					<!-- FUTUER LINKS TO DO ACTIONS -->
+		  	</h4>
+		  </div>
+		<% end %>
+		<div id="about" class="aboutMeSection">
+			<hr>
+				<!-- USER BIO -->
+				<h3>
+					<%= @user.bio%>
+				</h3>
+			<hr>
+		</div>
+	</div>
+</div>
+<hr>
+
+<div class="footer">
+	<div class="row" id="connect">
+		<div class="col-xs-12">
+			<h4 class="center links">
+				<%= link_to @twitterLink, :target => "_blank" do %>
+					<i class="fa fa-twitter"></i>
+				<% end %>
+			</h4>
+			<h6 class="center">Made with love in <a href="http://rubyonrails.org" target="_blank"><span class="ruby">RoR</span></a></h6>
+		</div>
+	</div>
+</div>
+
+<div class="topBottonBox">
+	<a href="#top"><i class="fa fa-chevron-up pull-right topButton"></i></a>
+</div>
