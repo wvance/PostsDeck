@@ -1,0 +1,94 @@
+<%= form_for(@content, :html => { :multipart => true }) do |f| %>
+  <% if @content.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @content.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="newPost">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="field form-group">
+              <%= f.text_field :title, class: "form-control postTitle", placeholder:"Title"%>
+              <%= f.text_field :author, class: "form-control childElement", placeholder:"Author" %>
+              <%= f.text_field :address, class: "form-control childElement", placeholder:"Address" %>
+
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <%= f.text_field :ip, class: "form-control" %>
+            <%= f.datetime_select :created, class: "form-control" %>
+            <%= f.datetime_select :updated, class: "form-control" %>
+            <%= f.number_field :rating, class: "form-control" %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-8 form-group">
+            <hr>
+            <div class="field">
+              <%= f.text_area :body, class: "form-control autoGrowText", rows: "10", placeholder:"Insert post body here in HTML"%>
+            </div>
+          </div>
+          <div class="col-xs-4 form-group">
+            Kind
+            <%= f.text_field :kind, class: "form-control"%>
+            Internal ID
+            <%= f.number_field :id, class: "form-control" %>
+            External ID
+            <%= f.number_field :external_id, class: "form-control" %>
+            External Link
+            <%= f.text_field :external_link, class: "form-control" %>
+            Latitude
+            <%= f.number_field :latitude, class: "form-control" %>
+            Longitude
+            <%= f.number_field :longitude, class: "form-control" %>
+            Active
+            <%= f.check_box :is_active %>
+            <br>
+            Comments
+            <%= f.check_box :has_comments %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="field pull-left">
+              
+            </div>
+            
+            <div class="btn-group pull-right" role="group" aria-label="...">
+              <%= link_to 'Show', @content, :class=>"btn btn-default" %>
+              <%= link_to 'All', contents_path , :class=>"btn btn-default"%>
+              <%= f.submit "Submit", class: "btn btn-default"%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+      <br>
+        <% if @content_attachments.present? %>
+          <% @content_attachments.each do |p| %>
+            <div class="col-xs-4 col-md-4">
+              <%= link_to p.image_url, :class=> "thumbnail" do%>
+                <%= image_tag(p.image_url, :class=>"img-responsive") if p.image? %>
+              <%end%>
+              <% if user_signed_in?%>
+                <%= link_to "Edit", edit_content_attachment_path(p), :class=>"btn btn-default" %>
+              <%end%>
+            </div>
+          <%end%>
+        <%end%>
+      </div>
+    </div>
+  </div>
+<% end %>
+

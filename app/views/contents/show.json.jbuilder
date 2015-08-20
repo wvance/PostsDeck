@@ -1,0 +1,1 @@
+json.extract! @content, :id, :title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :has_comments, :created, :updated, :created_at, :updated_at

@@ -11,7 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819202445) do
+ActiveRecord::Schema.define(version: 20150820200627) do
+
+  create_table "contents", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "author"
+    t.text     "body"
+    t.string   "image"
+    t.integer  "external_id"
+    t.string   "external_link"
+    t.string   "kind"
+    t.string   "rating"
+    t.string   "location"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postal"
+    t.string   "ip"
+    t.string   "latitude"
+    t.string   "longitude"
+    t.boolean  "is_active"
+    t.string   "has_comments"
+    t.datetime "created"
+    t.datetime "updated"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
