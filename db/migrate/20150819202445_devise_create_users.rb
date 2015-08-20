@@ -4,7 +4,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      t.string :username,           null: false, default: ""
+      t.string :username, unique: true, null: false, default: ""
 
       t.string :first_name
       t.string :last_name
@@ -16,7 +16,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.integer :rating
       t.integer :number_followers
       t.integer :number_statuses
-
 
       # OMNIAUTH DETAILS
       # OPTIONAL: PUT IN SEPERATE TALBE SO MULTIPLE PROVISERS CAN GO TO SAME USER

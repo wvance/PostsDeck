@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20150819202445) do
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "username",               default: "", null: false
-    t.string   "subdomain"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "full_name"

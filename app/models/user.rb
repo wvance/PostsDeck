@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :username
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness:true
   require 'json'
-  
+
   def self.from_omniauth(auth)
   	twitterUser = where(provider: auth.provider, uid: auth.uid).first_or_create.tap do |user|
       puts JSON.pretty_generate(auth)
@@ -59,5 +61,4 @@ class User < ActiveRecord::Base
  	def email_required?
   	super && provider.blank?
 	end
-
 end
