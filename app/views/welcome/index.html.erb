@@ -1,0 +1,20 @@
+<div class="row">
+	<div class="col-xs-12">
+	<% if user_signed_in? %>
+		<h1><%= current_user.full_name %> AKA <%= current_user.username.capitalize%></h1> 
+		<p><%= current_user.bio%></p>
+		<p><%= current_user.email%></p>
+		<p>RATING: <%= current_user.rating%></p>
+		<p>Followers: <%= current_user.number_followers%></p>
+		<p>Status: <%= current_user.number_statuses%></p>
+		<p> Find me at <%= current_user.location %></p>
+		<%= image_tag(current_user.avatar) %>
+		<%= link_to "Profile", current_user %>
+	<%else%>
+		<div class="twitterSignIn">
+			<h1>Welcome to XYZ! Please sign in using Twitter to get started with your own website!</h1>
+			<%= link_to "Sign in Twitter", user_omniauth_authorize_path(:twitter), :class=>"btn btn-info btn-xl" %>
+		</div>
+	<%end%>
+	</div>
+</div>
