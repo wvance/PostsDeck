@@ -1,6 +1,5 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  validates :author, :title, :body, presence: true
 
   # GET /projects
   # GET /projects.json

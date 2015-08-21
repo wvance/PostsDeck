@@ -54,7 +54,7 @@
 			  </div>
 			<% end %>
 		<%end%>
-		<div id="about" class="aboutMeSection">
+		<div id="about" class="verticalCenter">
 			<hr>
 				<!-- USER BIO -->
 				<h3>
@@ -74,7 +74,7 @@
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300px;"%>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"75px;", :width=>"150;"%>
 							<%end%>
 						</div>
 					<%end%>
@@ -105,8 +105,8 @@
 
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
-							<%= link_to project.linkedin_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300px;"%>
+							<%= link_to project.project_link, :target => "_blank" do %>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"75px;", :width=>"150px;"%>
 							<%end%>
 						</div>
 					<%end%>
@@ -132,7 +132,7 @@
 
 			<!-- MOVE THIS INTO A PARTIAL? -->
 			<div class="col-xs-offset-1 col-xs-10 col-sm-6">
-				<%= form_for @new_project, :html => {:multipart => true} do |f|  %>
+				<%= form_for Project.new, :url => projects_path,  :html => {:multipart => true} do |f|  %>
 					<div class="form-horiontal">
 						<div class="form-group">
 							<div class="col-xs-3">
@@ -190,7 +190,7 @@
 						</div>
 						<div class="form-group">
 							<div class="col-xs-offset-3 col-xs-9">
-								<%= f.file_field :attachment %>
+								<%= f.file_field :image %>
 							</div>
 						</div>
 						<%= f.submit 'Submit', :placeholder => "Name of project", :class=>"btn btn-default pull-right"%>
@@ -269,6 +269,7 @@
 		</div>
 	</div>
 </div>
+
 <% if user_signed_in? %>
 	<% if current_user.id == @user.id %>
 		<hr>
@@ -303,16 +304,17 @@
 						  	<%= f.label :body %>
 						  </div>
 						  <div class="col-xs-9">
-						  	<%= f.text_area :body, :placeholder => "Post a new thought!", :class=>"form-control autoGrowText", :rows=>"5", :required => true%>
+						  	<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"form-control autoGrowText", :rows=>"5", :required => true%>
 						  	<span class="bar"></span>
 						  	<br />
 						  </div>
 						</div>
 						<%= f.hidden_field :kind, :value => "post" %>
-						<%= f.submit 'Submit', :placeholder => "Name of post title", :class=>"btn btn-default pull-right"%>
+						<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
 					</div>
 				<% end %>
 			</div>
+		</div>
 		</div>
 	<%end%>
 <%end%>

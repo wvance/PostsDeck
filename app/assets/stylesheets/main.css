@@ -146,9 +146,10 @@ ul.links{
   color: #FFCC00;
 }
 
-.aboutMeSection{
+.verticalCenter{
 	position: absolute;
 	text-align: center;
+	width:100%;
   top:50%;
   left: 0%;
   transform:translate(0%, -50%);
@@ -214,4 +215,13 @@ input[type="text"].postTitle{
 }
 .navUser{
 	font-size: 20px;
+}
+
+.btn-xlg {
+  padding: 18px 28px;
+  font-size: 22px;
+  line-height: normal;
+  -webkit-border-radius: 8px;
+     -moz-border-radius: 8px;
+          border-radius: 8px;
 }
