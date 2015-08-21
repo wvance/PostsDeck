@@ -46,3 +46,8 @@ $(function() {
     }
   });
 });
+
+// AUTOGROW TEXT AREAS
+$(document).ready(function(){
+  $('.autoGrowText').autogrow();
+});

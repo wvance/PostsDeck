@@ -12,6 +12,10 @@ gem 'kaminari'                      # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
 gem 'twitter'
 
+gem "fog-aws"
+gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+gem 'mini_magick'
+
 # NEEDED FOR HEROKU PRODUCTION
 gem 'pg'
 gem 'rails_12factor', group: :production

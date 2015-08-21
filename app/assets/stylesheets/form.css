@@ -1,0 +1,45 @@
+.form-control{
+  border:none;
+  border-color: black;
+  box-shadow: none;
+}
+.form-control:focus {
+  border:none;
+  border-color: black;
+  box-shadow: none;
+  outline:none;
+}
+
+/* BOTTOM BARS ================================= */
+.bar  { position:relative; display:block; width:300px; }
+.bar:before, .bar:after   {
+  content:'';
+  height:2px; 
+  width:0;
+  bottom:1px; 
+  position:absolute;
+  background:#FFCC00;; 
+  transition:0.2s ease all; 
+}
+.bar:before {
+  left:50%;
+}
+.bar:after {
+  right:50%; 
+}
+
+/* active state */
+input:focus ~ .bar:before, input:focus ~ .bar:after {
+  width:50%;
+}
+/* LABEL ======================================= */
+label {
+  color:#999; 
+  font-size:18px;
+  font-weight:normal;
+  position:absolute;
+  pointer-events:none;
+  right:20px;
+  top:5px;
+}
+

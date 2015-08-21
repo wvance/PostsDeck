@@ -2,9 +2,12 @@ class UsersController < ApplicationController
 	def show
 		@user = User.friendly.find(params[:id])
 		@twitterLink = "http://twitter.com/" + @user.username
-
+		
 		@contents = Content.where(:author => @user.id).page(params[:page]).per(5)
+		@projects = Project.where(:author => @user.id).page(params[:page]).per(5)
 
+		@new_project = Project.new 
+		
 		# THIS IS FOR THE DISPLAY MAP
 		@geojson = Array.new
 

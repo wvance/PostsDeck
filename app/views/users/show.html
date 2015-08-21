@@ -1,3 +1,13 @@
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<%- unless @lat_lng %>
+			<script>
+			  getGeoLocation();
+			</script>
+		<%- end %>
+	<%end%>
+<%end%>
+
 <div class="row fullHeight" id="top">
 	<div id="navBar" class="col-xs-12 col-sm-5 col-md-4 col-lg-3 center">
 		<div class="sideBarSection">
@@ -35,13 +45,15 @@
 	</div>
 	<!-- ABOUT ME -->
 	<div class="aboutMeCol col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-lg-6">
-		<% if current_user.id == @user.id%>
-			<div class="adminBar right">
-		  	<h4>
-					<!-- FUTUER LINKS TO DO ACTIONS -->
-		  	</h4>
-		  </div>
-		<% end %>
+		<% if user_signed_in? %>
+			<% if current_user.id == @user.id%>
+				<div class="adminBar right">
+			  	<h4>
+						<!-- FUTUER LINKS TO DO ACTIONS -->
+			  	</h4>
+			  </div>
+			<% end %>
+		<%end%>
 		<div id="about" class="aboutMeSection">
 			<hr>
 				<!-- USER BIO -->
@@ -52,8 +64,144 @@
 		</div>
 	</div>
 </div>
-<hr>
 
+<div id = "projects">
+	<% if @projects.count > 0 %>
+		<% @projects.each_with_index do |project, index| %>	
+			<% if index % 2 == 0 %>
+				<hr>
+				<div class="row">
+					<% if project.image.present? %>
+						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
+							<%= link_to project.project_link, :target => "_blank" do %>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300px;"%>
+							<%end%>
+						</div>
+					<%end%>
+					<div class="col-xs-offset-1 col-xs-10 col-sm-6">
+						<h1 class="links">
+							<%= link_to project.github_link, :target => "_blank" do %>
+								<%= project.title%>
+							<%end%> 
+						</h1>
+						<p>
+							<%= project.body %>
+						</p>
+					</div>
+				</div>
+			<%else%>
+				<hr>
+				<div class="row">
+					<div class="col-xs-offset-1 col-xs-11 col-sm-6">
+						<h1 class="links">
+							<%= link_to project.github_link, :target => "_blank" do %>
+								<%= project.title%>
+							<%end%> 
+						</h1>
+						<p>
+							<%= project.body %>
+						</p>				
+					</div>
+
+					<% if project.image.present? %>
+						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
+							<%= link_to project.linkedin_link, :target => "_blank" do %>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300px;"%>
+							<%end%>
+						</div>
+					<%end%>
+				</div>
+			<%end%>
+		<%end%>
+	<%end%>
+</div>
+
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<hr>
+		<div class="row">
+			<div class="col-xs-offset-1 col-xs-11 col-sm-3">
+				<h1 class="links adminAdd">
+					New Project
+				</h1>
+				<p>
+					Create a new project!
+				</p>		
+				<hr>		
+			</div>
+
+			<!-- MOVE THIS INTO A PARTIAL? -->
+			<div class="col-xs-offset-1 col-xs-10 col-sm-6">
+				<%= form_for @new_project, :html => {:multipart => true} do |f|  %>
+					<div class="form-horiontal">
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :title%>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :body %>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_area :body, :placeholder => "Tell us a little about your project!", :class=>"form-control autoGrowText", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+								<%= f.label :tech %>
+							</div>
+							<div class="col-xs-9">
+						  	<%= f.text_field :technologies, :placeholder => "What tech did you use? Rails, Angular, Meteor, iOS, etc.", :class=>"form-control" %>
+						  	<span class="bar"></span><br />
+
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :Github %>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_field :github_link, :placeholder => "Link to Github repo", :class=>"form-control"%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :Project %>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_field :project_link, :placeholder => "Link to project", :class=>"form-control"%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+						<div class="form-group">
+							<div class="col-xs-offset-3 col-xs-9">
+								<%= f.file_field :attachment %>
+							</div>
+						</div>
+						<%= f.submit 'Submit', :placeholder => "Name of project", :class=>"btn btn-default pull-right"%>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<%end%>
+<%end%>
+
+<br>
 <div class="row fullWidth">
 	<div class="col-xs-12">
 		<div id="map" class="mapSection", data-url="/users/<%= @user.id %>.json"></div>
@@ -121,6 +269,53 @@
 		</div>
 	</div>
 </div>
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<hr>
+		<div class="row">
+			<div class="col-xs-offset-1 col-xs-10 col-sm-2">
+				<h1 class="links adminAdd">
+					New Post!
+				</h1>
+				<p>
+					Create a new post!
+				</p>		
+				<hr>		
+			</div>
+
+			<!-- MOVE THIS INTO A PARTIAL? -->
+			<div class="col-xs-11 col-sm-8">
+				<%= form_for Content.new, :url => contents_path, :html => {:method => :post, :multipart => true} do |f|  %>
+					<div class="form-horiontal">
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :title%>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :body %>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_area :body, :placeholder => "Post a new thought!", :class=>"form-control autoGrowText", :rows=>"5", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+						<%= f.hidden_field :kind, :value => "post" %>
+						<%= f.submit 'Submit', :placeholder => "Name of post title", :class=>"btn btn-default pull-right"%>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	<%end%>
+<%end%>
 
 <div class="footer">
 	<div class="row" id="connect">
