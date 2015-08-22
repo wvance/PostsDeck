@@ -192,7 +192,11 @@ ul.links{
 	height:70vh;
 }
 .adminBar{
+	position:fixed;
+	top:0px;
+	right:70px;
 	padding-top: 20px;
+	z-index: 9999;
 }
 input[type="text"].postTitle{
     font-size:24px;
@@ -213,6 +217,10 @@ input[type="text"].postTitle{
 .blogPost{
 	margin-top: -20px;
 }
+.navBarLinks{
+	padding-left: 5px;
+	padding-right: 5px;
+}
 .navUser{
 	font-size: 20px;
 }
@@ -224,4 +232,13 @@ input[type="text"].postTitle{
   -webkit-border-radius: 8px;
      -moz-border-radius: 8px;
           border-radius: 8px;
+}
+
+.usernameCloud ul{
+	position:fixed;
+	list-style-type: none;
+	top: 10px;
+	left: 20px;
+  padding: 0px;
+  margin: 0px;
 }

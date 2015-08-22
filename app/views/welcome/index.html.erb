@@ -1,14 +1,23 @@
-<div class="row">
-	<div class="col-xs-offset-1 col-xs-10 verticalCenter center links">
-		<% if user_signed_in? %>
-			<%= link_to current_user do%>
-				<h1><%= current_user.username%></h1>
+<div class="usernameCloud links">
+	<ul>
+		<% @all_users.each do |user| %>
+			<%= link_to user_path(user) do%>
+				<li>
+					<h4><%= user.username%></h4>
+				</li>
 			<%end%>
-			<ul>
-				<% @all_users.each do |user| %>
-					<li><%= user.username%></li>
+		<%end%>
+	</ul>
+</div>
+
+<div class="row">
+	<div class="col-xs-offset-1 col-xs-10 verticalCenter center">
+		<% if user_signed_in? %>
+			<div class="links">
+				<%= link_to current_user do%>
+					<h1><%= current_user.username%></h1>
 				<%end%>
-			</ul>
+			</div>
 		<%else%>
 			<div class="twitterSignIn verticalCenter">
 				<%= link_to user_omniauth_authorize_path(:twitter), :class=>"btn btn-default btn-xlg" do%>
