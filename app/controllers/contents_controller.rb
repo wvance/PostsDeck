@@ -1,7 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
-  
+  before_filter :verify_is_admin, only: [:show, :index]
+
   include TwitterHelper
 
   # GET /contents
@@ -91,7 +91,7 @@ class ContentsController < ApplicationController
   def update
     respond_to do |format|
       if @content.update(content_params)
-        format.html { redirect_to @content, notice: 'Content was successfully updated.' }
+        format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
         format.json { render :show, status: :ok, location: @content }
       else
         format.html { render :edit }
@@ -105,12 +105,16 @@ class ContentsController < ApplicationController
   def destroy
     @content.destroy
     respond_to do |format|
-      format.html { redirect_to contents_url, notice: 'Content was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Content was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
+    def verify_is_admin
+      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_content
       @content = Content.find(params[:id])

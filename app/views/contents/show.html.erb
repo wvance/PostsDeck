@@ -13,9 +13,7 @@
           <h1 class="inline postTitle"><span class="yellow"><%= @content.title %> </span></h1>
           <% if user_signed_in?%>
             <h6 class="inline">            
-              <%= link_to 'All', contents_path %> |
               <%= link_to 'Edit', edit_content_path(@content) %> | 
-              <%= link_to 'Destroy', @content, method: :delete, data: { confirm: 'Are you sure?' }%>
             </h6>
           <%end%>
         </div>

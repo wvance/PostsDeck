@@ -70,11 +70,20 @@
 						</div>
 					<%end%>
 					<div class="col-xs-offset-1 col-xs-10 col-sm-6">
-						<h1 class="links">
+						<h1 class="links inline">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
 							<%end%> 
 						</h1>
+						<% if user_signed_in? %>
+							<% if current_user.id == @user.id %>
+								<h5 class="inline">
+									<%= link_to project_path(project.id), method: :delete do %>
+										Delete
+									<%end%>
+								</h5>
+							<%end%>
+						<%end%>
 						<p>
 							<%= project.body %>
 						</p>
@@ -223,12 +232,19 @@
 								<div class="blogTitle">
 									<%= link_to("/contents/"+content.id.to_s) do%>
 										<% if content.title.present? %>
-											<h1><%= content.title %></h1>
+											<h1 class="inline"><%= content.title %></h1>
 										<%elsif content.kind.present? %>
-											<h1><%= content.kind.capitalize%>:</h1>
+											<h1 class="inline"><%= content.kind.capitalize%>:</h1>
 										<%else%>
-											<h1>Content:</h1>
+											<h1 class="inline">Content:</h1>
 										<%end%>
+									<%end%>
+									<% if current_user.id == @user.id %>
+										<h5 class="inline">
+											<%= link_to(content_path(content.id), method: :delete) do%>
+												Delete
+											<%end%>
+										</h5>
 									<%end%>
 								</div>
 								<div class="blogTags">

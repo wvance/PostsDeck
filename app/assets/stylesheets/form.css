@@ -11,7 +11,11 @@
 }
 
 /* BOTTOM BARS ================================= */
-.bar  { position:relative; display:block; width:300px; }
+.bar  { 
+  position:relative; 
+  display:block; 
+  width:300px; 
+}
 .bar:before, .bar:after   {
   content:'';
   height:2px; 
@@ -31,10 +35,7 @@
 input:focus ~ .bar:before, input:focus ~ .bar:after {
   width:50%;
 }
-/* active state */
-input:hover ~ .bar:before, input:hover ~ .bar:after {
-  width:50%;
-}
+
 /* LABEL ======================================= */
 label {
   color:black; 
