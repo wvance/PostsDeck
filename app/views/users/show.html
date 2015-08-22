@@ -65,7 +65,7 @@
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"75px;", :width=>"150;"%>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
 							<%end%>
 						</div>
 					<%end%>
@@ -98,6 +98,15 @@
 								<%= project.title%>
 							<%end%> 
 						</h1>
+						<% if user_signed_in? %>
+							<% if current_user.id == @user.id %>
+								<h5 class="inline">
+									<%= link_to project_path(project.id), method: :delete do %>
+										Delete
+									<%end%>
+								</h5>
+							<%end%>
+						<%end%>
 						<p>
 							<%= project.body %>
 						</p>				
