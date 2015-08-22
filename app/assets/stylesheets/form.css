@@ -27,14 +27,17 @@
 .bar:after {
   right:50%; 
 }
-
 /* active state */
 input:focus ~ .bar:before, input:focus ~ .bar:after {
   width:50%;
 }
+/* active state */
+input:hover ~ .bar:before, input:hover ~ .bar:after {
+  width:50%;
+}
 /* LABEL ======================================= */
 label {
-  color:#999; 
+  color:black; 
   font-size:18px;
   font-weight:normal;
   position:absolute;

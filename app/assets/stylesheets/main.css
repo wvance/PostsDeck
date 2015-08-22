@@ -242,3 +242,12 @@ input[type="text"].postTitle{
   padding: 0px;
   margin: 0px;
 }
+.displayPost{
+	padding-top: 90px;
+}
+.showPostAdmin{
+	position:fixed;
+	top:0px;
+	left:20px;
+	padding:0px;
+}
