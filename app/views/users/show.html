@@ -117,7 +117,7 @@
 					</div>
 
 					<% if project.image.present? %>
-						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
+						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide projectImage">
 							<%= link_to project.project_link, :target => "_blank" do %>
 								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
 							<%end%>
@@ -347,7 +347,7 @@
 					<i class="fa fa-twitter"></i>
 				<% end %>
 			</h4>
-			<h6 class="center">Made with love in <a href="http://rubyonrails.org" target="_blank"><span class="ruby">RoR</span></a></h6>
+			<h6 class="center">Made with love in <a href="http://rubyonrails.org" target="_blank"><span class="ruby">RoR</span></a> by <a href="mailto:wesley.vance@mac.com?Subject=Hello my name is: " target="_top"><span class="yellow">Wesley Vance</span></a></h6>
 		</div>
 	</div>
 </div>
