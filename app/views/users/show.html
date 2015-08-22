@@ -61,11 +61,11 @@
 		<% @projects.each_with_index do |project, index| %>	
 			<% if index % 2 == 0 %>
 				<hr>
-				<div class="row">
+				<div class="row project">
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300;"%>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
 							<%end%>
 						</div>
 					<%end%>
@@ -91,7 +91,7 @@
 				</div>
 			<%else%>
 				<hr>
-				<div class="row">
+				<div class="row project">
 					<div class="col-xs-offset-1 col-xs-11 col-sm-6">
 						<h1 class="links">
 							<%= link_to project.github_link, :target => "_blank" do %>
@@ -115,7 +115,7 @@
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive", :height=>"150px;", :width=>"300;"%>
+								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
 							<%end%>
 						</div>
 					<%end%>
