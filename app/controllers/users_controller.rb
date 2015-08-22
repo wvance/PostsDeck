@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 		
 		@contents = Content.where(:author => @user.id).page(params[:page]).per(5)
 		@projects = Project.where(:author => @user.id).page(params[:page]).per(5)
-
+		
 		@new_project = Project.new 
 		
 		# THIS IS FOR THE DISPLAY MAP

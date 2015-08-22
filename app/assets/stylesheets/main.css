@@ -257,3 +257,10 @@ input[type="text"].postTitle{
 	font-size: 72px;
 	font-family: 'Raleway Dots', cursive;
 }
+
+#newPost{
+	display:none;
+}
+#newProject{
+	display:none;
+}
