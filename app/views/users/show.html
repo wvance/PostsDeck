@@ -61,7 +61,7 @@
 		<% @projects.each_with_index do |project, index| %>	
 			<% if index % 2 == 0 %>
 				<hr>
-				<div class="row project">
+				<div class="row">
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
@@ -69,7 +69,7 @@
 							<%end%>
 						</div>
 					<%end%>
-					<div class="col-xs-offset-1 col-xs-10 col-sm-6">
+					<div class="col-xs-offset-1 col-xs-10 col-sm-6 project">
 						<h1 class="links inline">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
@@ -91,8 +91,9 @@
 				</div>
 			<%else%>
 				<hr>
-				<div class="row project">
-					<div class="col-xs-offset-1 col-xs-11 col-sm-6">
+				<!-- THIS IS THE RIGHT -->
+				<div class="row">
+					<div class="col-xs-offset-1 col-xs-11 col-sm-6 project">
 						<h1 class="links inline">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
@@ -245,19 +246,12 @@
 								<div class="blogTitle">
 									<%= link_to("/contents/"+content.id.to_s) do%>
 										<% if content.title.present? %>
-											<h1 class="inline"><%= content.title %></h1>
+											<h1><%= content.title %></h1>
 										<%elsif content.kind.present? %>
-											<h1 class="inline"><%= content.kind.capitalize%>:</h1>
+											<h1><%= content.kind.capitalize%>:</h1>
 										<%else%>
-											<h1 class="inline">Content:</h1>
+											<h1>Content:</h1>
 										<%end%>
-									<%end%>
-									<% if current_user.id == @user.id %>
-										<h5 class="inline">
-											<%= link_to(content_path(content.id), method: :delete) do%>
-												Delete
-											<%end%>
-										</h5>
 									<%end%>
 								</div>
 								<div class="blogTags">
@@ -265,7 +259,6 @@
 										<% if content.created.present?%> 
 											<%= formatDate(content.created) %> 
 										<%end%>
-										
 										<% if content.location.present?%> 
 			              	at <%= content.location%>
 			              <%elsif content.city.present? || content.state.present?%>

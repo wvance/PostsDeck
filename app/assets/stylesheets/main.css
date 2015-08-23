@@ -202,13 +202,18 @@ input[type="text"].postTitle{
     font-size:24px;
 }
 #projects{
-	padding-bottom: 75px;
+	padding-bottom: 20px;
 }
 .blackBG{
 	background-color: #282828;
 }
+.project{
+	margin-top: 20px;
+}
 .projectLogo{
-	margin-top: 25px;
+	margin-top: 5px;
+	max-height: 200px;
+	max-width: 200px;
 }
 .icon{
 	padding-left: 2.5px;

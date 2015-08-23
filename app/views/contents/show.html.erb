@@ -14,7 +14,10 @@
           <% if current_user.id == @content.author %>
             <% if user_signed_in?%>
               <h6 class="inline">            
-                <%= link_to 'Edit', edit_content_path(@content) %>
+                <%= link_to 'Edit', edit_content_path(@content) %> | 
+                <%= link_to(content_path(@content), method: :delete) do%>
+                  Delete
+                <%end%>
               </h6>
             <%end%>
           <%end%>
