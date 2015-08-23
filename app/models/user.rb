@@ -69,8 +69,4 @@ class User < ActiveRecord::Base
  	def email_required?
   	super && provider.blank?
 	end
-
-  # ============================
-  # 
-  # ============================ 
 end

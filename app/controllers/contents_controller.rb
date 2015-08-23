@@ -29,12 +29,12 @@ class ContentsController < ApplicationController
   def create
     @content = Content.new(content_params)
 
-    @twitter_client ||= Twitter::REST::Client.new do |config|
-      config.consumer_key = ENV['twitter_consumer_key']
-      config.consumer_secret = ENV['twitter_consumer_secret']
-      config.access_token = current_user.token
-      config.access_token_secret = current_user.secret
-    end
+    # @twitter_client ||= Twitter::REST::Client.new do |config|
+    #   config.consumer_key = ENV['twitter_consumer_key']
+    #   config.consumer_secret = ENV['twitter_consumer_secret']
+    #   config.access_token = current_user.token
+    #   config.access_token_secret = current_user.secret
+    # end
     
     # @twitter_client.update(@content.body)
 
