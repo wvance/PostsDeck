@@ -36,7 +36,7 @@ class ContentsController < ApplicationController
       config.access_token_secret = current_user.secret
     end
     
-    @twitter_client.update(@content.body)
+    # @twitter_client.update(@content.body)
 
     if @content.kind == "twitter" 
       timeline = user_timeline(1)[0]
