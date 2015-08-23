@@ -21,6 +21,8 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # OPTIONAL: PUT IN SEPERATE TALBE SO MULTIPLE PROVISERS CAN GO TO SAME USER
       t.string :provider
       t.string :uid
+      t.string :token
+      t.string :secret
       
       t.string :account_type
       t.boolean :admin

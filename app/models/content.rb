@@ -1,24 +1,21 @@
 class Content < ActiveRecord::Base
+	belongs_to :user
+	
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
-  # Try building a slug based on the following fields in
-  # increasing order of specificity.
   def slug_candidates
-    [
-      :title,
-      [:title, :author],
-      [:title, :author, :state],
-      [:title, :author, :state, :city],
-      [:title, :author, :state, :city, :id]
-    ]
-  end
+  	[
+  		 :title,
+		  [:title, :author],
+		  [:title, :author, :location],
+		  [:title, :author, :location, :city, :state, :postal, :location]
+		]
+	end
 
   def should_generate_new_friendly_id?
-  	new_record?
+    new_record?
   end
-
-	belongs_to :user
 
 	# GEO INFO
 	geocoded_by :ip, :latitude => :latitude, :longitude => :longitude
@@ -39,5 +36,4 @@ class Content < ActiveRecord::Base
 	end
 
 	after_validation :geocode, :reverse_geocode
-
 end

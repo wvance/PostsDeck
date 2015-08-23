@@ -74,6 +74,8 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.integer  "number_statuses"
     t.string   "provider"
     t.string   "uid"
+    t.string   "token"
+    t.string   "secret"
     t.string   "account_type"
     t.boolean  "admin"
     t.string   "location"
@@ -97,7 +99,7 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["username"], name: "index_users_on_username", unique: true
 
 end

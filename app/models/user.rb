@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
       puts JSON.pretty_generate(auth)
   		user.provider = auth.provider
   		user.uid = auth.uid
+      user.token = auth.credentials.token
+      user.secret = auth.credentials.secret
+
   		user.username = auth.info.nickname
   		user.location = auth.info.location
 
@@ -66,4 +69,8 @@ class User < ActiveRecord::Base
  	def email_required?
   	super && provider.blank?
 	end
+
+  # ============================
+  # 
+  # ============================ 
 end
