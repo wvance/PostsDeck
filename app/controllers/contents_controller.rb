@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_is_admin, only: [:show, :index]
+  before_filter :verify_is_admin, only: [:index]
 
   include TwitterHelper
 
