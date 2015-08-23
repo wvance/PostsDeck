@@ -11,10 +11,12 @@
       <div id="blog" class="blogSection">
         <div class="blogTitle links">
           <h1 class="inline postTitle"><span class="yellow"><%= @content.title %> </span></h1>
-          <% if user_signed_in?%>
-            <h6 class="inline">            
-              <%= link_to 'Edit', edit_content_path(@content) %> | 
-            </h6>
+          <% if current_user.id == @content.author %>
+            <% if user_signed_in?%>
+              <h6 class="inline">            
+                <%= link_to 'Edit', edit_content_path(@content) %>
+              </h6>
+            <%end%>
           <%end%>
         </div>
         <div class="blogTags">
