@@ -57,7 +57,7 @@ class ContentsController < ApplicationController
       else 
         @content.ip = request.remote_ip
       end
-      send_tweet(@content.title, request.fullpath)
+      # send_tweet(@content.title, request.fullpath)
     else 
       if cookies[:lat_lng] != nil
         @lat_lng = cookies[:lat_lng].split("|")
