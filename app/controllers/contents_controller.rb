@@ -87,6 +87,47 @@ class ContentsController < ApplicationController
     end
   end
 
+  def create_tweet
+    @content = Content.new(content_params)
+      
+    if @content.kind == "twitter" 
+      timeline = user_timeline(1)[0]
+
+      @content.title = "Tweet"
+      @content.external_id = timeline.id
+      @content.body = timeline.text
+      @content.author = current_user.id
+
+      if timeline.media[0].present?
+        @content.image = timeline.media[0]["media_url"]
+      end
+
+      @content.external_link = timeline.url
+      if timeline.place.full_name.present?
+        @content.location = timeline.place.full_name + ", " + timeline.place.country_code
+      end
+    else   
+    end
+
+    # SET DATE TIME TO NOW
+    @content.created = DateTime.now;
+    @content.updated = DateTime.now;
+
+    # FOR NOW ALWAYS SET TO TRUE
+    @content.has_comments = true;
+    @content.is_active = true;
+
+    respond_to do |format|
+      if @content.save
+        format.html { redirect_to @content, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @content }
+      else
+        format.html { redirect_to request.referrer }
+        format.json { render json: @content.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # PATCH/PUT /contents/1
   # PATCH/PUT /contents/1.json
   def update

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'welcome/index'
   get 'welcome/tweet'
   get 'contents/timeline'
+  get 'contents/create_tweet'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
