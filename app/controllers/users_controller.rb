@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 		@user = User.friendly.find(params[:id])
 		@twitterLink = "http://twitter.com/" + @user.username
 		
-		@contents = Content.where(:author => @user.id).page(params[:page]).per(5)
+		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(6)
 		@projects = Project.where(:author => @user.id).page(params[:page]).per(5)
 		
 		@new_project = Project.new 
