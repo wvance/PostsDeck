@@ -2,8 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
-  $('#projects').sortable({ scroll: false})
+  $('#projects').sortable
     axis: 'y'
+    scroll: false
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
