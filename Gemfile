@@ -12,6 +12,9 @@ gem 'kaminari'                      # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
 gem 'twitter'
 
+gem 'acts_as_list'
+gem "jquery-ui-rails"
+
 gem "fog-aws"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'

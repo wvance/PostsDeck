@@ -19,9 +19,9 @@
 				<%end%>
 			</div>
 		<%else%>
-			<div class="twitterSignIn verticalCenter">
-				<%= link_to user_omniauth_authorize_path(:twitter), :class=>"btn btn-default btn-xlg" do%>
-					<i class="fa fa-twitter"></i> Sign In
+			<div class="twitterSignIn verticalCenter links">
+				<%= link_to user_omniauth_authorize_path(:twitter) do%>
+					<h1 class="jumboName"><i class="fa fa-twitter"></i> Sign In</h1>
 				<%end%>
 			</div>
 		<%end%>

@@ -56,78 +56,86 @@
 	</div>
 </div>
 
-<div id = "projects">
+<div class="projectRows">
+<ul id="projects" data-update-url="<%= sort_projects_url %>">
 	<% if @projects.count > 0 %>
 		<% @projects.each_with_index do |project, index| %>	
-			<% if index % 2 == 0 %>
-				<hr>
-				<div class="row">
-					<% if project.image.present? %>
-						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
-							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
-							<%end%>
-						</div>
-					<%end%>
-					<div class="col-xs-offset-1 col-xs-10 col-sm-6 project">
-						<h1 class="links inline">
-							<%= link_to project.github_link, :target => "_blank" do %>
-								<%= project.title%>
-							<%end%> 
-						</h1>
-						<% if user_signed_in? %>
-							<% if current_user.id == @user.id %>
-								<h5 class="inline">
-									<%= link_to project_path(project.id), method: :delete do %>
-										Delete
-									<%end%>
-								</h5>
-							<%end%>
+			<%= content_tag_for :li, project do %>
+				<% if index % 2 == 0 %>
+					<hr>
+					<div class="row">
+						<% if current_user.id == @user.id %>
+							<span class="removeProject redLinks">
+								<%= link_to project_path(project.id), method: :delete do %>
+									<h2><i class="fa fa-times"></i></h2>
+								<%end%>
+							</span>
+							<span class="handle mobileHide">
+								<h2><i class="fa fa-bars"></i></h2>
+							</span>
 						<%end%>
-						<p>
-							<%= project.body %>
-						</p>
-					</div>
-				</div>
-			<%else%>
-				<hr>
-				<!-- THIS IS THE RIGHT -->
-				<div class="row">
-					<div class="col-xs-offset-1 col-xs-11 col-sm-6 project">
-						<h1 class="links inline">
-							<%= link_to project.github_link, :target => "_blank" do %>
-								<%= project.title%>
-							<%end%> 
-						</h1>
-						<% if user_signed_in? %>
-							<% if current_user.id == @user.id %>
-								<h5 class="inline">
-									<%= link_to project_path(project.id), method: :delete do %>
-										Delete
-									<%end%>
-								</h5>
-							<%end%>
-						<%end%>
-						<p>
-							<%= project.body %>
-						</p>
-						
-						<!-- <%= link_to "http://www.spritebuilder.com", :target => "_blank" do %>
-							<%= image_tag "sprite.svg", :height=>"50px;", :width=>"50px;"%>
-						<%end%>	 -->			
-					</div>
 
-					<% if project.image.present? %>
-						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide projectImage">
-							<%= link_to project.project_link, :target => "_blank" do %>
-								<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
-							<%end%>
+						<% if project.image.present? %>
+							<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
+								<%= link_to project.project_link, :target => "_blank" do %>
+									<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
+								<%end%>
+							</div>
+						<%end%>
+						<div class="col-xs-offset-1 col-xs-10 col-sm-6 project">
+							<h1 class="links inline">
+								<%= link_to project.github_link, :target => "_blank" do %>
+									<%= project.title%>
+								<%end%> 
+							</h1>
+							<p>
+								<%= project.body %>
+							</p>
 						</div>
-					<%end%>
-				</div>
+					</div>
+				<%else%>
+					<hr>
+					<!-- THIS IS THE RIGHT -->
+					<div class="row">
+						<% if current_user.id == @user.id %>
+							<span class="removeProject redLinks">
+								<%= link_to project_path(project.id), method: :delete do %>
+									<h2><i class="fa fa-times"></i></h2>
+								<%end%>
+							</span>
+							<span class="handle mobileHide">
+								<h2><i class="fa fa-bars"></i></h2>
+							</span>
+						<%end%>
+
+						<div class="col-xs-offset-1 col-xs-11 col-sm-6 project">
+							<h1 class="links">
+								<%= link_to project.github_link, :target => "_blank" do %>
+									<%= project.title%>
+								<%end%> 
+							</h1>
+							<p>
+								<%= project.body %>
+							</p>
+							
+							<!-- <%= link_to "http://www.spritebuilder.com", :target => "_blank" do %>
+								<%= image_tag "sprite.svg", :height=>"50px;", :width=>"50px;"%>
+							<%end%>	 -->			
+						</div>
+
+						<% if project.image.present? %>
+							<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide projectImage">
+								<%= link_to project.project_link, :target => "_blank" do %>
+									<%= image_tag project.image, :class=>"projectLogo img-responsive"%>
+								<%end%>
+							</div>
+						<%end%>
+					</div>
+				<%end%>
 			<%end%>
 		<%end%>
 	<%end%>
+</ul>
 </div>
 
 <% if user_signed_in? %>

@@ -32,7 +32,7 @@
   right:50%; 
 }
 /* active state */
-input:focus ~ .bar:before, input:focus ~ .bar:after {
+a:focus ~ .bar:before, a:focus ~ .bar:after {
   width:50%;
 }
 

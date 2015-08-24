@@ -2,6 +2,13 @@ class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :verify_is_admin, only: [:index]
 
+  def sort
+    params[:project].each_with_index do |id, index|
+       Project.where(id: id).update_all({position: index+1})
+    end
+    render nothing: true
+  end
+
   # GET /projects
   # GET /projects.json
   def index

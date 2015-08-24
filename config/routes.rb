@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
   resources :users
 
+  resources :projects do 
+    collection {post :sort}
+  end
+  
   get 'welcome/index'
   get 'welcome/tweet'
   get 'contents/timeline'

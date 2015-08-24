@@ -4,8 +4,8 @@ class UsersController < ApplicationController
 		@twitterLink = "http://twitter.com/" + @user.username
 		
 		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(6)
-		@projects = Project.where(:author => @user.id).page(params[:page]).per(5)
-		
+		@projects = Project.order("position").where(:author => @user.id).page(params[:page]).per(5)
+			
 		@new_project = Project.new 
 		
 		# THIS IS FOR THE DISPLAY MAP

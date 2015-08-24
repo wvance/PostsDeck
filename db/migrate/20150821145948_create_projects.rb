@@ -6,6 +6,8 @@ class CreateProjects < ActiveRecord::Migration
       t.string :image
       t.text :body
       
+      t.string :position
+      
       t.string :technologies
       t.string :github_link
       t.string :project_link
