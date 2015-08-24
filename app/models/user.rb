@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness:true
-
+  
   has_many :contents
   has_many :projects
 

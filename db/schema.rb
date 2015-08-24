@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.integer  "author"
     t.text     "body"
     t.string   "image"
-    t.integer  "external_id"
+    t.integer  "external_id",   limit: 8
     t.string   "external_link"
     t.string   "kind"
     t.string   "rating"
@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.string   "has_comments"
     t.datetime "created"
     t.datetime "updated"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.string   "slug"
   end
 

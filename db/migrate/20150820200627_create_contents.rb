@@ -5,7 +5,7 @@ class CreateContents < ActiveRecord::Migration
       t.integer :author
       t.text :body
       t.string :image
-      t.integer :external_id
+      t.integer :external_id, :limit => 8
       t.string :external_link
       t.string :kind
       t.string :rating

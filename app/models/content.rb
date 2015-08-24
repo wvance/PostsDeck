@@ -1,5 +1,6 @@
 class Content < ActiveRecord::Base
 	belongs_to :user
+	validates :external_id, uniqueness: true , :allow_blank => true, :allow_nil => true
 	
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged

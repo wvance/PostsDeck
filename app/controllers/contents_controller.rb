@@ -1,6 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_is_admin, only: [:index]
+  before_action :verify_is_admin, only: [:index]
 
   include TwitterHelper
 
@@ -28,16 +28,7 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(content_params)
-
-    # @twitter_client ||= Twitter::REST::Client.new do |config|
-    #   config.consumer_key = ENV['twitter_consumer_key']
-    #   config.consumer_secret = ENV['twitter_consumer_secret']
-    #   config.access_token = current_user.token
-    #   config.access_token_secret = current_user.secret
-    # end
-    
-    # @twitter_client.update(@content.body)
-
+      
     if @content.kind == "twitter" 
       timeline = user_timeline(1)[0]
 
@@ -66,6 +57,7 @@ class ContentsController < ApplicationController
       else 
         @content.ip = request.remote_ip
       end
+      send_tweet(@content.title, request.fullpath)
     else 
       if cookies[:lat_lng] != nil
         @lat_lng = cookies[:lat_lng].split("|")
@@ -89,7 +81,7 @@ class ContentsController < ApplicationController
         format.html { redirect_to @content, notice: 'Content was successfully created.' }
         format.json { render :show, status: :created, location: @content }
       else
-        format.html { render :new }
+        format.html { redirect_to request.referrer }
         format.json { render json: @content.errors, status: :unprocessable_entity }
       end
     end
