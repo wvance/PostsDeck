@@ -239,6 +239,64 @@
 	</div>
 </div>
 
+<hr>
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<div class="row">
+			<div class="col-xs-12 center">
+				<h1 class="jumboName" id="newPostButton">New Post</h1>
+			</div>
+		</div>
+	<%end%>
+<%end%>
+
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<div class="row" id="newPost">
+			<div class="col-xs-offset-1 col-xs-10 col-sm-2">
+				<h1 class="links adminAdd">
+					New Post!
+				</h1>
+				<p>
+					Create a new post!
+				</p>		
+				<hr>		
+			</div>
+
+			<!-- MOVE THIS INTO A PARTIAL? -->
+			<div class="col-xs-11 col-sm-8">
+				<%= form_for Content.new, :url => contents_path, :html => {:method => :post, :multipart => true} do |f|  %>
+					<div class="form-horiontal">
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :title%>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-xs-3">
+						  	<%= f.label :body %>
+						  </div>
+						  <div class="col-xs-9">
+						  	<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"form-control autoGrowText", :rows=>"5", :required => true%>
+						  	<span class="bar"></span>
+						  	<br />
+						  </div>
+						</div>
+						<%= f.hidden_field :kind, :value => "post" %>
+						<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
+					</div>
+				<% end %>
+			</div>
+		</div>
+		</div>
+	<%end%>
+<%end%>
 
 <div class="row">
 	<!-- Content -->
@@ -299,65 +357,6 @@
 		</div>
 	</div>
 </div>
-
-<hr>
-<% if user_signed_in? %>
-	<% if current_user.id == @user.id %>
-		<div class="row">
-			<div class="col-xs-12 center">
-				<h1 class="jumboName" id="newPostButton">New Post</h1>
-			</div>
-		</div>
-	<%end%>
-<%end%>
-
-<% if user_signed_in? %>
-	<% if current_user.id == @user.id %>
-		<div class="row" id="newPost">
-			<div class="col-xs-offset-1 col-xs-10 col-sm-2">
-				<h1 class="links adminAdd">
-					New Post!
-				</h1>
-				<p>
-					Create a new post!
-				</p>		
-				<hr>		
-			</div>
-
-			<!-- MOVE THIS INTO A PARTIAL? -->
-			<div class="col-xs-11 col-sm-8">
-				<%= form_for Content.new, :url => contents_path, :html => {:method => :post, :multipart => true} do |f|  %>
-					<div class="form-horiontal">
-						<div class="form-group">
-							<div class="col-xs-3">
-						  	<%= f.label :title%>
-						  </div>
-						  <div class="col-xs-9">
-						  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
-						  	<span class="bar"></span>
-						  	<br />
-						  </div>
-						</div>
-
-						<div class="form-group">
-							<div class="col-xs-3">
-						  	<%= f.label :body %>
-						  </div>
-						  <div class="col-xs-9">
-						  	<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"form-control autoGrowText", :rows=>"5", :required => true%>
-						  	<span class="bar"></span>
-						  	<br />
-						  </div>
-						</div>
-						<%= f.hidden_field :kind, :value => "post" %>
-						<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
-					</div>
-				<% end %>
-			</div>
-		</div>
-		</div>
-	<%end%>
-<%end%>
 <hr>
 <div class="footer">
 	<div class="row" id="connect">
