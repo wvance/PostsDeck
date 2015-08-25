@@ -293,3 +293,7 @@ input[type="text"].postTitle{
 	padding-top: 10px;
 	z-index: 9999;
 }
+
+#newProject, #newPost{
+  display: none;
+}

@@ -138,10 +138,19 @@
 </ul>
 </div>
 
+<hr>
 <% if user_signed_in? %>
 	<% if current_user.id == @user.id %>
-		<hr>
 		<div class="row">
+			<div class="col-xs-12 center links">
+				<h1 class="jumboName" id="newProjectButton">New Project</h1>
+			</div>
+		</div>
+	<%end%>
+<%end%>
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<div class="row" id="newProject">
 			<div class="col-xs-offset-1 col-xs-11 col-sm-3">
 				<h1 class="links adminAdd">
 					New Project
@@ -222,6 +231,7 @@
 		</div>
 	<%end%>
 <%end%>
+<hr>
 
 <br>
 <div class="row fullWidth">
@@ -291,10 +301,20 @@
 	</div>
 </div>
 
+<hr>
 <% if user_signed_in? %>
 	<% if current_user.id == @user.id %>
-		<hr>
 		<div class="row">
+			<div class="col-xs-12 center">
+				<h1 class="jumboName" id="newPostButton">New Post</h1>
+			</div>
+		</div>
+	<%end%>
+<%end%>
+
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<div class="row" id="newPost">
 			<div class="col-xs-offset-1 col-xs-10 col-sm-2">
 				<h1 class="links adminAdd">
 					New Post!
@@ -339,7 +359,7 @@
 		</div>
 	<%end%>
 <%end%>
-
+<hr>
 <div class="footer">
 	<div class="row" id="connect">
 		<div class="col-xs-12">
