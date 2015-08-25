@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
-  before_filter :verify_is_admin, only: [:index]
+  before_filter :verify_is_admin, only: []
 
   def sort
     params[:project].each_with_index do |id, index|
