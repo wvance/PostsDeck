@@ -8,6 +8,22 @@
 
 # EXAMPLE OF PAGE SPECIFIC JS
 # http://brandonhilkert.com/blog/page-specific-javascript-in-rails/
+jQuery ->
+	
+	# SHOW USERNAMES ON PAGE LOAD
+  $(document).ready ->
+    $('#usersNames').show 'fade', 1000
+    return
+
+  # ON CLICK OF USERNAME, FADE AWAY
+  $('#userName').click ->
+  	$('#userName').hide 'fade', 400
+  	return
+  
+  # SHOW TWITTER SIGN IN PAGE ON PAGELOAD
+  $(document).ready ->
+  	$('#twitterSignInButton').show 'fade', 1000
+  	return
 
 $(".users.show").ready ->
 	L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';

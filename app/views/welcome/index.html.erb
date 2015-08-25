@@ -2,7 +2,7 @@
 	<ul>
 		<% @all_users.each do |user| %>
 			<%= link_to user_path(user) do%>
-				<li>
+				<li id="usersNames">
 					<h4><%= user.username.capitalize%></h4>
 				</li>
 			<%end%>
@@ -15,13 +15,13 @@
 		<% if user_signed_in? %>
 			<div class="links">
 				<%= link_to current_user do%>
-					<h1 class="jumboName"><strong><%= current_user.username.capitalize%></strong></h1>
+					<h1 class="jumboName" id="userName"><strong><%= current_user.username.capitalize%></strong></h1>
 				<%end%>
 			</div>
 		<%else%>
 			<div class="twitterSignIn verticalCenter links">
 				<%= link_to user_omniauth_authorize_path(:twitter) do%>
-					<h1 class="jumboName"><i class="fa fa-twitter"></i> Sign In</h1>
+					<h1 class="jumboName" id="twitterSignInButton"><i class="fa fa-twitter"></i> Sign In</h1>
 				<%end%>
 			</div>
 		<%end%>
