@@ -20,4 +20,3 @@ jQuery ->
   		$('#newPost').show 'drop', 1000
   		return
   	return
-
