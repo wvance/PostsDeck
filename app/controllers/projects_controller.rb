@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
 
   def sort
     params[:project].each_with_index do |id, index|
-       Project.where(id: id).update_all({position: index+1})
+       Project.where(id: id.to_i).update_all({position: index+1})
     end
     render nothing: true
   end
