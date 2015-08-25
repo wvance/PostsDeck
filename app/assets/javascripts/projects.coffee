@@ -5,6 +5,10 @@ jQuery ->
   $('#projects').sortable
     axis: 'y'
     scroll: false
+    delay: 150
+    opacity: 0.65
+    revert: true
+    zIndex: 9999
     handle: '.handle'
     update: ->
       $.post($(this).data('update-url'), $(this).sortable('serialize'))
