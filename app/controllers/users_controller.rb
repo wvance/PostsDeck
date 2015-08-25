@@ -48,6 +48,7 @@ class UsersController < ApplicationController
 		respond_to do |format|
 		  format.html
 		  format.json { render json: @geojson }  # respond with the created JSON object
+		  # format.js
 		end	
 	end
 end

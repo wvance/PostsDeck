@@ -1,0 +1,51 @@
+<% if @contents.count > 0 %>
+	<% @contents.each do |content| %>
+		<hr>
+		<div class="blogSection" id="blog">
+			<div class="row links" id="<%= content.id %>">
+				<div class="blogPost">
+					<div class="blogImage">
+						<% if content.image.present? %>
+							<div class="col-xs-12 col-sm-3 center">
+								<%= link_to content.image do%>
+									<br>
+									<%= image_tag content.image, :width=>"200px", :height=>"200px;", :class=>"img-responsive center thumbnail", :target => "_blank" %>
+								<%end%>
+							</div>
+						<%end%>
+					</div>
+					<div class="col-xs-12 <% if content.image.present? %>col-sm-9<%end%>">
+						<div class="blogTitle">
+							<%= link_to("/contents/"+content.id.to_s) do%>
+								<% if content.title.present? %>
+									<h1><%= content.title %></h1>
+								<%elsif content.kind.present? %>
+									<h1><%= content.kind.capitalize%>:</h1>
+								<%else%>
+									<h1>Content:</h1>
+								<%end%>
+							<%end%>
+						</div>
+						<div class="blogTags">
+							<h6 class="childElement">
+								<% if content.created.present?%> 
+									<%= formatDate(content.created) %> 
+								<%end%>
+								<% if content.location.present?%> 
+	              	at <%= content.location%>
+	              <%elsif content.city.present? || content.state.present?%>
+	              	at <%= content.city %> <%= content.state%>
+	            	<%end%>
+            	</h6>
+						</div>
+						<div class="blogBody">
+							<% if content.body.present? %>
+								<p><%= markdown(content.body.truncate(400, separator: '', omission: '...')).html_safe  %></p>
+							<%end%>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<%end%>
+<%end%>
