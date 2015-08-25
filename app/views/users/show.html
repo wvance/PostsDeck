@@ -62,11 +62,11 @@
 		<% @projects.each_with_index do |project, index| %>	
 			<%= content_tag_for :li, project do %>
 				<% if index % 2 == 0 %>
-					<hr>
 					<div class="row">
+						<hr>
 						<% if current_user.id == @user.id %>
 							<span class="removeProject redLinks">
-								<%= link_to project_path(project.id), method: :delete do %>
+								<%= link_to project_path(project.id), method: :delete, :remote => true, :class => 'delete_project' do %>
 									<h2><i class="fa fa-times"></i></h2>
 								<%end%>
 							</span>
@@ -94,12 +94,11 @@
 						</div>
 					</div>
 				<%else%>
-					<hr>
-					<!-- THIS IS THE RIGHT -->
 					<div class="row">
+						<hr>
 						<% if current_user.id == @user.id %>
 							<span class="removeProject redLinks">
-								<%= link_to project_path(project.id), method: :delete do %>
+								<%= link_to project_path(project.id), method: :delete, :remote => true, :class => 'delete_project' do %>
 									<h2><i class="fa fa-times"></i></h2>
 								<%end%>
 							</span>
