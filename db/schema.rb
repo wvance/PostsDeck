@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.string   "title"
     t.string   "image"
     t.text     "body"
-    t.integer  "position"
+    t.string   "position"
     t.string   "technologies"
     t.string   "github_link"
     t.string   "project_link"
