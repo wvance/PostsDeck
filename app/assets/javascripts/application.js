@@ -17,6 +17,9 @@
 //
 //= require twitter/bootstrap
 //= require jquery-readyselector
+//= require markdown.converter
+//= require markdown.sanitizer
+//= require markdown.editor
 //
 //= require turbolinks
 //= require_tree .
@@ -51,4 +54,7 @@ $(function() {
 // AUTOGROW TEXT AREAS
 $(document).ready(function(){
   $('.autoGrowText').autogrow();
+  var converter = Markdown.getSanitizingConverter();
+  var editor = new Markdown.Editor(converter);
+  editor.run();
 });
