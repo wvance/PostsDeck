@@ -19,7 +19,7 @@ gem "fog-aws"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
 gem 'json'
-gem 'pagedown-rails', '~> 1.1.3'
+gem 'pagedown-rails', :git => 'git://github.com/wvance/pagedown-rails'
 
 # NEEDED FOR HEROKU PRODUCTION
 gem 'pg'
