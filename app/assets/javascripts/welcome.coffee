@@ -17,7 +17,7 @@ jQuery ->
 
   # ON CLICK OF USERNAME, FADE AWAY
   $('#userName').click ->
-  	$('#userName').hide 'fade', 400
+  	$('#userName').hide 'fade', 800
   	return
   
   # SHOW TWITTER SIGN IN PAGE ON PAGELOAD

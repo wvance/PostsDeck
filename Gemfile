@@ -18,6 +18,7 @@ gem "jquery-ui-rails"
 gem "fog-aws"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+gem 'json'
 
 # NEEDED FOR HEROKU PRODUCTION
 gem 'pg'

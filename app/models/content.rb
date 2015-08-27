@@ -26,15 +26,27 @@ class Content < ActiveRecord::Base
 
 	reverse_geocoded_by :latitude, :longitude do |obj,results|
 	  if geo = results.first
-	  	# FULL ADDRESS
-	  	obj.address = geo.address 
 	  	# CITY, STATE, COUNTRY & POSTAL CODE SEPERATE
 	    obj.city = geo.city
 	    obj.state = geo.state_code
 	    obj.country = geo.country_code
 	    obj.postal = geo.postal_code
+
+	  	# FULL ADDRESS
+	  	if geo.address
+	  		obj.address = geo.address 
+	  	else 
+	  		obj.address = geo.city + " " + geo.state_code + " " + geo.country_code + " " + geo.postal_code
+	  		if obj.location.present?
+	  			obj.location = obj.address
+	  		end
+	  	end
 	  end
 	end
 
-	after_validation :geocode, :reverse_geocode
+	unless :latitude.present? && :longitude.present? 
+		after_validation :geocode
+	end
+	
+	after_validation :reverse_geocode
 end

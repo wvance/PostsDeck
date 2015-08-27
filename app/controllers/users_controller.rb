@@ -14,18 +14,23 @@ class UsersController < ApplicationController
 		# PUT CONTENTS ON MAP
 		if @contents.exists? 
 			@contents.each do |content|
+				puts "CONTENT KIND HERE :"
+				puts content.kind
 				if (content.kind == "twitter")
 					marker_color = '#4099FF'
 				else 
 					marker_color = '#FFCC00'
 				end
 
-				if (content.longitude != '0.0' || content.latitude != '0.0') && (content.longitude != '' || content.latitude != '')
+				unless (content.longitude.nil? || content.latitude.nil?) || (content.longitude == '0' || content.latitude == '0')
 				  @geojson << {
 				    type: 'Feature',
 				    geometry: {
 				      type: 'Point',
-				      coordinates: [content.longitude, content.latitude]
+				      coordinates: [
+				      	content.longitude, 
+				      	content.latitude
+				      ]
 				    },
 				    properties: {
 				      name: content.title,
@@ -35,6 +40,8 @@ class UsersController < ApplicationController
 				      address: 
 					      if (content.city.present? && content.state.present?) 
 					      	content.city + ", " + content.state
+					      elsif content.location.present?
+					      	content.location
 					      end,
 				      :'marker-color' => marker_color,
 				      :'marker-size' => 'small'
@@ -43,7 +50,9 @@ class UsersController < ApplicationController
 				end
 			end
 		end
+		puts "START MAP OBJECT: "
 		puts @geojson
+		puts "END MAP OBJECT: "
 		
 		respond_to do |format|
 		  format.html

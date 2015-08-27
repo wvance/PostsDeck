@@ -21,25 +21,41 @@ class ApplicationController < ActionController::Base
     user_client.user_timeline(count: qt)
   end
 
+  def geoSearch(user_client, location)
+    user_client.geo_search(query: location)
+    # raise user_client.geo_search(query: location).inspect
+  end
+
   def post_multiple_tweets(user_client, count)
     # GET A USER'S TIMELINE
     user_tweets = user_client.user_timeline(count: count)
 
     # LOOP THROUGH EACH TWEET IN USER TIMELINE AND CREATE 'NEW CONTENT'
     user_tweets.each do |tweet|
+
       new_tweet = Content.new
       new_tweet.title = tweet.text.truncate(30, separator: ' ')
       new_tweet.external_id = tweet.id
       new_tweet.body = tweet.text
       new_tweet.author = current_user.id
+      new_tweet.kind = "twitter"
       new_tweet.external_link = tweet.url
 
       if tweet.media.present?
-        new_tweet.image = tweet.media[0]["media_url"]
+        new_tweet.image = tweet.media[0].media_url
       end
 
-      if tweet.place.full_name.present?
-        new_tweet.location = tweet.place.full_name + ", " + tweet.place.country_code
+      new_tweet.longitude = tweet.place.bounding_box.coordinates[0][0][0]
+      new_tweet.latitude = tweet.place.bounding_box.coordinates[0][0][1]
+
+      if tweet.place.present?
+        new_tweet.location = tweet.place.full_name
+
+        # GEO SEARCH: COMMENTED OUT FOR NOW... CANT FIGURE OUT HASH PARSING
+
+        # raise geo_result = geoSearch(user_client, tweet.place.full_name).inspect
+        # new_tweet.longitude = geo_result.centroid
+        # raise geo_result.centroid.inspect
       end
 
       new_tweet.created = DateTime.now
@@ -47,7 +63,6 @@ class ApplicationController < ActionController::Base
 
       new_tweet.has_comments = true
       new_tweet.is_active = true
-      
       if new_tweet.valid?
         new_tweet.save!
       end

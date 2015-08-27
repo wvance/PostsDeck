@@ -13,6 +13,7 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
+    @author = User.where(:id => @content.author).first
   end
 
   # GET /contents/new
@@ -48,7 +49,6 @@ class ContentsController < ApplicationController
 
     elsif @content.kind == "twitter"
       post_multiple_tweets(@@twitter_client, 5)
-
     elsif @content.kind == "post"
       @content.author = current_user.id
 

@@ -1,7 +1,7 @@
 <!-- Title -->
 <div class="showPostAdmin">
   <%= link_to user_path(@content.author) do%>
-  <h1><span class="yellow"><%= current_user.first_name%></span><%= current_user.last_name%></h1>
+    <h1><span class="yellow"><%= @author.first_name%></span><%= @author.last_name%></h1>
   <%end%>
 </div>
 
@@ -11,8 +11,8 @@
       <div id="blog" class="blogSection">
         <div class="blogTitle links">
           <h1 class="inline postTitle"><span class="yellow"><%= @content.title %> </span></h1>
-          <% if current_user.id == @content.author %>
-            <% if user_signed_in?%>
+          <% if user_signed_in?%>
+            <% if current_user.id == @content.author %>
               <h6 class="inline">            
                 <%= link_to 'Edit', edit_content_path(@content) %> | 
                 <%= link_to(content_path(@content), method: :delete) do%>
