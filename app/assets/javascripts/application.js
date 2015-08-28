@@ -51,9 +51,11 @@ $(function() {
   });
 });
 
-// AUTOGROW TEXT AREAS
 $(document).ready(function(){
+  // AUTOGROW TEXT AREA
   $('.autoGrowText').autogrow();
+
+  // INITIALIZE MARKDOWN INPUT BOX
   var converter = Markdown.getSanitizingConverter();
   var editor = new Markdown.Editor(converter);
   editor.run();

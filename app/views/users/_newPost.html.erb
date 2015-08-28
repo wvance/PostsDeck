@@ -19,7 +19,6 @@
 				  </div>
 				  <div class="col-xs-9">
 				  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
-				  	<span class="bar"></span>
 				  	<br />
 				  </div>
 				</div>
@@ -31,7 +30,7 @@
 				  <div class="col-xs-9">
 				  	<div class='wmd-panel'>
 						  <div id='wmd-button-bar'></div>
-				  		<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input", :rows=>"5", :required => true%>
+				  		<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input autoGrowText", :rows=>"5", :required => true%>
 				  	</div>
 				  	<br />
 				  </div>

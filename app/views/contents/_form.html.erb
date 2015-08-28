@@ -32,9 +32,11 @@
         </div>
         <div class="row">
           <div class="col-xs-8 form-group">
-            <hr>
             <div class="field">
-              <%= f.text_area :body, class: "form-control autoGrowText", rows: "10", placeholder:"Insert post body here in HTML"%>
+              <div class='wmd-panel'>
+                <div id='wmd-button-bar'></div>
+                <%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input autoGrowText", :rows=>"5", :required => true%>
+              </div>
             </div>
           </div>
           <div class="col-xs-4 form-group">

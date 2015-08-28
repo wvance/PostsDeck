@@ -18,7 +18,7 @@ gem "jquery-ui-rails"
 gem "fog-aws"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
-gem 'json'
+# gem 'json'
 gem 'pagedown-rails', :git => 'git://github.com/wvance/pagedown-rails'
 
 # NEEDED FOR HEROKU PRODUCTION
