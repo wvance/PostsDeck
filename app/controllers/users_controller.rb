@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 	def show
-		@user = User.friendly.find(params[:id])
+		@user = User.find_by_subdomain!(request.subdomain)
 		@twitterLink = "http://twitter.com/" + @user.username
 		
 		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(6)
@@ -60,4 +60,10 @@ class UsersController < ApplicationController
 		  # format.js
 		end	
 	end
+
+	private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def user_params
+      params.require(:user).permit(:username)
+    end
 end

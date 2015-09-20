@@ -14,7 +14,7 @@
 	<div class="col-xs-offset-1 col-xs-10 verticalCenter center">
 		<% if user_signed_in? %>
 			<div class="links">
-				<%= link_to current_user do%>
+				<%= link_to root_url(subdomain: current_user.subdomain) do%>
 					<h1 class="jumboName" id="userName"><strong><%= current_user.username.capitalize%></strong></h1>
 				<%end%>
 			</div>

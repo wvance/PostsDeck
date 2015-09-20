@@ -4,7 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	before_action :set_twitter_client
 
-  private
+private
+  def load_user
+    @user = User.find_by_subdomain!(request.subdomain)
+  end
 
   def set_twitter_client
     if user_signed_in?
@@ -41,6 +44,9 @@ class ApplicationController < ActionController::Base
       new_tweet.kind = "twitter"
       new_tweet.external_link = tweet.url
 
+      # new_tweet.created = tweet.date
+      # new_tweet.created = DateTime.now
+
       if tweet.media.present?
         new_tweet.image = tweet.media[0].media_url
       end
@@ -58,7 +64,6 @@ class ApplicationController < ActionController::Base
         # raise geo_result.centroid.inspect
       end
 
-      new_tweet.created = DateTime.now
       new_tweet.updated = DateTime.now
 
       new_tweet.has_comments = true

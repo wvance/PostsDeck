@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823185427) do
+ActiveRecord::Schema.define(version: 20150920215051) do
 
   create_table "contents", force: :cascade do |t|
     t.string   "title"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150823185427) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subdomain"
   end
 
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

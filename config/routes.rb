@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   resources :projects do 
     collection {post :sort}
   end
-  
   get 'welcome/index'
   get 'welcome/tweet'
   get 'contents/timeline'
@@ -16,6 +15,9 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  # Subdomain Support: http://railscasts.com/episodes/123-subdomains-revised?autoplay=true
+  get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  
   # You can have the root of your site routed with "root"
   root to: 'welcome#index'
 
