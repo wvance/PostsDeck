@@ -63,7 +63,7 @@ private
         # new_tweet.longitude = geo_result.centroid
         # raise geo_result.centroid.inspect
       end
-
+      new_tweet.created = DateTime.now
       new_tweet.updated = DateTime.now
 
       new_tweet.has_comments = true
