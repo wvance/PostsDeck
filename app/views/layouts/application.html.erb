@@ -24,7 +24,7 @@
 		  <div class="alert alert-<%= key %> center"><%= value %></div>
 		<% end %>
 			
-		<% if current_page?(current_page?(controller: '/welcome', action: 'index') %>
+		<% if current_page?(current_page?(controller: '/welcome', action: 'index'))%>
 		<%else%>
 			<% if user_signed_in? %>
 				<div class="adminBar links">
