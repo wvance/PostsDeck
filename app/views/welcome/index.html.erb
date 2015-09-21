@@ -1,7 +1,7 @@
 <div class="usernameCloud links">
 	<ul>
 		<% @all_users.each do |user| %>
-			<%= link_to user_path(user) do%>
+			<%= link_to root_url(subdomain: user.subdomain) do%>
 				<li id="usersNames">
 					<h4><%= user.username.capitalize%></h4>
 				</li>
