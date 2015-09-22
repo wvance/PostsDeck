@@ -1,6 +1,6 @@
 <!-- Title -->
 <div class="showPostAdmin">
-  <%= link_to user_path(@content.author) do%>
+  <%= link_to root_url(subdomain: @author.subdomain)do%>
     <h1><span class="yellow"><%= @author.first_name%></span><%= @author.last_name%></h1>
   <%end%>
 </div>
@@ -10,7 +10,7 @@
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
       <div id="blog" class="blogSection">
         <div class="blogTitle links">
-          <h1 class="inline postTitle"><span class="yellow"><%= @content.title %> </span></h1>
+          <h1 class="inline postTitle"><span class="yellow"><%= @content.title%> </span></h1>
           <% if user_signed_in?%>
             <% if current_user.id == @content.author %>
               <h6 class="inline">            
@@ -23,7 +23,10 @@
           <%end%>
         </div>
         <div class="blogTags">
-          <h5 class="childElement"><%= formatDate(@content.created) %> 
+          <h5 class="childElement">
+            <% if @content.created.present? %>
+              <%= formatDate(@content.created) %> 
+            <%end%>
             <% if @content.kind =="twitter" %>
               at <%= @content.location %>
             <%elsif @content.city.present? || @content.state.present?%> 

@@ -30,7 +30,7 @@ private
   end
 
   def post_multiple_tweets(user_client, count)
-    # GET A USER'S TIMELINE
+    # GET A USER'S TIMELINE GOING BACK AS FAR AS COUNT
     user_tweets = user_client.user_timeline(count: count)
 
     # LOOP THROUGH EACH TWEET IN USER TIMELINE AND CREATE 'NEW CONTENT'
