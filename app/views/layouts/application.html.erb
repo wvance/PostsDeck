@@ -23,23 +23,21 @@
 		<% flash.each do |key, value| %>
 		  <div class="alert alert-<%= key %> center"><%= value %></div>
 		<% end %>
-		
-		<% unless current_page?(controller: '/welcome', action: 'index') || current_page?(root_path) %>
-			<% if user_signed_in? %>
-				<div class="adminBar links">
-			  	<h4>			  		
-			  		<%= link_to root_path, :class=>"navBarLinks" do%>
-							Home
-						<%end%>
-						<%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
-							Tweet
-						<%end%>
-			  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
-			  			Sign Out
-			  		<%end%>
-			  	</h4>
-			  </div>
-		  <%end%>
+
+		<% if user_signed_in? %>
+			<div class="adminBar links">
+		  	<h4>			  		
+		  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
+						Home
+					<%end%>
+					<%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
+						Tweet
+					<%end%>
+		  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
+		  			Sign Out
+		  		<%end%>
+		  	</h4>
+		  </div>
 	  <%end%>
 
 		<div class="bodyWrapper">
