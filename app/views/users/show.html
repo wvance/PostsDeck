@@ -122,7 +122,15 @@
 					<i class="fa fa-twitter"></i>
 				<% end %>
 			</h4>
-			<h6 class="center">Made with love in <a href="http://rubyonrails.org" target="_blank"><span class="ruby">RoR</span></a> by <a href="mailto:wesley.vance@mac.com?Subject=Hello my name is: " target="_top"><span class="yellow">Wesley Vance</span></a></h6>
+			<h6 class="center">
+				Made with love in 
+				<a href="http://rubyonrails.org" target="_blank">
+					<span class="ruby">RoR</span>
+				</a> by 
+				<%= link_to root_url(:subdomain => :wesadvance) do%>
+					<span class="yellow">Wesley Vance</span>
+				<%end%>
+			</h6>
 		</div>
 	</div>
 </div>
