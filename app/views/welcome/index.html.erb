@@ -3,9 +3,11 @@
 	<ul>
 		<% @all_users.each do |user| %>
 			<%= link_to root_url(subdomain: user.subdomain) do%>
+				<hr>
 				<li id="usersNames">
 					<h4><%= user.username.capitalize%></h4>
 				</li>
+				<hr>
 			<%end%>
 		<%end%>
 	</ul>
