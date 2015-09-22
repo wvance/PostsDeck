@@ -62,8 +62,8 @@
 	</ul>
 </div>
 
-<hr>
 <% if user_signed_in? %>
+	<hr>
 	<% if current_user.id == @user.id %>
 		<div class="row">
 			<div class="col-xs-12 center links">
@@ -76,8 +76,8 @@
 	<% if current_user.id == @user.id %>
 		<%= render 'newProject' %>
 	<%end%>
+	<hr>
 <%end%>
-<hr>
 
 <br>
 <div class="row fullWidth">
@@ -86,8 +86,8 @@
 	</div>
 </div>
 
-<hr>
 <% if user_signed_in? %>
+	<hr>
 	<% if current_user.id == @user.id %>
 		<div class="row">
 			<div class="col-xs-12 center">
