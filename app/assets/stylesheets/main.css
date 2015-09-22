@@ -294,6 +294,6 @@ input[type="text"].postTitle{
 	z-index: 9999;
 }
 
-#newProject, #newPost, #about, #usersNames, #twitterSignInButton{
+/*#newProject, #newPost, #about, #usersNames, #twitterSignInButton{
   display: none;
-}
+}*/
