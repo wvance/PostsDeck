@@ -44,8 +44,12 @@ private
       new_tweet.kind = "twitter"
       new_tweet.external_link = tweet.url
 
-      new_tweet.created = tweet.created_at
-      # new_tweet.created = DateTime.now
+      if tweet.created_at.present?
+        new_tweet.created = tweet.created_at
+      else
+        new_tweet.created = DateTime.now
+      end
+      new_tweet.updated = DateTime.now
 
       if tweet.media.present?
         new_tweet.image = tweet.media[0].media_url
@@ -63,8 +67,6 @@ private
         # new_tweet.longitude = geo_result.centroid
         # raise geo_result.centroid.inspect
       end
-      # new_tweet.created = DateTime.now
-      new_tweet.updated = DateTime.now
 
       new_tweet.has_comments = true
       new_tweet.is_active = true
