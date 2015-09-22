@@ -1,5 +1,4 @@
 <div class="usernameCloud links">
-	<%= @all_users.count %>
 	<ul>
 		<% @all_users.each do |user| %>
 			<%= link_to root_url(subdomain: user.subdomain) do%>
