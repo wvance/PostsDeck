@@ -34,46 +34,44 @@ private
     user_tweets = user_client.user_timeline(count: count)
 
     # LOOP THROUGH EACH TWEET IN USER TIMELINE AND CREATE 'NEW CONTENT'
-    if user_tweets.count > 0 
-      user_tweets.each do |tweet|
+    user_tweets.each do |tweet|
+      new_tweet = Content.new
+      new_tweet.title = tweet.text.truncate(30, separator: ' ')
+      new_tweet.external_id = tweet.id
+      new_tweet.body = tweet.text
+      new_tweet.author = current_user.id
+      new_tweet.kind = "twitter"
+      new_tweet.external_link = tweet.url
 
-        new_tweet = Content.new
-        new_tweet.title = tweet.text.truncate(30, separator: ' ')
-        new_tweet.external_id = tweet.id
-        new_tweet.body = tweet.text
-        new_tweet.author = current_user.id
-        new_tweet.kind = "twitter"
-        new_tweet.external_link = tweet.url
+      if tweet.created_at.present?
+        new_tweet.created = tweet.created_at
+      else
+        new_tweet.created = DateTime.now
+      end
+      new_tweet.updated = DateTime.now
 
-        if tweet.created_at.present?
-          new_tweet.created = tweet.created_at
-        else
-          new_tweet.created = DateTime.now
-        end
-        new_tweet.updated = DateTime.now
+      if tweet.media.present?
+        new_tweet.image = tweet.media[0].media_url
+      end
 
-        if tweet.media.present?
-          new_tweet.image = tweet.media[0].media_url
-        end
+      new_tweet.longitude = tweet.place.bounding_box.coordinates[0][0][0]
+      new_tweet.latitude = tweet.place.bounding_box.coordinates[0][0][1]
 
-        new_tweet.longitude = tweet.place.bounding_box.coordinates[0][0][0]
-        new_tweet.latitude = tweet.place.bounding_box.coordinates[0][0][1]
+      if tweet.place.present?
+        new_tweet.location = tweet.place.full_name
 
-        if tweet.place.present?
-          new_tweet.location = tweet.place.full_name
+        # GEO SEARCH: COMMENTED OUT FOR NOW... CANT FIGURE OUT HASH PARSING
 
-          # GEO SEARCH: COMMENTED OUT FOR NOW... CANT FIGURE OUT HASH PARSING
+        # raise geo_result = geoSearch(user_client, tweet.place.full_name).inspect
+        # new_tweet.longitude = geo_result.centroid
+        # raise geo_result.centroid.inspect
+      end
 
-          # raise geo_result = geoSearch(user_client, tweet.place.full_name).inspect
-          # new_tweet.longitude = geo_result.centroid
-          # raise geo_result.centroid.inspect
-        end
+      new_tweet.has_comments = true
+      new_tweet.is_active = true
 
-        new_tweet.has_comments = true
-        new_tweet.is_active = true
-        if new_tweet.valid?
-          new_tweet.save!
-        end
+      if new_tweet.valid?
+        new_tweet.save!
       end
     end
   end
