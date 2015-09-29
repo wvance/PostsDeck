@@ -6,8 +6,8 @@ class CreateProjects < ActiveRecord::Migration
       t.string :image
       t.text :body
       
-      t.string :position
-      
+      t.string :position  # THIS TYPE IS CHANGED TO INTEGER
+
       t.string :technologies
       t.string :github_link
       t.string :project_link
