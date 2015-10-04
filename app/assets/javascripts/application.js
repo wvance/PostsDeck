@@ -15,6 +15,7 @@
 //= require jquery.turbolinks
 //= require jquery_ujs
 //
+//= require d3
 //= require twitter/bootstrap
 //= require jquery-readyselector
 //= require markdown.converter
