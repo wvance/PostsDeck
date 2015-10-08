@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150929015243) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "contents", force: :cascade do |t|
     t.string   "title"
     t.integer  "author"
@@ -40,7 +43,7 @@ ActiveRecord::Schema.define(version: 20150929015243) do
     t.string   "slug"
   end
 
-  add_index "contents", ["slug"], name: "index_contents_on_slug"
+  add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree
 
   create_table "projects", force: :cascade do |t|
     t.integer  "author"
@@ -101,7 +104,7 @@ ActiveRecord::Schema.define(version: 20150929015243) do
     t.string   "subdomain"
   end
 
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  add_index "users", ["username"], name: "index_users_on_username", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
 end
