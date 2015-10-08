@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(6)
 		@projects = Project.order("position").where(:author => @user.id).page(params[:page]).per(5)
 		
+		# GET ALL CONTENT OBJECTS FOR THE MAP DISPLAY
 		@mapContent = Content.order('contents.created DESC').where(:author => @user.id)
 		@new_project = Project.new 
 		

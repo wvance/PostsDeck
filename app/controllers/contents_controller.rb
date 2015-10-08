@@ -32,7 +32,7 @@ class ContentsController < ApplicationController
   # POST /contents.json
   def create
     @content = Content.new(content_params)
-      
+
     if @content.kind == "singleTweet" 
       timeline = user_timeline(@@twitter_client, 1)[0]
 
@@ -51,7 +51,7 @@ class ContentsController < ApplicationController
       end
 
     elsif @content.kind == "twitter"
-      post_multiple_tweets(@@twitter_client, 50)
+      post_multiple_tweets(@@twitter_client, current_user.number_statuses)
     elsif @content.kind == "post"
       @content.author = current_user.id
 
