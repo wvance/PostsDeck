@@ -5,15 +5,16 @@ class UsersController < ApplicationController
 		
 		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(6)
 		@projects = Project.order("position").where(:author => @user.id).page(params[:page]).per(5)
-			
+		
+		@mapContent = Content.order('contents.created DESC').where(:author => @user.id)
 		@new_project = Project.new 
 		
 		# THIS IS FOR THE DISPLAY MAP
 		@geojson = Array.new
 
 		# PUT CONTENTS ON MAP
-		if @contents.exists? 
-			@contents.each do |content|
+		if @mapContent.exists? 
+			@mapContent.each do |content|
 				puts "CONTENT KIND HERE :"
 				puts content.kind
 				if (content.kind == "twitter")

@@ -51,7 +51,7 @@ class ContentsController < ApplicationController
       end
 
     elsif @content.kind == "twitter"
-      post_multiple_tweets(@@twitter_client, 5)
+      post_multiple_tweets(@@twitter_client, 50)
     elsif @content.kind == "post"
       @content.author = current_user.id
 
