@@ -37,6 +37,7 @@
 				</div>
 				<%= f.hidden_field :kind, :value => "post" %>
 				<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
+				<input type="button" class="btn btn-default pull-right" value="Add Geo Data" onclick="getGeoLocation()">
 			</div>
 		<% end %>
 	</div>
