@@ -21,8 +21,8 @@ class User < ActiveRecord::Base
       user.token = auth.credentials.token
       user.secret = auth.credentials.secret
 
-      user.subdomain = user.username.downcase
   		user.username = auth.info.nickname
+      user.subdomain = user.username.downcase  #NOTE: THIS MUST COME AFTER USER.USERNAME ASSIGNMENT
   		user.location = auth.info.location
 
       # NORMALIZE NAME
