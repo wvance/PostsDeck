@@ -11,8 +11,9 @@ class UsersController < ApplicationController
 
 		# COUNTS NUMBER OF TWEETS FROM USER
 		@userTweetCount = @userContent.where(:kind => "twitter").count
-		@posts = current_user.number_statuses - @userTweetCount
+		@posts = @user.number_statuses - @userTweetCount
 
+		# raise @posts.inspect
 		unless @posts == 0
 			post_multiple_tweets(@@twitter_client, @posts)
 		end
