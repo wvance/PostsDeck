@@ -6,7 +6,7 @@ class AttachmentUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   process :quality => 33
-  
+
   # Choose what kind of storage to use for this uploader:
   # storage :file
   storage :fog

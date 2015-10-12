@@ -1,21 +1,22 @@
 <!-- DISPLAYS ALL PROJECTS -->
 <% if @projects.count > 0 %>
-	<% @projects.each_with_index do |project, index| %>	
+	<% @projects.each_with_index do |project, index| %>
 		<%= content_tag_for :li, project do %>
 			<% if index % 2 == 0 %>
 				<div class="row">
 					<hr>
-					<% if current_user.id == @user.id %>
-						<span class="removeProject redLinks">
-							<%= link_to project_path(project.id), method: :delete do %>
-								<h2><i class="fa fa-times"></i></h2>
-							<%end%>
-						</span>
-						<span class="handle mobileHide">
-							<h2><i class="fa fa-bars"></i></h2>
-						</span>
+					<% if user_signed_in? %>
+						<% if current_user.id == @user.id %>
+							<span class="removeProject redLinks">
+								<%= link_to project_path(project.id), method: :delete do %>
+									<h2><i class="fa fa-times"></i></h2>
+								<%end%>
+							</span>
+							<span class="handle mobileHide">
+								<h2><i class="fa fa-bars"></i></h2>
+							</span>
+						<%end%>
 					<%end%>
-
 					<% if project.image.present? %>
 						<div class="col-xs-offset-1 col-xs-11 col-sm-3 mobileHide">
 							<%= link_to project.project_link, :target => "_blank" do %>
@@ -27,7 +28,7 @@
 						<h1 class="links inline">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
-							<%end%> 
+							<%end%>
 						</h1>
 						<p>
 							<%= project.body %>
@@ -52,15 +53,15 @@
 						<h1 class="links">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
-							<%end%> 
+							<%end%>
 						</h1>
 						<p>
 							<%= project.body %>
 						</p>
-						
+
 						<!-- <%= link_to "http://www.spritebuilder.com", :target => "_blank" do %>
 							<%= image_tag "sprite.svg", :height=>"50px;", :width=>"50px;"%>
-						<%end%>	 -->			
+						<%end%>	 -->
 					</div>
 
 					<% if project.image.present? %>
