@@ -38,15 +38,17 @@
 			<%else%>
 				<div class="row">
 					<hr>
-					<% if current_user.id == @user.id %>
-						<span class="removeProject redLinks">
-							<%= link_to project_path(project.id), method: :delete do %>
-								<h2><i class="fa fa-times"></i></h2>
-							<%end%>
-						</span>
-						<span class="handle mobileHide">
-							<h2><i class="fa fa-bars"></i></h2>
-						</span>
+					<% if user_signed_in? %>
+						<% if current_user.id == @user.id %>
+							<span class="removeProject redLinks">
+								<%= link_to project_path(project.id), method: :delete do %>
+									<h2><i class="fa fa-times"></i></h2>
+								<%end%>
+							</span>
+							<span class="handle mobileHide">
+								<h2><i class="fa fa-bars"></i></h2>
+							</span>
+						<%end%>
 					<%end%>
 
 					<div class="col-xs-offset-1 col-xs-11 col-sm-6 project">
