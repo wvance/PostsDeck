@@ -22,7 +22,7 @@
 				<ul class="links">
 					<li>
 						<h3><a href="#projects">Projects</a></h3>
-					</li>	
+					</li>
 					<li>
 						<h3><a href="#map">Blog</a></h3>
 					</li>
@@ -96,9 +96,11 @@
 <div class="row">
 	<!-- Content -->
 	<div class="col-xs-8 col-xs-offset-2" id="content">
-		<%= render 'content' %>
-		<div class="pagFooter">
-			<h4><%= paginate @contents %></h4>
+		<div id="content_details">
+			<%= render 'content' %>
+		</div>
+		<div id="paginator" class="pagFooter">
+			<h4><%= paginate @contents%></h4>
 		</div>
 	</div>
 </div>
@@ -113,10 +115,10 @@
 				<% end %>
 			</h4>
 			<h6 class="center">
-				Made with love in 
+				Made with love in
 				<a href="http://rubyonrails.org" target="_blank">
 					<span class="ruby">RoR</span>
-				</a> by 
+				</a> by
 				<%= link_to root_url(:subdomain => :wesadvance) do%>
 					<span class="yellow">Wesley Vance</span>
 				<%end%>
