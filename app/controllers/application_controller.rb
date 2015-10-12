@@ -19,7 +19,7 @@ private
 	    end
     end
   end
-  
+
   def user_timeline(user_client, qt)
     user_client.user_timeline(count: qt)
   end
@@ -39,7 +39,7 @@ private
       new_tweet.title = tweet.text.truncate(30, separator: ' ')
       new_tweet.external_id = tweet.id
       new_tweet.body = tweet.text
-      new_tweet.author = current_user.id
+      new_tweet.author = @user.id
       new_tweet.kind = "twitter"
       new_tweet.external_link = tweet.url
 
