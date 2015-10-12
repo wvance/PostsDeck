@@ -39,7 +39,7 @@
 			<hr>
 				<!-- USER BIO -->
 				<h3>
-					<%= if @user.bio.present? %>
+					<%if @user.bio.present? %>
 						<%= @user.bio%>
 					<%else%>
 						Hello I am <%= @user.username.capitalize %>
