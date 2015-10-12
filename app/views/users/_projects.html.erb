@@ -2,7 +2,9 @@
 <% if @projects.count > 0 %>
 	<% @projects.each_with_index do |project, index| %>
 		<%= content_tag_for :li, project do %>
+
 			<% if index % 2 == 0 %>
+				<!-- IF EVEN -->
 				<div class="row">
 					<hr>
 					<% if user_signed_in? %>
@@ -36,6 +38,7 @@
 					</div>
 				</div>
 			<%else%>
+			<!-- IF NOT EVEN -->
 				<div class="row">
 					<hr>
 					<% if user_signed_in? %>
@@ -51,7 +54,7 @@
 						<%end%>
 					<%end%>
 
-					<div class="col-xs-offset-1 col-xs-11 col-sm-6 project">
+					<div class="col-xs-offset-1 col-xs-10 col-sm-6 project">
 						<h1 class="links">
 							<%= link_to project.github_link, :target => "_blank" do %>
 								<%= project.title%>
