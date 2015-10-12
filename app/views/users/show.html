@@ -42,7 +42,7 @@
 					<%if @user.bio.present? %>
 						<%= @user.bio%>
 					<%else%>
-						Hello I am <%= @user.username.capitalize %>
+						Hello I am @<%= @user.username.capitalize %>
 					<%end%>
 				</h3>
 			<hr>
