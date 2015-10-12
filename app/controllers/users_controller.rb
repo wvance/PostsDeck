@@ -1,13 +1,29 @@
 class UsersController < ApplicationController
 	def show
+		# GET USER ID FROM SUBDOMAIN
 		@user = User.find_by_subdomain!(request.subdomain)
+
+		# GETS USER CONTENT
+		@userContent = Content.order('contents.created DESC').where(:author => @user.id)
+
+		# GET USER PROJECTS
+		@userProject = Project.order("position").where(:author => @user.id)
+
+		# COUNTS NUMBER OF TWEETS FROM USER
+		@userTweetCount = @userContent.where(:kind => "twitter").count
+		@posts = current_user.number_statuses - @userTweetCount
+
+		unless @posts == 0
+			post_multiple_tweets(@@twitter_client, @posts)
+		end
+
+		@contents = @userContent.page(params[:page]).per(8)
+		@projects = @userProject.page(params[:page]).per(5)
 		@twitterLink = "http://twitter.com/" + @user.username
 
-		@contents = Content.order('contents.created DESC').where(:author => @user.id).page(params[:page]).per(8)
-		@projects = Project.order("position").where(:author => @user.id).page(params[:page]).per(5)
 
 		# GET ALL CONTENT OBJECTS FOR THE MAP DISPLAY
-		@mapContent = Content.order('contents.created DESC').where(:author => @user.id, :is_active =>"true")
+		@mapContent = @userContent.where(:is_active => "true")
 		@new_project = Project.new
 
 		# THIS IS FOR THE DISPLAY MAP

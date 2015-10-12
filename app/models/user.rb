@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   validates :username, presence: true, uniqueness:true
-  
+
   has_many :contents
   has_many :projects
 
@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
 
       # NORMALIZE NAME
       fullName = auth.info.name.split
-  		user.full_name = auth.info.name 
+  		user.full_name = auth.info.name
       user.first_name = fullName[0]
       user.last_name = fullName[1]
 

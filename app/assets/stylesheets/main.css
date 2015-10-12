@@ -3,20 +3,20 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
 /*BODY*/
 body{
-	overflow-x: hidden; 
+	overflow-x: hidden;
 	overflow-y: scroll; /* has to be scroll, not auto */
 }
 html, body{
 	height: 100%;
-	font-family: 'Roboto', Helvetica, Arial, sans-serif; 
+	font-family: 'Roboto', Helvetica, Arial, sans-serif;
 	font-weight: 300;
   -webkit-overflow-scrolling: touch;
 }
 h1, h2, h3, h4{
-	font-family: 'ralewaylight'; 
+	font-family: 'ralewaylight';
 }
 h5, h6{
-	font-family: 'ralewayregular'; 
+	font-family: 'ralewayregular';
 }
 
 .adminAdd{
@@ -38,7 +38,7 @@ h1.postTitle{
 	display: inline;
 }
 .postContent{
- 	font-size: 18px; 
+ 	font-size: 18px;
  	line-height: 30px;
 	margin-top: 20px;
 	color: #696969;

@@ -13,7 +13,7 @@ jQuery ->
   		$('#newProject').show 'drop', 1000
   		return
   	return
-    
+
   # HIDE BUTTON AND SHOW POST ON BUTTON CLICK
   $('#newPostButton').click ->
   	$('#newPostButton').hide 'drop', 500, ->

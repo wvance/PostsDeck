@@ -1,7 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
   before_action :verify_is_admin, only: [:index]
-  
+
   # Need to fix for later
   # before_filter :load_user
 
@@ -33,24 +33,7 @@ class ContentsController < ApplicationController
   def create
     @content = Content.new(content_params)
 
-    if @content.kind == "singleTweet" 
-      timeline = user_timeline(@@twitter_client, 1)[0]
-
-      @content.title = "Tweet"
-      @content.external_id = timeline.id
-      @content.body = timeline.text
-      @content.author = current_user.id
-
-      if timeline.media[0].present?
-        @content.image = timeline.media[0]["media_url"]
-      end
-
-      @content.external_link = timeline.url
-      if timeline.place.full_name.present?
-        @content.location = timeline.place.full_name + ", " + timeline.place.country_code
-      end
-
-    elsif @content.kind == "twitter"
+    if @content.kind == "twitter"
       post_multiple_tweets(@@twitter_client, current_user.number_statuses)
     elsif @content.kind == "post"
       @content.author = current_user.id
@@ -60,16 +43,16 @@ class ContentsController < ApplicationController
         @lat_lng = cookies[:lat_lng].split("|")
         @content.latitude = @lat_lng[0]
         @content.longitude = @lat_lng[1]
-      else 
+      else
         @content.ip = request.remote_ip
       end
       # send_tweet(@content.title, request.fullpath)
-    else 
+    else
       if cookies[:lat_lng] != nil
         @lat_lng = cookies[:lat_lng].split("|")
         @content.latitude = @lat_lng[0]
         @content.longitude = @lat_lng[1]
-      else 
+      else
         @content.ip = request.remote_ip
       end
     end
