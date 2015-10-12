@@ -13,23 +13,22 @@ class UsersController < ApplicationController
 		@userTweetCount = @userContent.where(:kind => "twitter").count
 		@posts = @user.number_statuses - @userTweetCount
 
+		# CREATE NEW POSTS FROM ABOVE CALCULATIONS
 		post_multiple_tweets(@@twitter_client, @posts)
 
 		@contents = @userContent.page(params[:page]).per(8)
 		@projects = @userProject.page(params[:page]).per(5)
 		@twitterLink = "http://twitter.com/" + @user.username
 
-
 		# GET ALL CONTENT OBJECTS FOR THE MAP DISPLAY
-		@mapContent = @userContent.where(:is_active => "true")
+		# @mapContent = @userContent.where(:is_active => "true")
 		@new_project = Project.new
 
 		# THIS IS FOR THE DISPLAY MAP
 		@geojson = Array.new
-
 		# PUT CONTENTS ON MAP
-		if @mapContent.exists?
-			@mapContent.each do |content|
+		if @userContent.exists?
+			@userContent.each do |content|
 				puts "CONTENT KIND HERE :"
 				puts content.kind
 				if (content.kind == "twitter")
