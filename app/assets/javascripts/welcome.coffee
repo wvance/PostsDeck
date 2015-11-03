@@ -9,7 +9,7 @@
 # EXAMPLE OF PAGE SPECIFIC JS
 # http://brandonhilkert.com/blog/page-specific-javascript-in-rails/
 jQuery ->
-	
+
 	# SHOW USERNAMES ON PAGE LOAD
   $(document).ready ->
     $('#usersNames').show 'fade', 1000
@@ -19,7 +19,7 @@ jQuery ->
   $('#userName').click ->
   	$('#userName').hide 'fade', 800
   	return
-  
+
   # SHOW TWITTER SIGN IN PAGE ON PAGELOAD
   $(document).ready ->
   	$('#twitterSignInButton').show 'fade', 1000
@@ -39,7 +39,7 @@ $(".users.show").ready ->
 	# get JSON object
 	# on success, parse it and
 	# hand it over to MapBox for mapping
-	# OLD WAY OF DOING IT? 
+	# OLD WAY OF DOING IT?
 
 	# $.ajax
 	#   dataType: 'text'
@@ -49,11 +49,24 @@ $(".users.show").ready ->
 	#     map.featureLayer.setGeoJSON(geojson)
 
 	$link = $('#map').data('url')
-	featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
-	
+	featureLayer = L.mapbox.featureLayer().loadURL($link).on 'ready', (e) ->
+  clusterGroup = new (L.MarkerClusterGroup)(polygonOptions:
+    fillColor: '#FFCC00'
+    color: '#FFCC00'
+    weight:2
+    opacity:1
+    fillOpacity: 0.5
+    )
+  e.target.eachLayer (layer) ->
+    clusterGroup.addLayer layer
+    return
+  map.addLayer clusterGroup
+  return
+
 	featureLayer.on 'ready', (e) ->
 		map.fitBounds(featureLayer.getBounds(), {padding: [50,50]});
 
+  # featureLayer.addTo(map);
 
 	# add custom popups to each marker
 	featureLayer.on 'layeradd', (e) ->
@@ -61,8 +74,8 @@ $(".users.show").ready ->
 	  properties = marker.feature.properties
 
 	  # create custom popup
-	  popupContent = 	'<div class="popup">' + 
-	  								'<a href="' + properties.link + '">' + 
+	  popupContent = 	'<div class="popup">' +
+	  								'<a href="' + properties.link + '">' +
 		                    '<h3>' + properties.name + '</h3>' +
 		                    '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
 		                    '</a>' +
