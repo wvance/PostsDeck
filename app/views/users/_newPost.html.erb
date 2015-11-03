@@ -5,8 +5,8 @@
 		</h1>
 		<p>
 			Create a new post!
-		</p>		
-		<hr>		
+		</p>
+		<hr>
 	</div>
 
 	<!-- MOVE THIS INTO A PARTIAL? -->
@@ -35,9 +35,19 @@
 				  	<br />
 				  </div>
 				</div>
-				<%= f.hidden_field :kind, :value => "post" %>
-				<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
-				<input type="button" class="btn btn-default pull-right" value="Add Geo Data" onclick="getGeoLocation()">
+				<div class="col-xs-12">
+					<div class="form-group pull-right">
+						<p>
+							Is Active
+							<%= f.check_box :is_active, :class=>"", :checked => true%>
+						</p>
+					</div>
+				</div>
+				<div class="col-xs-12">
+					<%= f.hidden_field :kind, :value => "post" %>
+					<%= f.submit 'Submit', :class=>"btn btn-default pull-right"%>
+					<input type="button" class="btn btn-default pull-right" value="Add Geo Data" onclick="getGeoLocation()">
+				</div>
 			</div>
 		<% end %>
 	</div>

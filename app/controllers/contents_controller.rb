@@ -63,7 +63,6 @@ class ContentsController < ApplicationController
 
     # FOR NOW ALWAYS SET TO TRUE
     @content.has_comments = true;
-    @content.is_active = true;
 
     respond_to do |format|
       if @content.save

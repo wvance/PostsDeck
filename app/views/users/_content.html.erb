@@ -1,5 +1,6 @@
 <% if @contents.count > 0 %>
 	<% @contents.each do |content| %>
+		<% if content.is_active == true || current_user.id == @user.id%>
 		<hr>
 		<div class="blogSection" id="blog">
 			<div class="row links" id="<%= content.id %>">
@@ -18,7 +19,9 @@
 						<div class="blogTitle">
 							<%= link_to("/contents/"+content.id.to_s) do%>
 								<% if content.title.present? %>
-									<h1><%= content.title %></h1>
+									<h1>
+										<%= content.title %>
+									</h1>
 								<%elsif content.kind.present? %>
 									<h1><%= content.kind.capitalize%>:</h1>
 								<%else%>
@@ -26,6 +29,9 @@
 								<%end%>
 							<%end%>
 						</div>
+						<% if content.is_active == false %>
+							<span class="label label-danger pull-right">Draft</span>
+						<%end%>
 						<div class="blogTags">
 							<h6 class="childElement">
 								<% if content.created.present?%>
@@ -47,5 +53,6 @@
 				</div>
 			</div>
 		</div>
+		<%end%>
 	<%end%>
 <%end%>
