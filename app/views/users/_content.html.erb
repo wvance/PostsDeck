@@ -1,6 +1,6 @@
 <% if @contents.count > 0 %>
 	<% @contents.each do |content| %>
-		<% if content.is_active == true || current_user.id == @user.id%>
+		<% if content.is_active == true || (user_signed_in? && current_user.id == @user.id)%>
 		<hr>
 		<div class="blogSection" id="blog">
 			<div class="row links" id="<%= content.id %>">
