@@ -12,13 +12,13 @@
 </head>
 
 <body class="<%= controller_name %> <%= action_name %>">
-	 
+
 	<!-- =========================================================================================================== -->
 	<!-- 																	THANKS FOR CHECKING OUT MY CODE!  																				 -->
 	<!-- FEEL FREE TO TAKE AND SHARE ANY PART JUST LINK BACK TO THIS SITE IN CODE COMMENTS SO OTHERS CAN SEE IT TOO! -->
 	<!-- 												IF YOU HAVE QUESITONS EMAIL ME AT WESLEY.VANCE@MAC.COM :)  													 -->
 	<!-- =========================================================================================================== -->
-	
+
 	<div id="container">
 
 		<% flash.each do |key, value| %>
@@ -27,13 +27,13 @@
 
 		<% if user_signed_in? %>
 			<div class="adminBar links">
-		  	<h4>			  		
+		  	<h4>
 		  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
 						Home
 					<%end%>
-					<%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
+					<!-- <%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
 						Tweet
-					<%end%>
+					<%end%> -->
 		  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
 		  			Sign Out
 		  		<%end%>
