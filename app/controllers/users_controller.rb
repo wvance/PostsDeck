@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
 		# GETS USER CONTENT
 		@userContent = Content.order('contents.created DESC').where(:author => @user.id)
+		@userBlog = Content.order('contents.created DESC').where(:author => @user.id, :kind =>"post")
 
 		# GET USER PROJECTS
 		@userProject = Project.order("position").where(:author => @user.id)
@@ -18,7 +19,7 @@ class UsersController < ApplicationController
 			post_multiple_tweets(@@twitter_client, @posts)
 		end
 
-		@contents = @userContent.page(params[:page]).per(8)
+		@contents = @userBlog.page(params[:page]).per(6)
 		@projects = @userProject.page(params[:page]).per(5)
 		@twitterLink = "http://twitter.com/" + @user.username
 

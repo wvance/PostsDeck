@@ -28,10 +28,10 @@
 						</div>
 						<div class="blogTags">
 							<h6 class="childElement">
-								<% if content.created.present?%> 
-									<%= formatDate(content.created) %> 
+								<% if content.created.present?%>
+									<%= formatDate(content.created) %>
 								<%end%>
-								<% if content.location.present?%> 
+								<% if content.location.present?%>
 	              	at <%= content.location%>
 	              <%elsif content.city.present? || content.state.present?%>
 	              	at <%= content.city %> <%= content.state%>
