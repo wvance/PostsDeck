@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
 /*BODY*/
 body{
+  max-width:100%;
 	overflow-x: hidden;
 	overflow-y: scroll; /* has to be scroll, not auto */
 }
@@ -308,9 +309,8 @@ input[type="text"].postTitle{
 	padding-top: 10px;
 	z-index: 9999;
 }
+
+/*ALLOWS TRANSITIONS ON USERS SHOW PAGE*/
 #newProject, #newPost{
   display: none;
 }
-/*#newProject, #newPost, #about, #usersNames, #twitterSignInButton{
-  display: none;
-}*/
