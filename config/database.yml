@@ -25,6 +25,12 @@
 #   database: db/production.sqlite3
 
 # NEW FOR POSTGRES DEV LOCAL
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: blackbox_dev
+  pool: 5
+
 development:
   adapter: postgresql
   encoding: unicode
