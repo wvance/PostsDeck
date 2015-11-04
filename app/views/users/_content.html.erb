@@ -33,7 +33,15 @@
 								<span class="label label-danger pull-right">Draft</span>
 							<%end%>
 							<div class="blogTags">
-								<h6 class="childElement">
+
+							</div>
+							<div class="blogBody">
+								<% if content.body.present? %>
+									<p><%= markdown(content.body.truncate(400, separator: '', omission: '...')).html_safe  %></p>
+								<%end%>
+							</div>
+							<div class="blogFooter">
+								<h6 class="lightGrey pull-right">
 									<% if content.created.present?%>
 										<%= formatDate(content.created) %>
 									<%end%>
@@ -43,11 +51,6 @@
 		              	at <%= content.city %> <%= content.state%>
 		            	<%end%>
 	            	</h6>
-							</div>
-							<div class="blogBody">
-								<% if content.body.present? %>
-									<p><%= markdown(content.body.truncate(400, separator: '', omission: '...')).html_safe  %></p>
-								<%end%>
 							</div>
 						</div>
 					</div>

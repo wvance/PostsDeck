@@ -38,12 +38,6 @@ h1.postTitle{
 .inline{
 	display: inline;
 }
-.postContent{
- 	font-size: 18px;
- 	line-height: 30px;
-	margin-top: 20px;
-	color: #696969;
-}
 
 .bodyWrapper{
 	padding-bottom: 30px;
@@ -55,6 +49,10 @@ h1.postTitle{
 }
 .grey{
 	color:#696969;
+}
+.lightGrey{
+  color: black;
+  opacity: 0.35;
 }
 .ruby{
 	color: #9B111E;
