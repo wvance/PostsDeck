@@ -101,7 +101,9 @@ $(".users.show").ready ->
 	featureLayer.on 'mouseover', (e) ->
     e.layer.openPopup();
 
-  map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+  # OPTION TO HAVE LEGEND
+  # map.legendControl.addLegend(document.getElementById('legend').innerHTML);
+
 	# featureLayer.on 'click', (e) ->
 	#   e.layer.closePopup();
 
