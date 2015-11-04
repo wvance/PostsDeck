@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
   before_action :verify_is_admin, only: [:index]
+  before_action :set_author
 
   # Need to fix for later
   # before_filter :load_user
@@ -16,7 +17,6 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
-    @author = User.where(:id => @content.author).first
   end
 
   # GET /contents/new
@@ -108,7 +108,9 @@ class ContentsController < ApplicationController
     def set_content
       @content = Content.friendly.find(params[:id])
     end
-
+    def set_author
+      @author = User.where(:id => @content.author).first
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
       params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :has_comments, :created, :updated)

@@ -181,6 +181,18 @@ ul.links{
 	width:100%;
 	height:500px;
 }
+
+.legend span {
+  margin-top: -10px;
+  display:block;
+  float:left;
+  height:15px;
+  width:50%;
+  text-align:center;
+  font-size:9px;
+  color:#696969;
+}
+
 /*MAP FULL WIDTH W/NO GAP*/
 .fullWidth .col-xs-12{
 	padding-right: 0px;
@@ -249,6 +261,9 @@ input[type="text"].postTitle{
 	left: 20px;
   padding: 0px;
   margin: 0px;
+}
+.editPost{
+  padding-top: 90px;
 }
 .displayPost{
 	padding-top: 90px;

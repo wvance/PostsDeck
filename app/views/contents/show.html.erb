@@ -7,29 +7,32 @@
 
 <div class="displayPost">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <div id="blog" class="blogSection">
         <div class="blogTitle links">
           <h1 class="inline postTitle"><span class="yellow"><%= @content.title%> </span></h1>
           <% if user_signed_in?%>
             <% if current_user.id == @content.author %>
-              <h6 class="inline">            
-                <%= link_to 'Edit', edit_content_path(@content) %> | 
+              <h6 class="inline">
+                <%= link_to 'Edit', edit_content_path(@content) %> |
                 <%= link_to(content_path(@content), method: :delete) do%>
                   Delete
                 <%end%>
               </h6>
+              <% if @content.is_active == false %>
+                <span class="label label-danger pull-right">Draft</span>
+              <%end%>
             <%end%>
           <%end%>
         </div>
         <div class="blogTags">
           <h5 class="childElement">
             <% if @content.created.present? %>
-              <%= formatDate(@content.created) %> 
+              <%= formatDate(@content.created) %>
             <%end%>
             <% if @content.kind =="twitter" %>
               at <%= @content.location %>
-            <%elsif @content.city.present? || @content.state.present?%> 
+            <%elsif @content.city.present? || @content.state.present?%>
               at <%= @content.city%>, <%= @content.state%>
             <%end%>
           </h5>
@@ -42,7 +45,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
       <% if @content_attachments.present? %>
         <% @content_attachments.each do |p| %>
           <div class="col-xs-4 col-md-4">

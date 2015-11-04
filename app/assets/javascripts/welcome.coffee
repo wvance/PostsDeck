@@ -50,13 +50,19 @@ $(".users.show").ready ->
 
 	$link = $('#map').data('url')
 	featureLayer = L.mapbox.featureLayer().loadURL($link).on 'ready', (e) ->
-  clusterGroup = new (L.MarkerClusterGroup)(polygonOptions:
-    fillColor: '#FFCC00'
-    color: '#FFCC00'
-    weight:2
-    opacity:1
-    fillOpacity: 0.5
-    )
+  clusterGroup = new (L.MarkerClusterGroup)(
+    # iconCreateFunction: (cluster) ->
+    #   L.mapbox.marker.icon
+    #     'marker-symbol': cluster.getChildCount()
+    #     'marker-color': '#FFCC00'
+    spiderfyOnMaxZoom: true
+    showCoverageOnHover: true
+    polygonOptions:
+      fillColor: '#FFCC00'
+      color: '#FFCC00'
+      weight:2
+      opacity:1
+      fillOpacity: 0.5)
   e.target.eachLayer (layer) ->
     clusterGroup.addLayer layer
     return
@@ -95,6 +101,7 @@ $(".users.show").ready ->
 	featureLayer.on 'mouseover', (e) ->
     e.layer.openPopup();
 
+  map.legendControl.addLegend(document.getElementById('legend').innerHTML);
 	# featureLayer.on 'click', (e) ->
 	#   e.layer.closePopup();
 
