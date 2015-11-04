@@ -1,3 +1,47 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.blogBody{
+  ul{
+    color: black;
+    font-size: 17px;
+    line-height: 25px;
+    margin: 0;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-right: 10px
+  }
+  li{
+    color: black;
+    font-size: 17px;
+    line-height: 25px;
+    margin: 0;
+    display: list-item;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding-right: 10px
+  }
+  h1, h2, h3, h4, h5, h6{
+    color: black;
+  }
+  h2{
+    font-size: 20px;
+  }
+  h4{
+    font-size: 17px;
+  }
+  strong{
+    color: black;
+  }
+  p{
+    color: #4D4D4D;
+    display: block;
+    -webkit-margin-before: 1em;
+    -webkit-margin-after: 1em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+  }
+}
