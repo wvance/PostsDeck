@@ -27,6 +27,7 @@ class ContentsController < ApplicationController
 
   # GET /contents/1/edit
   def edit
+    @author = User.where(:id => @content.author).first
   end
 
   # POST /contents
