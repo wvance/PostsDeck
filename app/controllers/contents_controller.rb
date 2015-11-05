@@ -17,6 +17,8 @@ class ContentsController < ApplicationController
   # GET /contents/1.json
   def show
     @author = User.where(:id => @content.author).first
+    @comments = @content.comments.all
+    @comment = @content.comments.build
   end
 
   # GET /contents/new

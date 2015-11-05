@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: 1
+  body: MyText
+  content: 1
+  parent_comment: 1
+  score: 1
+
+two:
+  author: 1
+  body: MyText
+  content: 1
+  parent_comment: 1
+  score: 1

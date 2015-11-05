@@ -1,7 +1,9 @@
 class Content < ActiveRecord::Base
 	belongs_to :user
+	has_many :comments
+
 	validates :external_id, uniqueness: true , :allow_blank => true, :allow_nil => true
-	
+
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 
@@ -22,7 +24,7 @@ class Content < ActiveRecord::Base
 	geocoded_by :ip, :latitude => :latitude, :longitude => :longitude
 
 	geocoded_by :location ,
-	  :latitude => :Latitude, :longitude => :Longitude	
+	  :latitude => :Latitude, :longitude => :Longitude
 
 	reverse_geocoded_by :latitude, :longitude do |obj,results|
 	  if geo = results.first
@@ -34,8 +36,8 @@ class Content < ActiveRecord::Base
 
 	  	# FULL ADDRESS
 	  	if geo.address
-	  		obj.address = geo.address 
-	  	else 
+	  		obj.address = geo.address
+	  	else
 	  		obj.address = geo.city + " " + geo.state_code + " " + geo.country_code + " " + geo.postal_code
 	  		if obj.location.present?
 	  			obj.location = obj.address
@@ -44,9 +46,9 @@ class Content < ActiveRecord::Base
 	  end
 	end
 
-	unless :latitude.present? && :longitude.present? 
+	unless :latitude.present? && :longitude.present?
 		after_validation :geocode
 	end
-	
+
 	after_validation :reverse_geocode
 end

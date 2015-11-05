@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :comments
+
   resources :projects
   resources :contents
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
