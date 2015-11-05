@@ -17,7 +17,7 @@
 						</div>
 						<div class="col-xs-12 <% if content.image.present? %>col-sm-9<%end%>">
 							<div class="blogTitle">
-								<%= link_to("/contents/"+content.id.to_s) do%>
+								<%= link_to content_path(content) do%>
 									<% if content.title.present? %>
 										<h1>
 											<%= content.title %>

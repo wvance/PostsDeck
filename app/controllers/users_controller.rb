@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	def show
 		# GET USER ID FROM SUBDOMAIN
-		@user = User.find_by_subdomain!(request.subdomain)
+		@user = User.friendly.find_by_subdomain!(request.subdomain)
 
 		# GETS USER CONTENT
 		@userContent = Content.order('contents.created DESC').where(:author => @user.id)
