@@ -1,6 +1,7 @@
 class ProjectsController < ApplicationController
   before_action :set_project, only: [:show, :edit, :update, :destroy]
   before_filter :verify_is_admin, only: [:index]
+  before_action :verify_is_owner, only: [:index, :show, :edit, :update, :destory]
 
   def sort
     params[:project].each_with_index do |id, index|
@@ -75,6 +76,14 @@ class ProjectsController < ApplicationController
   private
     def verify_is_admin
       (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+
+    def verify_is_owner
+      if (current_user == User.where(:id => @project.author).first)
+        return
+      else
+        redirect_to(root_path)
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.

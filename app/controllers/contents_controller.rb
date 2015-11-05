@@ -1,6 +1,7 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
   before_action :verify_is_admin, only: [:index]
+  before_action :verify_is_owner, only: [:edit, :update, :destory]
 
   # Need to fix for later
   # before_filter :load_user
@@ -106,6 +107,13 @@ class ContentsController < ApplicationController
   private
     def verify_is_admin
       (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    end
+    def verify_is_owner
+      if (current_user == User.where(:id => @content.author).first)
+        return
+      else
+        redirect_to(root_path)
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
