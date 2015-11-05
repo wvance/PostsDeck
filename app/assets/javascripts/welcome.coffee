@@ -55,7 +55,7 @@ $(".users.show").ready ->
     #   L.mapbox.marker.icon
     #     'marker-symbol': cluster.getChildCount()
     #     'marker-color': '#FFCC00'
-    spiderfyOnMaxZoom: true
+    # spiderfyOnMaxZoom: true
     showCoverageOnHover: true
     polygonOptions:
       fillColor: '#FFCC00'
