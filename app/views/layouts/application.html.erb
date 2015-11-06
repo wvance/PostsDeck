@@ -46,6 +46,31 @@
 
 		<div class="bodyWrapper">
 			<%= yield %>
+
+			<% unless current_page?(root_url)%>
+				<hr>
+				<div class="footer">
+					<div class="row" id="connect">
+						<div class="col-xs-12">
+							<h4 class="center links">
+								<%= link_to @twitterLink, :target => "_blank" do %>
+									<i class="fa fa-twitter"></i>
+								<% end %>
+							</h4>
+							<h6 class="center">
+								Made with love in
+								<a href="http://rubyonrails.org" target="_blank">
+									<span class="ruby">RoR</span>
+								</a> by
+								<%= link_to root_url(:subdomain => :wesadvance) do%>
+									<span class="yellow">Wesley Vance</span>
+								<%end%>
+							</h6>
+						</div>
+					</div>
+				</div>
+			<%end%>
+
 		</div>
 	</div>
 	<div id="version" class="links">

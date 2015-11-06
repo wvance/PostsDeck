@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
   resources :users
 
-  resources :projects do 
+  resources :projects do
     collection {post :sort}
   end
   get 'welcome/index'
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
 
   # Subdomain Support: http://railscasts.com/episodes/123-subdomains-revised?autoplay=true
   get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  
+
   # You can have the root of your site routed with "root"
   root to: 'welcome#index'
 
