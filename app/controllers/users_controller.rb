@@ -21,6 +21,7 @@ class UsersController < ApplicationController
 
 		@contents = @userBlog.page(params[:page]).per(6)
 		@projects = @userProject.page(params[:page]).per(5)
+
 		@twitterLink = "http://twitter.com/" + @user.username
 
 
