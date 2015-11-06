@@ -41,16 +41,25 @@
 								<%end%>
 							</div>
 							<div class="blogFooter">
-								<h6 class="lightGrey pull-right">
-									<% if content.created.present?%>
-										<%= formatDate(content.created) %>
-									<%end%>
-									<% if content.location.present?%>
-		              	at <%= content.location%>
-		              <%elsif content.city.present? || content.state.present?%>
-		              	at <%= content.city %> <%= content.state%>
-		            	<%end%>
-	            	</h6>
+								<div class="row">
+				          <div class="col-xs-4">
+				            <!-- <h5 class="lightGrey">
+				              <%= @user.first_name + " " + @user.last_name %>
+				            </h5> -->
+				          </div>
+				          <div class="col-xs-8">
+				            <h5 class="lightGrey pull-right">
+				              <% if content.created.present? %>
+				                <%= formatDate(content.created) %>
+				              <%end%>
+				              <% if content.kind =="twitter" %>
+				                at <%= content.location %>
+				              <%elsif content.city.present? || content.state.present?%>
+				                at <%= content.city%>, <%= content.state%>
+				              <%end%>
+				            </h5>
+				          </div>
+				        </div>
 							</div>
 						</div>
 					</div>
