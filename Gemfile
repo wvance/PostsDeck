@@ -13,6 +13,8 @@ gem 'geocoder' 											# IP TO LOCATION
 gem 'twitter'
 gem "d3-rails"											#D3.JS
 
+gem 'gravtastic'                    # ADDED GRAVATAR: PROFILE PICTURE
+
 gem 'acts_as_list'
 gem "jquery-ui-rails"
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151105075203) do
+ActiveRecord::Schema.define(version: 20151106225113) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,12 +48,12 @@ ActiveRecord::Schema.define(version: 20151105075203) do
     t.string   "latitude"
     t.string   "longitude"
     t.boolean  "is_active"
-    t.string   "has_comments"
     t.datetime "created"
     t.datetime "updated"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.string   "slug"
+    t.boolean  "has_comments"
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree

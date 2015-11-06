@@ -10,18 +10,33 @@
       </ul>
     </div>
   <% end %>
+  <h3 class="lightGrey">New Comment</h3><br>
 
-
-  <div class="form-group">
-    <%= f.text_field :email, class: "form-control commentEmail", placeholder:"john@appleseed.com", :required => true%>
+  <div class="row">
+    <div class="col-xs-12 form-horizontal">
+      <div class="form-group commentEmail">
+        <%= f.label :email , class: "col-xs-2 col-xs-offset-1 control-label lightGrey" %>
+        <div class="col-xs-8">
+          <%= f.text_field :email, class: "form-control commentEmail", placeholder:"Email Address", :required => true%>
+        </div>
+      </div>
+      <div class="form-group commentBody">
+        <%= f.label :body , class: "col-xs-2 col-xs-offset-1 control-label lightGrey" %>
+        <div class="col-xs-8">
+          <%= f.text_area :body, :placeholder => "What do you think?", :class=>"wmd-input autoGrowText form-control", :rows=>"2", :required => true%>
+        </div>
+      </div>
+      <%= f.hidden_field :parent_comment %>
+      <%= f.hidden_field :content_id %>
+    </div>
   </div>
-  <div class="form-group commentBody">
-    <%= f.text_area :body, :placeholder => "What's on your mind?!", :class=>"wmd-input autoGrowText form-control", :rows=>"2", :required => true%>
-  </div>
-  <%= f.hidden_field :parent_comment %>
-  <%= f.hidden_field :content_id %>
 
-  <div class="actions pull-right">
-    <%= f.submit "Submit", class: "btn btn-default" %>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="actions pull-right">
+        <%= f.submit "Submit", class: "btn btn-default" %>
+      </div>
+    </div>
   </div>
 <% end %>
