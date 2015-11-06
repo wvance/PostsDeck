@@ -72,7 +72,7 @@ class ContentsController < ApplicationController
 
     respond_to do |format|
       if @content.save
-        format.html { redirect_to root_url(subdomain: current_user.subdomain), notice: 'Content was successfully created.' }
+        format.html { redirect_to content_path(@content), notice: 'Content was successfully created.' }
         format.json { render :show, status: :created, location: @content }
       else
         format.html { redirect_to root_url(subdomain: current_user.subdomain) }
@@ -86,7 +86,7 @@ class ContentsController < ApplicationController
   def update
     respond_to do |format|
       if @content.update(content_params)
-        format.html { redirect_to request.referrer, notice: 'Content was successfully updated.' }
+        format.html { redirect_to content_path(@content), notice: 'Content was successfully updated.' }
         format.json { render :show, status: :ok, location: @content }
       else
         format.html { render :edit }
