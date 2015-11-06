@@ -68,7 +68,7 @@ class ContentsController < ApplicationController
     @content.updated = DateTime.now;
 
     # FOR NOW ALWAYS SET TO TRUE
-    @content.has_comments = true;
+    @content.has_comments = "t";
 
     respond_to do |format|
       if @content.save
