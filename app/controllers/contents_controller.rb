@@ -1,5 +1,6 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
+  before_action :set_author, only: [:show]
   before_action :verify_is_admin, only: [:index]
   before_action :verify_is_owner, only: [:edit, :update, :destory]
 
@@ -119,6 +120,10 @@ class ContentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_content
       @content = Content.friendly.find(params[:id])
+    end
+
+    def set_author
+      @contentAuthor = User.where(:id => @content.author).first
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
