@@ -37,7 +37,7 @@
 							</div>
 							<div class="blogBody">
 								<% if content.body.present? %>
-									<p><%= markdown(content.body.truncate(600, separator: '', omission: '...')).html_safe  %></p>
+									<p><%= markdown(content.body.truncate(800, separator: '', omission: '...')).html_safe  %></p>
 								<%end%>
 							</div>
 							<div class="blogFooter">
