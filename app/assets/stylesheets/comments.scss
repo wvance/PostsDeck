@@ -23,11 +23,21 @@
     margin-top: -15px;
     margin-bottom: -15px;
   }
+  .row{
+    margin-top:-15px;
+  }
   p{
     -webkit-margin-before: 1em;
     -webkit-margin-after: 1em;
   }
+  hr{
+    margin-top: 10px;
+    margin-bottom:10px;
+  }
 }
 .control-label{
   margin-top: -7px;
+}
+#comments-section{
+  display:none;
 }

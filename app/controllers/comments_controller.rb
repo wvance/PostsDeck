@@ -30,7 +30,7 @@ class CommentsController < ApplicationController
       if @comment.save
         format.html { redirect_to request.referrer, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
-        format.js
+        format.js # render comments/create.js.erb
       else
         format.html { redirect_to root_url, notice: 'Sorry, an error occured while adding your comment' }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
