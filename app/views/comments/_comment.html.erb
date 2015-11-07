@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="commentAvatar">
+    <%= image_tag comment.gravatar_url(:size =>"150"), :class=>"col-xs-2 img-circle img-responsive commentImage"%>
+  </div>
+  <div class="col-xs-10">
+    <div class="commentBody">
+      <p><%= comment.body %></p>
+    </div>
+    <div class="commentMeta">
+      <h5 class="">
+        <%= comment.email %>
+        <% if user_signed_in?%>
+          <% if current_user.id == @content.author %>
+            <span class="pull-right">
+              <%= link_to comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } do%>
+                <i class="fa fa-times"></i>
+              <%end%>
+            </span>
+          <%end%>
+        <%end%>
+      </h5>
+    </div>
+
+    <div class="commentFooter pull-right">
+
+    </div>
+  </div>
+</div>
