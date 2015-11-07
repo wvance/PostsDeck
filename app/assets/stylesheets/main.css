@@ -206,11 +206,11 @@ ul.links{
 	height:70vh;
 }
 .adminBar{
-	position:fixed;
+	position:absolute;
 	top:0px;
 	right:70px;
 	padding-top: 20px;
-	z-index: 9999;
+	/*z-index: 9999;*/
 }
 input[type="text"].postTitle{
     font-size:24px;
