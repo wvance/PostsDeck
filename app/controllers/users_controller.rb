@@ -11,12 +11,12 @@ class UsersController < ApplicationController
 		@userProject = Project.order("position").where(:author => @user.id)
 
 		# COUNTS NUMBER OF TWEETS FROM USER
-		@userTweetCount = @userContent.where(:kind => "twitter").count
-		@posts = @user.number_statuses - @userTweetCount
+		# @userTweetCount = @userContent.where(:kind => "twitter").count
+		# @posts = @user.number_statuses - @userTweetCount
 
 		# CREATE NEW POSTS FROM ABOVE CALCULATIONS
 		if user_signed_in?
-			post_multiple_tweets(@@twitter_client, @posts)
+			# post_multiple_tweets(@@twitter_client, @posts)
 		end
 
 		@contents = @userBlog.page(params[:page]).per(6)
@@ -85,6 +85,6 @@ class UsersController < ApplicationController
 	private
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username)
+      params.require(:user).permit(:username, :email)
     end
 end

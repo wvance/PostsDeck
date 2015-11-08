@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   devise :database_authenticatable, :registerable, :omniauthable,
      :recoverable, :rememberable, :trackable, :validatable,
-     :omniauth_providers => [:facebook, :foursquare, :google_oauth2, :twitter, ]
+     :omniauth_providers => [:facebook, :foursquare, :google_oauth2, :twitter]
 
 
   validates :username, presence: true, uniqueness:true

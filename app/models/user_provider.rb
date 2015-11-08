@@ -36,6 +36,7 @@ class UserProvider < ActiveRecord::Base
 
   def self.find_for_foursquare_oauth(auth)
     user = UserProvider.where(:provider => auth.provider, :uid => auth.uid).first
+    # raise auth.inspect
     unless user.nil?
       user.user
     else
@@ -48,10 +49,21 @@ class UserProvider < ActiveRecord::Base
         )
       registered_user
       else
+        # raise auth.inspect
+        username = auth.info.first_name + auth.info.last_name
+        avatar = auth.info.image[:prefix] + "256x256" + auth.info.image[:suffix]
+        subdomain = username.downcase
+
         user = User.create!(
           first_name: auth.info.name,
           email: auth.info.email,
           password: Devise.friendly_token[0,20],
+          username: username,
+          subdomain: subdomain,
+          first_name: auth.info.first_name,
+          last_name: auth.info.last_name,
+          full_name: auth.info.name,
+          avatar: avatar
         )
         user_provider = UserProvider.create!(
           provider:auth.provider,
@@ -98,6 +110,7 @@ class UserProvider < ActiveRecord::Base
 
   def self.find_for_twitter_oauth(auth)
     user = UserProvider.where(:provider => auth.provider, :uid => auth.uid).first
+    # Auth here is full
     unless user.nil?
       user.user
     else
@@ -112,15 +125,14 @@ class UserProvider < ActiveRecord::Base
       else
         avatar = auth.info.image
         avatar.slice! "_normal"
-
+        email = "wesley.vance@mac.com"
         user = User.create!(
           first_name: auth.extra.raw_info.name,
-          username: auth.info.nickname,
           password: Devise.friendly_token[0,20],
           username: auth.info.nickname,
           subdomain: auth.info.nickname.downcase,  #NOTE: THIS MUST COME AFTER USER.USERNAME ASSIGNMENT
           location: auth.info.location,
-
+          email: email,
 
           # NORMALIZE NAME
           full_name: auth.info.name,
@@ -129,7 +141,7 @@ class UserProvider < ActiveRecord::Base
 
           # NORMALIZE IMAGE
 
-          twitter_avatar: avatar,
+          avatar: avatar,
 
           bio: auth.info.description,
           rating: auth.extra.raw_info.favourites_count,
