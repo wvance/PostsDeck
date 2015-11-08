@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-	before_action :set_twitter_client
+	# before_action :set_twitter_client
+
 
 private
   def load_user
@@ -14,10 +15,14 @@ private
       @@twitter_client ||= Twitter::REST::Client.new do |config|
 	      config.consumer_key = ENV['twitter_consumer_key']
 	      config.consumer_secret = ENV['twitter_consumer_secret']
-	      config.access_token = current_user.token
-	      config.access_token_secret = current_user.secret
+	      config.access_token = current_user.user_provider.where(:provider => "twitter").first.token
+	      config.access_token_secret = current_user.user_provider.where(:provider => "twitter").first.secret
 	    end
     end
+  end
+
+  def set_foursquare_client
+    client = Foursquare2::Client.new(:oauth_token => current_user.user_provider.where(:provider => "foursquare").first.token)
   end
 
   def user_timeline(user_client, qt)
