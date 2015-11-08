@@ -69,7 +69,7 @@ class ProjectsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to request.referrer, notice: 'Project was successfully destroyed.' }
       format.json { head :no_content }
-      # format.js   { render :layout => false }
+      format.js
     end
   end
 

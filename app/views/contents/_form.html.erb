@@ -30,7 +30,7 @@
               <div class="row">
                 <div class="col-sm-8">
                   <div class="field form-group">
-                    <%= f.text_field :title, class: "form-control postTitle", placeholder:"Title"%>
+                    <span class="postTitle"><%= f.text_field :title, class: "form-control", placeholder:"Title"%></span>
                     <% if @content.is_active == false %>
                       <span class="label label-danger pull-right">Draft</span>
                     <%end%>

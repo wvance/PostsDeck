@@ -19,7 +19,6 @@ h1, h2, h3, h4{
 h5, h6{
 	font-family: 'ralewayregular';
 }
-
 blockquote {
   border-left: 4px solid #FFCC00;
   color: #FFCC00;
@@ -30,6 +29,7 @@ blockquote {
     -webkit-margin-before: 0em;
   }
 }
+
 
 .adminAdd{
 	font-family: 'Raleway Dots', cursive;
@@ -223,9 +223,7 @@ ul.links{
 	padding-top: 20px;
 	/*z-index: 9999;*/
 }
-input[type="text"].postTitle{
-    font-size:24px;
-}
+
 #projects{
 	padding-bottom: 20px;
 }

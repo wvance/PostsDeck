@@ -1,6 +1,6 @@
 class Content < ActiveRecord::Base
 	belongs_to :user
-	has_many :comments
+	has_many :comments, dependent: :destroy
 
 	validates :external_id, uniqueness: true , :allow_blank => true, :allow_nil => true
 
