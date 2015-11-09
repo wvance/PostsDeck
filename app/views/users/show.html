@@ -3,7 +3,7 @@
 		<div class="sideBarSection">
 			<div class="profile">
 				<div class="profileName avatar">
-					<%= image_tag @user.twitter_avatar, :class=>"profileImg img-circle"%>
+					<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
 					<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
 					<div class="twitterInfo" class="links">
 						<%= link_to @twitterLink, :target=>"_blank" do%>

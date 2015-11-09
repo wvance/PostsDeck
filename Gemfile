@@ -3,14 +3,23 @@ source 'https://rubygems.org'
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'figaro'
+
 gem 'omniauth-twitter'
+gem 'omniauth-foursquare'
+gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
+gem 'fb_graph'
+# gem 'omniauth-linkedin'
+
+gem 'twitter'
+gem 'foursquare2'
+
 gem 'jquery-turbolinks'
 gem 'friendly_id'
 gem 'redcarpet'											# USED FOR MARKDOWN INTERPRETATION
 
 gem 'kaminari'                      # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
-gem 'twitter'
 gem "d3-rails"											#D3.JS
 
 gem 'gravtastic'                    # ADDED GRAVATAR: PROFILE PICTURE
