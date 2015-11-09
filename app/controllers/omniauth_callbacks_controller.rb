@@ -11,6 +11,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	# end
 	# alias_method :twitter, :all
 
+
 	def facebook
     @user = UserProvider.find_for_facebook_oauth(request.env["omniauth.auth"])
 
