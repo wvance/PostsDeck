@@ -16,9 +16,7 @@ private
 	      config.consumer_key = ENV['twitter_consumer_key']
 	      config.consumer_secret = ENV['twitter_consumer_secret']
 	      config.access_token = current_user.user_provider.where(:provider => "twitter").first.token
-        raise config.access_token.inspect
 	      config.access_token_secret = current_user.user_provider.where(:provider => "twitter").first.secret
-        raise config.access_token_secret.inspect
 	    end
     end
   end

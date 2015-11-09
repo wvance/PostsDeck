@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
 		# CREATE NEW POSTS FROM ABOVE CALCULATIONS
 		if user_signed_in?
-			post_multiple_tweets(@@twitter_client, @posts)
+			# post_multiple_tweets(@@twitter_client, @posts)
 		end
 
 		@contents = @userBlog.page(params[:page]).per(6)
