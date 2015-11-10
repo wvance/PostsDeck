@@ -30,6 +30,14 @@ blockquote {
   }
 }
 
+.flashNotices{
+  position:fixed;
+  top:15px;
+  width:100%;
+  margin-right: auto;
+  margin-left: auto;
+  z-index: 9999;
+}
 
 .adminAdd{
 	font-family: 'Raleway Dots', cursive;

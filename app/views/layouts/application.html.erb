@@ -24,9 +24,11 @@
 
 	<div id="container">
 
-		<% flash.each do |key, value| %>
-		  <div class="alert alert-<%= key %> center"><%= value %></div>
-		<% end %>
+		<div class="flashNotices">
+			<% flash.each do |key, value| %>
+			  <div class="alert alert-<%= key %> center"><%= value %></div>
+			<% end %>
+		</div>
 
 		<div class="adminBar">
 			<div class="adminBarLinks links">
@@ -45,6 +47,14 @@
 			  			Sign Out
 			  		<%end%>
 			  	</h4>
+			  <%else%>
+			  	<h4>
+				  	<% unless current_page?(root_url)%>
+					  	<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
+								Sign In
+							<%end%>
+						<%end%>
+					</h4>
 		  	<%end%>
 		  </div>
 	  </div>
