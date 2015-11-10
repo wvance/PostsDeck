@@ -28,9 +28,9 @@
 		  <div class="alert alert-<%= key %> center"><%= value %></div>
 		<% end %>
 
-		<% if user_signed_in? %>
-			<div class="adminBar">
-				<div class="adminBarLinks links">
+		<div class="adminBar">
+			<div class="adminBarLinks links">
+				<% if user_signed_in? %>
 			  	<h4 class=>
 			  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
 							Home
@@ -45,9 +45,9 @@
 			  			Sign Out
 			  		<%end%>
 			  	</h4>
-			  </div>
+		  	<%end%>
 		  </div>
-	  <%end%>
+	  </div>
 
 		<div class="bodyWrapper">
 			<%= yield %>
