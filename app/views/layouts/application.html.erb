@@ -29,21 +29,23 @@
 		<% end %>
 
 		<% if user_signed_in? %>
-			<div class="adminBar links">
-		  	<h4>
-		  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
-						Home
-					<%end%>
-					<!-- <%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
-						Tweet
-					<%end%> -->
-					<!-- <%= link_to user_omniauth_authorize_path(:foursquare) do%>
-						<i class="fa fa-foursquare"></i> Sign In
-					<%end%> -->
-		  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
-		  			Sign Out
-		  		<%end%>
-		  	</h4>
+			<div class="adminBar">
+				<div class="adminBarLinks links">
+			  	<h4 class=>
+			  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
+							Home
+						<%end%>
+						<!-- <%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
+							Tweet
+						<%end%> -->
+						<!-- <%= link_to user_omniauth_authorize_path(:foursquare) do%>
+							<i class="fa fa-foursquare"></i> Sign In
+						<%end%> -->
+			  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
+			  			Sign Out
+			  		<%end%>
+			  	</h4>
+			  </div>
 		  </div>
 	  <%end%>
 
