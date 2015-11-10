@@ -1,17 +1,13 @@
 class UsersController < ApplicationController
+	before_filter :set_user
+	before_filter :get_user_content
+
+	def edit
+	end
+
 	def show
-		# GET USER ID FROM SUBDOMAIN
-		@user = User.friendly.find_by_subdomain!(request.subdomain)
-
-		# GETS USER CONTENT
-		@userContent = Content.order('contents.created DESC').where(:author => @user.id)
-		@userBlog = Content.order('contents.created DESC').where(:author => @user.id, :kind =>"post")
-
-		# GET USER PROJECTS
-		@userProject = Project.order("position").where(:author => @user.id)
-
 		# COUNTS NUMBER OF TWEETS FROM USER
-		@userTweetCount = @userContent.where(:kind => "twitter").count
+		@userTweetCount = @userTweet.count
 		@posts = @user.number_statuses - @userTweetCount
 
 		# CREATE NEW POSTS FROM ABOVE CALCULATIONS
@@ -83,6 +79,19 @@ class UsersController < ApplicationController
 	end
 
 	private
+		def set_user
+			# GET USER ID FROM SUBDOMAIN
+			@user = User.friendly.find_by_subdomain!(request.subdomain)
+		end
+		def get_user_content
+			# GETS USER CONTENT
+			@userContent = Content.order('contents.created DESC').where(:author => @user.id)
+			@userBlog = @userContent.where(:kind =>"post")
+			@userTweet = @userContent.where(:kind =>"twitter")
+			# GET USER PROJECTS
+			@userProject = Project.order("position").where(:author => @user.id)
+		end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :email)
