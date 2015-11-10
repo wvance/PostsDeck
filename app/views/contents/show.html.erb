@@ -39,7 +39,7 @@
           <%end%>
         </div>
         <div class="blogTags">
-
+          <div class="pull-right lightGrey"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
         </div>
         <div class="postContent">
           <p class="postContent"><%= markdown(@content.body).html_safe %></p>

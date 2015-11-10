@@ -16,6 +16,16 @@ class Content < ActiveRecord::Base
 		]
 	end
 
+
+	def word_count
+    self.body.split.size
+	end
+
+	def reading_time
+    (word_count / 180.0).ceil
+	end
+
+
   def should_generate_new_friendly_id?
     new_record?
   end

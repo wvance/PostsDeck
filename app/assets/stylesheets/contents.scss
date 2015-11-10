@@ -1,6 +1,13 @@
 // Place all the styles related to the Contents controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.showPostAdmin{
+  position:fixed;
+  top:0px;
+  left:20px;
+  padding:0px;
+  z-index: 9999;
+}
 
 .displayPost{
   padding-top: 40px;
