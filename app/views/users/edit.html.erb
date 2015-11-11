@@ -1,57 +1,100 @@
-<div id="userSettings">
-  <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
-      <div class="row">
-        <div class="col-xs-2">
-          <%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
-        </div>
-        <div class="col-xs-8 col-xs-offset-1">
-          <h1 class=""><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
-          <!-- <div class="twitterInfo" class="links">
-            <%= link_to @twitterLink, :target=>"_blank" do%>
-              <h5>@<%= @user.username %></h5>
-              <h6>
-                <%= @user.number_statuses%> <i class="fa fa-comment"></i>
-                <%= @user.number_followers%> <i class="fa fa-users"></i>
-                <%= @user.rating%> <i class="fa fa-heart"></i>
-              </h6>
-            <%end%>
-          </div> -->
-        </div>
-      </div>
+<%= form_for(@user) do |f| %> <!--, remote: true-->
 
-      <!-- DISPLAY THE BIO -->
-      <div class="row">
-        <div class="col-xs-12">
-          <h3 class="center">
-            <%if @user.bio.present? %>
-              <%= @user.bio%>
-            <%else%>
-              Hello I am @<%= @user.username.capitalize %>
-            <%end%>
-          </h3>
-        </div>
-      </div>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being saved:</h2>
 
-      <!-- DISPLAY FEATURES -->
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
-
-
-      <!-- SIGN ON WITH OTHER PROVIDERS, CHECK IF EMAIL IS ACTIVE -->
-      <% unless @user.email.present? %>
+  <div id="userSettings">
+    <div class="row">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
         <div class="row">
-          <div class="col-xs-12">
-            <%= link_to user_omniauth_authorize_path(:foursquare) do%>
-              <i class="fa fa-foursquare"></i> Sign In
-            <%end%>
+          <div class="col-xs-2">
+            <%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
+          </div>
+          <div class="col-xs-8 col-xs-offset-1">
+            <h1 class=""><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
+            <!-- <div class="twitterInfo" class="links">
+              <%= link_to @twitterLink, :target=>"_blank" do%>
+                <h5>@<%= @user.username %></h5>
+                <h6>
+                  <%= @user.number_statuses%> <i class="fa fa-comment"></i>
+                  <%= @user.number_followers%> <i class="fa fa-users"></i>
+                  <%= @user.rating%> <i class="fa fa-heart"></i>
+                </h6>
+              <%end%>
+            </div> -->
           </div>
         </div>
-      <%else%>
-        <h5>Please confirm your email to activate further channels</h5>
-      <%end%>
 
+        <hr>
+        <!-- DISPLAY THE BIO -->
+        <div class="row">
+          <div class="col-xs-12">
+            <h3 class="center">
+              <%if @user.bio.present? %>
+                <%= @user.bio%>
+              <%else%>
+                Hello I am <%= @user.username.capitalize %>
+              <%end%>
+            </h3>
+          </div>
+        </div>
+
+        <hr>
+        <!-- SIGN ON WITH OTHER PROVIDERS, CHECK IF EMAIL IS ACTIVE -->
+        <% unless @user.email.present? %>
+          <div class="row">
+            <div class="col-xs-4">
+              <h3>Personal</h3>
+              <h5>Address: <%= @user.address %></h5>
+              <h5>Street: <%= @user.street %></h5>
+              <h5>City: <%= @user.city %></h5>
+              <h5>Postal: <%= @user.postal %></h5>
+              <h5>Longitude: <%= @user.longitude %></h5>
+              <h5>Latitude: <%= @user.latitude %></h5>
+            </div>
+            <div class="col-xs-4">
+              <h3>BlackBox</h3>
+              <h5>Posts: <%= @userContent.count %></h5>
+              <h5>Projects: <%= @userProject.count %></h5>
+            </div>
+            <div class="col-xs-4">
+              <h3>Twitter </h3>
+              <h5>Number Followers: <%= @user.number_followers %></h5>
+              <h5>Number Statuses: <%= @user.number_statuses %></h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-4">
+              <h3>Foursquare </h3>
+              <%= link_to user_omniauth_authorize_path(:foursquare) do%>
+                <i class="fa fa-foursquare"></i> Sign In
+              <%end%>
+            </div>
+          </div>
+        <%else%>
+          <h5 class="center">Please confirm your email to activate further channels</h5>
+        <%end%>
+
+        <!-- SUBMIT FORM -->
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="actions pull-right">
+              <%= f.submit "Submit", class: "btn btn-default" %>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
 
+<% end %>

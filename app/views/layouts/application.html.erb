@@ -49,7 +49,7 @@
 			  	</h4>
 			  <%else%>
 			  	<h4>
-				  	<% unless current_page?(root_url)%>
+				  	<% unless current_page?(root_url(:subdomain => false))%>
 					  	<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
 								Sign In
 							<%end%>

@@ -1,0 +1,21 @@
+<%= form_for(@user) do |f| %> <!--, remote: true-->
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this account from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="actions pull-right">
+        <%= f.submit "Submit", class: "btn btn-default" %>
+      </div>
+    </div>
+  </div>
+<% end %>

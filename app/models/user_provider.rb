@@ -142,6 +142,7 @@ class UserProvider < ActiveRecord::Base
           # NORMALIZE IMAGE
 
           avatar: avatar,
+          twitter_avatar: avatar,
 
           bio: auth.info.description,
           rating: auth.extra.raw_info.favourites_count,
