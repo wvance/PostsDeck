@@ -154,6 +154,15 @@ class UserProvider < ActiveRecord::Base
           token: auth.credentials.token,
           secret: auth.credentials.secret
         )
+        demo_project = Project.create!(
+          author:user.id,
+          title: "Demo Project!",
+          image:"https://s3.amazonaws.com/wesleyvance/assets/social/BlackBoxLogo.png",
+          body:"This is a demo project! Share a hobby, resume or whatever you'd like! Get started by signing into your account and selecting 'New Project'!",
+          position:0,
+          github_link: "http://github.com",
+          project_link: "http://blackboxapp.io"
+        )
         user
       end
     end
