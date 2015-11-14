@@ -131,7 +131,6 @@ class UserProvider < ActiveRecord::Base
           username: auth.info.nickname,
           subdomain: auth.info.nickname.downcase,  #NOTE: THIS MUST COME AFTER USER.USERNAME ASSIGNMENT
           location: auth.info.location,
-          email: email,
 
           # NORMALIZE NAME
           full_name: auth.info.name,
