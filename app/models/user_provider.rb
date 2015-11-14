@@ -125,7 +125,6 @@ class UserProvider < ActiveRecord::Base
       else
         avatar = auth.info.image
         avatar.slice! "_normal"
-        email = "wesley.vance@mac.com"
         user = User.create!(
           first_name: auth.extra.raw_info.name,
           password: Devise.friendly_token[0,20],
