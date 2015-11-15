@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 	before_action :set_twitter_client
+  before_action :set_request
   # before_action :set_foursquare_client
 
 private
@@ -23,6 +24,10 @@ private
 
   def set_foursquare_client
     client = Foursquare2::Client.new(:oauth_token => current_user.user_provider.where(:provider => "foursquare").first.token)
+  end
+
+  def set_request
+    $request = request
   end
 
   def user_timeline(user_client, qt)

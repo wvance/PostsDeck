@@ -162,6 +162,32 @@ class UserProvider < ActiveRecord::Base
           position:0,
           github_link: "http://github.com",
           project_link: "http://blackboxapp.io"
+          # datetime: DateTime.now,
+        )
+
+        # if cookies[:lat_lng] != nil
+        #   @lat_lng = cookies[:lat_lng].split("|")
+        # else
+          @ip = $request.remote_ip
+        # end
+          # raise @ip.inspect
+
+        demo_post = Content.create!(
+          author:user.id,
+          title:"Welcome Post!",
+          kind:"post",
+          has_comments: "t",
+          # datetime: DateTime.now,
+          body:"Welcome to BlackBox! You're life collected.",
+          # latitude: @lat_lng[0],
+          # longitude: @lat_lng[1],
+          ip: @ip
+        )
+        demo_comment = Comment.create!(
+          content_id:demo_post.id,
+          body: "This is a demo comment on your demo post! Yay :D. Comment on others posts!",
+          email: "Test@demo.com",
+          # datetime: DateTime.now
         )
         user
       end
