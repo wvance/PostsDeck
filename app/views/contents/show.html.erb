@@ -26,7 +26,7 @@
           <h1 class="inline postTitle"><%= @content.title%></h1>
           <% if user_signed_in?%>
             <% if current_user.id == @content.author %>
-              <h2 class="inline">
+              <h2 class="inline paddingIcon">
                 <%= link_to edit_content_path(@content) do%>
                   <i class="fa fa-pencil-square-o"></i>
                 <%end%>
