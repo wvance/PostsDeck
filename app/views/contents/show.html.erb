@@ -1,9 +1,5 @@
 <!-- Title -->
-<div class="showPostAdmin">
-  <%= link_to root_url(subdomain: @author.subdomain)do%>
-    <h1><span class="yellow"><%= @author.first_name%></span><%= @author.last_name%></h1>
-  <%end%>
-</div>
+<%= render 'adminBar' %>
 
 <div class="row fullWidth">
   <div class="col-xs-12">
@@ -14,7 +10,11 @@
         <span style='background:#4099FF;'></span>
       </nav>
     </div> -->
-    <div id="contentMap" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+    <% if @geojson.present? %>
+      <div id="contentMap" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+    <%else%>
+      <div class="noContentMap"></div>
+    <%end%>
   </div>
 </div>
 
@@ -26,12 +26,11 @@
           <h1 class="inline postTitle"><%= @content.title%></h1>
           <% if user_signed_in?%>
             <% if current_user.id == @content.author %>
-              <h6 class="inline">
-                <%= link_to 'Edit', edit_content_path(@content) %> |
-                <%= link_to(content_path(@content), method: :delete) do%>
-                  Delete
+              <h2 class="inline">
+                <%= link_to edit_content_path(@content) do%>
+                  <i class="fa fa-pencil-square-o"></i>
                 <%end%>
-              </h6>
+              </h2>
               <% if @content.is_active == false %>
                 <span class="label label-danger pull-right">Draft</span>
               <%end%>
