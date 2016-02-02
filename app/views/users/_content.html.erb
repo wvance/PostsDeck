@@ -29,6 +29,7 @@
 									<%end%>
 								<%end%>
 							</div>
+							<% if user_signed_in? && current_user.id == @user.id %>
 							<h6 class="pull-right">
 								<% if content.is_sticky == true %>
                   <span class="label label-warning">Sticky</span>
@@ -37,6 +38,7 @@
                   <span class="label label-danger">Draft</span>
                 <%end%>
               </h6>
+              <%end%>
 							<div class="blogTags">
 							</div>
 							<div class="blogBody">
