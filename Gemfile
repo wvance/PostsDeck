@@ -11,6 +11,8 @@ gem 'omniauth-google-oauth2'
 gem 'fb_graph'
 # gem 'omniauth-linkedin'
 
+gem 'acts-as-taggable-on'
+
 gem 'twitter'
 gem 'foursquare2'
 

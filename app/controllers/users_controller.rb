@@ -7,6 +7,8 @@ class UsersController < ApplicationController
 	end
 
 	def show
+
+
 		# COUNTS NUMBER OF TWEETS FROM USER
 		@userTweetCount = @userTweet.count
 		@posts = @user.number_statuses - @userTweetCount
@@ -16,7 +18,11 @@ class UsersController < ApplicationController
 			post_multiple_tweets(@@twitter_client, @posts)
 		end
 
-		@contents = @userBlog.page(params[:page]).per(6)
+		if params[:tag]
+			@contents = Content.tagged_with(params[:tag]).page(params[:page]).per(6)
+		else
+			@contents = @userBlog.page(params[:page]).per(6)
+		end
 		@projects = @userProject.page(params[:page]).per(5)
 
 		@twitterLink = "http://twitter.com/" + @user.username

@@ -3,7 +3,7 @@ class Content < ActiveRecord::Base
 	has_many :comments, dependent: :delete_all
 
 	validates :external_id, uniqueness: true , :allow_blank => true, :allow_nil => true
-
+	acts_as_taggable
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
 

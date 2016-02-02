@@ -5,8 +5,8 @@
 		</h1>
 		<p>
 			Create a new project!
-		</p>		
-		<hr>		
+		</p>
+		<hr>
 	</div>
 
 	<!-- MOVE THIS INTO A PARTIAL? -->
@@ -18,7 +18,7 @@
 				  	<%= f.label :title%>
 				  </div>
 				  <div class="col-xs-9">
-				  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control", :required => true%>
+				  	<%= f.text_field :title, :placeholder => "Name of project", :class=>"form-control formText", :required => true%>
 				  	<span class="bar"></span>
 				  	<br />
 				  </div>
@@ -51,7 +51,7 @@
 				  	<%= f.label :Github %>
 				  </div>
 				  <div class="col-xs-9">
-				  	<%= f.text_field :github_link, :placeholder => "Link to Github repo", :class=>"form-control"%>
+				  	<%= f.text_field :github_link, :placeholder => "Link to Github repo", :class=>"form-control formText"%>
 				  	<span class="bar"></span>
 				  	<br />
 				  </div>
@@ -62,7 +62,7 @@
 				  	<%= f.label :Project %>
 				  </div>
 				  <div class="col-xs-9">
-				  	<%= f.text_field :project_link, :placeholder => "Link to project", :class=>"form-control"%>
+				  	<%= f.text_field :project_link, :placeholder => "Link to project", :class=>"form-control formText"%>
 				  	<span class="bar"></span>
 				  	<br />
 				  </div>
@@ -72,7 +72,7 @@
 						<%= f.file_field :image %>
 					</div>
 				</div>
-				<%= f.submit 'Submit', :placeholder => "Name of project", :class=>"btn btn-default pull-right"%>
+				<%= f.submit 'Submit', :placeholder => "Name of project", :class=>"btn btn-link pull-right link formButton"%>
 			</div>
 		<% end %>
 	</div>

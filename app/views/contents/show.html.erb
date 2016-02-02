@@ -42,9 +42,16 @@
             <%end%>
           <%end%>
         </div>
-        <div class="blogTags">
-          <div class="pull-right lightGrey"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
+        <div class="pull-right tags">
+          <div class="lightGrey"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
+          <% if @content.tag_list.present? %>
+            <div class="tags lightGrey">
+              <i class="fa fa-tags"></i> <%= @content.tag_list[0,3]%>
+            </div>
+          <%end%>
         </div>
+
+
         <div class="postContent">
           <p class="postContent"><%= markdown(@content.body).html_safe %></p>
         </div>
