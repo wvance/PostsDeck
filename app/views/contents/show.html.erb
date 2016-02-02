@@ -26,11 +26,11 @@
           <h1 class="inline postTitle"><%= @content.title%></h1>
           <% if user_signed_in?%>
             <% if current_user.id == @content.author %>
-              <h2 class="inline paddingIcon">
+              <h3 class="inline paddingIcon">
                 <%= link_to edit_content_path(@content) do%>
                   <i class="fa fa-pencil-square-o"></i>
                 <%end%>
-              </h2>
+              </h3>
               <h6 class="pull-right">
                 <% if @content.is_sticky == true %>
                   <span class="label label-warning">Sticky</span>
