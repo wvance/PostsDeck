@@ -46,7 +46,7 @@
 							</div>
 							<div class="blogFooter">
 								<div class="row">
-				          <div class="col-xs-4">
+				          <div class="col-xs-6">
 				          	<div class="lightGrey"><i class="fa fa-clock-o"></i> <%= content.reading_time%> min</div>
 				            <% if content.tag_list.present? %>
 					            <div class="tags lightGrey">
@@ -54,7 +54,7 @@
 					            </div>
 					          <%end%>
 				          </div>
-				          <div class="col-xs-8">
+				          <div class="col-xs-6">
 				            <h5 class="lightGrey pull-right">
 				              <% if content.created.present? %>
 				                <%= formatDate(content.created) %>
