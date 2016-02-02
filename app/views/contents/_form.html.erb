@@ -63,34 +63,44 @@
                   <%= f.number_field :rating, class: "form-control" %>
                 </div> -->
               </div>
+
               <div class="row">
-                <div class="col-xs-12 form-group">
-                  <div class="field">
-                    <div class='wmd-panel'>
-                      <div id='wmd-button-bar'></div>
-                      <%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input autoGrowText form-control", :rows=>"5", :required => true%>
+                <div class="row">
+                  <div class="col-xs-12 form-group">
+                    <div class="field">
+                      <div class='wmd-panel'>
+                        <div id='wmd-button-bar'></div>
+                        <%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input autoGrowText form-control", :rows=>"5", :required => true%>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div class="col-xs-12 form-group">
-                  <%= f.text_field :tag_list, :placeholder => "Add some tags to describe your post, seperated by commas!", :class=>"form-control formText", :required => true%>
-                  <br />
-                </div>
-                <div class="col-xs-4 form-group">
-                  <!-- Kind
-                  <%= f.text_field :kind, class: "form-control"%>
-                  Internal ID
-                  <%= f.number_field :id, class: "form-control" %>
-                  External ID
-                  <%= f.number_field :external_id, class: "form-control" %>
-                  External Link
-                  <%= f.text_field :external_link, class: "form-control" %>
-                  Latitude
-                  <%= f.number_field :latitude, class: "form-control" %>
-                  Longitude
-                  <%= f.number_field :longitude, class: "form-control" %> -->
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 form-group">
+                    <h3><i class="fa fa-tags"></i> Tags</h3>
+                    <%= f.text_field(:tag_list, value: @content.tag_list.join(", "), :placeholder => "Add some tags to describe your post, seperated by commas!", :class=>"form-control formText", :required => true )%>
+                    <br />
+                  </div>
+                  <div class="col-xs-12 col-sm-6">
+                    <h3><i class="fa fa-map-marker"></i> Location</h3>
+                    <div class="row">
+                      <div class="col-xs-12">
+                        <%= @content.address%>
+                      </div>
+                    </div>
+                    <div class="row latLongForm">
+                      <div class="col-xs-6">
+                      Latitude <%= f.text_field(:latitude, :placeholder => "Latitude of Pin on Map!", :class=>"form-control formText")%>
+                      </div>
+                      <div class="col-xs-6">
+                      Longitude <%= f.text_field(:longitude, :placeholder => "Longitude of Pin on Map!", :class=>"form-control formText")%>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
+
+              <hr>
               <div class="row">
                 <div class="col-xs-12">
                   <div class="form-group pull-right">

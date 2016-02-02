@@ -113,7 +113,7 @@ class ContentsController < ApplicationController
               @content.location
             end,
           :'marker-color' => marker_color,
-          :'marker-size' => 'small'
+          :'marker-size' => 'small',
         }
       }
     end

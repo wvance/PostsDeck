@@ -83,7 +83,7 @@ $(".contents.edit").ready ->
   console.log("Success Loading Contents show")
   L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
   map = L.mapbox.map('contentMapEdit', 'wesvance.n3ejgh0a', {
-    zoomControl: false
+    zoomControl: true
     maxZoom: 14
   })
 
@@ -92,21 +92,15 @@ $(".contents.edit").ready ->
   map.scrollWheelZoom.disable();
   map.attributionControl = false;
 
-  # get JSON object
-  # on success, parse it and
-  # hand it over to MapBox for mapping
-  # OLD WAY OF DOING IT?
-
-  # $.ajax
-  #   dataType: 'text'
-  #   url: '/welcome/index.json'
-  #   success: (data) ->
-  #     geojson = $.parseJSON(data)
-  #     map.featureLayer.setGeoJSON(geojson)
-
   $link = $('#contentMapEdit').data('url')
   console.log($link)
   featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
+
+  # marker = L.marker(new (L.LatLng)(37.9, -77),
+  #   icon: L.mapbox.marker.icon('marker-color': 'ff8888')
+  #   draggable: true)
+  # marker.bindPopup 'This marker is draggable! Move it around.'
+  # marker.addTo map
 
   featureLayer.on 'ready', (e) ->
     map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
