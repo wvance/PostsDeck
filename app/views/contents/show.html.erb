@@ -42,15 +42,7 @@
             <%end%>
           <%end%>
         </div>
-        <div class="pull-right tags">
-          <div class="lightGrey"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
-          <% if @content.tag_list.present? %>
-            <div class="tags lightGrey">
-              <i class="fa fa-tags"></i> <%= raw @content.tag_list[0,3].map{ |t| link_to t, tag_path(t) }.join(', ')%>
-            </div>
-          <%end%>
-        </div>
-
+        <div class="lightGrey pull-right"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
 
         <div class="postContent">
           <p class="postContent"><%= markdown(@content.body).html_safe %></p>
@@ -89,16 +81,23 @@
             </h5>
           </div>
           <div class="col-xs-8">
-            <h5 class="lightGrey pull-right">
-              <% if @content.created.present? %>
-                <%= formatDate(@content.created) %>
-              <%end%>
-              <% if @content.kind =="twitter" %>
-                at <%= @content.location %>
-              <%elsif @content.city.present? || @content.state.present?%>
-                at <%= @content.city%>, <%= @content.state%>
-              <%end%>
-            </h5>
+            <div class="row lightGrey pull-right">
+              <h5>
+                <% if @content.created.present? %>
+                  <%= formatDate(@content.created) %>
+                <%end%>
+                <% if @content.kind =="twitter" %>
+                  at <%= @content.location %>
+                <%elsif @content.city.present? || @content.state.present?%>
+                  at <%= @content.city%>, <%= @content.state%>
+                <%end%>
+                <% if @content.tag_list.present? %>
+                  <div class="tags">
+                    <i class="fa fa-tags"></i> <%= raw @content.tag_list[0,3].map{ |t| link_to t, tag_path(t) }.join(', ')%>
+                  </div>
+                <%end%>
+              </h5>
+            </div>
           </div>
         </div>
       </div>
