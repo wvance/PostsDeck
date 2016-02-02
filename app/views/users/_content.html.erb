@@ -29,9 +29,14 @@
 									<%end%>
 								<%end%>
 							</div>
-							<% if content.is_active == false %>
-								<span class="label label-danger pull-right">Draft</span>
-							<%end%>
+							<h6 class="pull-right">
+								<% if content.is_sticky == true %>
+                  <span class="label label-warning">Sticky</span>
+                <%end%>
+                <% if content.is_active == false %>
+                  <span class="label label-danger">Draft</span>
+                <%end%>
+              </h6>
 							<div class="blogTags">
 							</div>
 							<div class="blogBody">

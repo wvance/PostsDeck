@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151108053030) do
+ActiveRecord::Schema.define(version: 20160202052940) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,11 @@ ActiveRecord::Schema.define(version: 20151108053030) do
     t.boolean  "is_active"
     t.datetime "created"
     t.datetime "updated"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "slug"
     t.boolean  "has_comments"
+    t.boolean  "is_sticky",               default: false
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree

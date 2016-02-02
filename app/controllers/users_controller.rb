@@ -86,7 +86,7 @@ class UsersController < ApplicationController
 		end
 		def get_user_content
 			# GETS USER CONTENT
-			@userContent = Content.order('contents.created DESC').where(:author => @user.id)
+			@userContent = Content.order('is_sticky DESC, created_at DESC').where(:author => @user.id)
 			@userBlog = @userContent.where(:kind =>"post")
 			@userTweet = @userContent.where(:kind =>"twitter")
 			# GET USER PROJECTS
