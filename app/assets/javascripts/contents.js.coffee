@@ -78,3 +78,64 @@ $(".contents.show").ready ->
 
   featureLayer.on 'mouseover', (e) ->
     e.layer.openPopup();
+
+$(".contents.edit").ready ->
+  console.log("Success Loading Contents show")
+  L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
+  map = L.mapbox.map('contentMapEdit', 'wesvance.n3ejgh0a', {
+    zoomControl: false
+    maxZoom: 14
+  })
+
+  map.touchZoom.disable();
+  map.doubleClickZoom.disable();
+  map.scrollWheelZoom.disable();
+  map.attributionControl = false;
+
+  # get JSON object
+  # on success, parse it and
+  # hand it over to MapBox for mapping
+  # OLD WAY OF DOING IT?
+
+  # $.ajax
+  #   dataType: 'text'
+  #   url: '/welcome/index.json'
+  #   success: (data) ->
+  #     geojson = $.parseJSON(data)
+  #     map.featureLayer.setGeoJSON(geojson)
+
+  $link = $('#contentMapEdit').data('url')
+  console.log($link)
+  featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
+
+  featureLayer.on 'ready', (e) ->
+    map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
+
+  # featureLayer.addTo(map);
+
+  # add custom popups to each marker
+  featureLayer.on 'layeradd', (e) ->
+    marker = e.layer
+    properties = marker.feature.properties
+
+    # create custom popup
+    popupContent =  '<div class="popup">' +
+                    '<a href="' + properties.link + '">' +
+                        '<h3>' + properties.name + '</h3>' +
+                        '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
+                        '</a>' +
+                      '</div>'
+
+    # http://leafletjs.com/reference.html#popup
+    marker.bindPopup popupContent,
+      closeButton: false
+      minWidth: 200
+      keepInView: true
+
+  featureLayer.on 'click', (e) ->
+    map.panTo(e.layer.getLatLng());
+    e.layer.openPopup();
+
+  featureLayer.on 'mouseover', (e) ->
+    e.layer.openPopup();
+

@@ -79,6 +79,51 @@ class ContentsController < ApplicationController
   # GET /contents/1/edit
   def edit
     @author = User.where(:id => @content.author).first
+
+    # THIS IS FOR THE DISPLAY MAP
+    @geojson = Array.new
+
+    # PUT CONTENTS ON MAP
+    puts @content.kind
+    if (@content.kind == "twitter")
+      marker_color = '#4099FF'
+    else
+      marker_color = '#FFCC00'
+    end
+
+    unless (@content.longitude.nil? || @content.latitude.nil?) || (@content.longitude == '0' || @content.latitude == '0')
+      @geojson << {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [
+            @content.longitude,
+            @content.latitude
+          ]
+        },
+        properties: {
+          name: @content.title,
+          body: @content.body,
+          link: "/contents/" + @content.id.to_s,
+          id: @content.id,
+          address:
+            if (@content.city.present? && @content.state.present?)
+              @content.city + ", " + @content.state
+            elsif @content.location.present?
+              @content.location
+            end,
+          :'marker-color' => marker_color,
+          :'marker-size' => 'small'
+        }
+      }
+    end
+    puts @geojson
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @geojson }  # respond with the created JSON object
+      # format.js
+    end
   end
 
   # POST /contents

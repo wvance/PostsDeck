@@ -1,5 +1,23 @@
 <%= render 'adminBar' %>
 
+
+<div class="row fullWidth">
+  <div class="col-xs-12">
+    <!-- <div id='legend' style='display:none;'>
+      <nav class='legend clearfix'>
+        <h6>Post | Tweet</h6>
+        <span style='background:#FFCC00;'></span>
+        <span style='background:#4099FF;'></span>
+      </nav>
+    </div> -->
+    <% if @geojson.present? %>
+      <div id="contentMapEdit" class="contentsEditMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+    <%else%>
+      <div class="noContentMap"></div>
+    <%end%>
+  </div>
+</div>
+
 <div class="editPost">
   <div class="row">
     <div class="col-xs-12">
