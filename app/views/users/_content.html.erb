@@ -50,7 +50,7 @@
 				          	<div class="lightGrey"><i class="fa fa-clock-o"></i> <%= content.reading_time%> min</div>
 				            <% if content.tag_list.present? %>
 					            <div class="tags lightGrey">
-					              <i class="fa fa-tags"></i> <%= raw content.tag_list[0,1].map{ |t| link_to t, tag_path(t) }.join(', ')%>
+					              <i class="fa fa-tags"></i> <%= raw content.tag_list[0,5].map{ |t| link_to t, tag_path(t) }.join(', ')%>
 					            </div>
 					          <%end%>
 				          </div>
