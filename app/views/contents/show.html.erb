@@ -93,7 +93,7 @@
                 <%end%>
                 <% if @content.tag_list.present? %>
                   <div class="tags">
-                    <i class="fa fa-tags"></i> <%= raw @content.tag_list[0,3].map{ |t| link_to t, tag_path(t) }.join(', ')%>
+                    <i class="fa fa-tags"></i> <%= raw @content.tag_list.map{ |t| link_to t, tag_path(t) }.join(', ')%>
                   </div>
                 <%end%>
               </h5>
