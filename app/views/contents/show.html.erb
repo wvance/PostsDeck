@@ -3,13 +3,6 @@
 
 <div class="row fullWidth">
   <div class="col-xs-12">
-    <!-- <div id='legend' style='display:none;'>
-      <nav class='legend clearfix'>
-        <h6>Post | Tweet</h6>
-        <span style='background:#FFCC00;'></span>
-        <span style='background:#4099FF;'></span>
-      </nav>
-    </div> -->
     <% if @geojson.present? %>
       <div id="contentMap" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
     <%else%>
