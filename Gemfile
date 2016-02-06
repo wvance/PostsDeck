@@ -4,10 +4,11 @@ gem "twitter-bootstrap-rails"
 gem 'figaro'
 
 gem 'omniauth-twitter'
-gem 'omniauth-foursquare'
-gem 'omniauth-facebook'
-gem 'omniauth-google-oauth2'
-gem 'fb_graph'
+gem 'awesome-share-buttons', github: 'evansobkowicz/awesome-share-buttons'
+# gem 'omniauth-foursquare'
+# gem 'omniauth-facebook'
+# gem 'omniauth-google-oauth2'
+# gem 'fb_graph'
 # gem 'omniauth-linkedin'
 
 gem 'acts-as-taggable-on'

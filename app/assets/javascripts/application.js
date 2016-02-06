@@ -21,6 +21,7 @@
 //= require markdown.converter
 //= require markdown.sanitizer
 //= require markdown.editor
+//= require awesome-share-buttons
 //
 //= require turbolinks
 //= require_tree .
