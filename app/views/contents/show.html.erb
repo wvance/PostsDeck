@@ -1,5 +1,8 @@
 <!-- Title -->
 <% title @author.username.capitalize + ": " + @content.title.capitalize %>
+<% meta_tag :description, @content.body %>
+<% meta_tag :keywords, @content.tag_list.join(',') %>
+
 <%= render 'adminBar' %>
 
 <div class="row fullWidth">

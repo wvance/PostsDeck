@@ -215,7 +215,11 @@ class ContentsController < ApplicationController
     end
 
     def set_author
-      @contentAuthor = User.where(:id => @content.author).first
+      unless request.subdomain.present?
+        redirect_to root_url
+      end
+
+      @contentAuthor = User.where(:username => request.subdomain).first
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
