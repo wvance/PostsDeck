@@ -1,5 +1,4 @@
 source 'https://rubygems.org'
-
 gem 'devise'
 gem "twitter-bootstrap-rails"
 gem 'figaro'
