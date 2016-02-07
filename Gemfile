@@ -32,6 +32,7 @@ gem "jquery-ui-rails"
 gem "fog-aws"
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 gem 'mini_magick'
+gem 'sitemap_generator'
 # gem 'json'
 gem 'pagedown-rails', :git => 'git://github.com/wvance/pagedown-rails'
 
