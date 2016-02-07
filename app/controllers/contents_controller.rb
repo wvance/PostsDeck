@@ -214,12 +214,15 @@ class ContentsController < ApplicationController
       @content = Content.friendly.find(params[:id])
     end
 
-    def set_author
-      # unless request.subdomain.present?
-      #   redirect_to root_url
-      # end
+    # def set_author
+    #   unless request.subdomain.present?
+    #     redirect_to root_url
+    #   end
 
-      @contentAuthor = User.where(:username => @content.author).first
+    #   @contentAuthor = User.where(:username => request.subdomain).first
+    # end
+    def set_author
+      @contentAuthor = User.where(:id => @content.author).first
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
