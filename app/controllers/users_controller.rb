@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 		if params[:tag]
 			@contents = Content.tagged_with(params[:tag]).page(params[:page]).per(6)
 		else
-			@contents = @userBlog.page(params[:page]).per(6)
+			@contents = @userBlog.page(params[:page]).per(15)
 		end
 		@projects = @userProject.page(params[:page]).per(5)
 
