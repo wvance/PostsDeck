@@ -4,11 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 	before_action :set_twitter_client
   before_action :set_request
+  before_action :load_user
   # before_action :set_foursquare_client
 
 private
   def load_user
-    # @user = User.find_by_subdomain!(request.subdomain)
+    @user = User.find_by_subdomain!('wesadvance')
   end
 
   def set_twitter_client

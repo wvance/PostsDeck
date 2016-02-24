@@ -26,7 +26,7 @@ class ContentsController < ApplicationController
     @geojson = Array.new
 
     # PUT CONTENTS ON MAP
-    puts @content.kind
+    # puts @content.kind
     if (@content.kind == "twitter")
       marker_color = '#4099FF'
     else
@@ -59,9 +59,9 @@ class ContentsController < ApplicationController
         }
       }
     end
-    puts "START MAP OBJECT: "
-    puts @geojson
-    puts "END MAP OBJECT: "
+    # puts "START MAP OBJECT: "
+    # puts @geojson
+    # puts "END MAP OBJECT: "
 
     respond_to do |format|
       format.html
@@ -84,7 +84,7 @@ class ContentsController < ApplicationController
     @geojson = Array.new
 
     # PUT CONTENTS ON MAP
-    puts @content.kind
+    # puts @content.kind
     if (@content.kind == "twitter")
       marker_color = '#4099FF'
     else
@@ -117,7 +117,7 @@ class ContentsController < ApplicationController
         }
       }
     end
-    puts @geojson
+    # puts @geojson
 
     respond_to do |format|
       format.html

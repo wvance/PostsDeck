@@ -17,7 +17,7 @@
 
 <div class="displayPost">
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
       <div id="blog" class="blogSection">
         <div class="blogTitle links">
           <h1 class="inline postTitle"><%= @content.title%></h1>
@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
       <% if @content_attachments.present? %>
         <% @content_attachments.each do |p| %>
           <div class="col-xs-4 col-md-4">
@@ -69,7 +69,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+    <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
       <div class="blogFooter">
         <div class="row">
           <div class="col-xs-4">
@@ -104,14 +104,14 @@
   <!-- ADD USER BIO HERE WITH PROFILE PICTURE -->
 
   <% if @content.has_comments%>
-    <hr>
     <div class="row" id="show-comments-section">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+        <hr>
         <h4><%= link_to "Show Comments", '#', id: "comments-link" %> <span class="yellow"><%=@comments.count%></span></h4>
       </div>
     </div>
     <div class="row" id="comments-section">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
         <% if @comments.present? %><h3>Comments <span class="yellow"><%=@comments.count%></span></h3><br><%end%>
         <div class="commentWrapper" id="comments">
           <%= render @comments%>

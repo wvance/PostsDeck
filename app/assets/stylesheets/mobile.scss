@@ -24,4 +24,27 @@
   .adminBar{
     background-color:white;
   }
+
+  // HIDES SIDEBAR AND INCREASES MAIN CONTENT TO FULL SCREEN
+  .fixedSideBar{
+    display:none;
+  }
+  .mainContent{
+    padding-left:0px;
+  }
+
+  // GIVE MAP TOP PADDING
+  .contentsMapSection{
+    z-index: -1;
+    margin-top:80px;
+    width:100%;
+    height:300px;
+  }
+  .contentsEditMapSection{
+    margin-top:80px;
+    width:100%;
+    height:300px;
+  }
+
+
 }

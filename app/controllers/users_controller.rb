@@ -38,8 +38,8 @@ class UsersController < ApplicationController
 		# PUT CONTENTS ON MAP
 		if @mapContent.exists?
 			@mapContent.each do |content|
-				puts "CONTENT KIND HERE :"
-				puts content.kind
+				# puts "CONTENT KIND HERE :"
+				# puts content.kind
 				if (content.kind == "twitter")
 					marker_color = '#4099FF'
 				else
@@ -74,9 +74,9 @@ class UsersController < ApplicationController
 				end
 			end
 		end
-		puts "START MAP OBJECT: "
-		puts @geojson
-		puts "END MAP OBJECT: "
+		# puts "START MAP OBJECT: "
+		# puts @geojson
+		# puts "END MAP OBJECT: "
 
 		respond_to do |format|
 		  format.html
@@ -88,7 +88,8 @@ class UsersController < ApplicationController
 	private
 		def set_user
 			# GET USER ID FROM SUBDOMAIN
-			@user = User.friendly.find_by_subdomain!(request.subdomain)
+			# @user = User.friendly.find_by_subdomain!(request.subdomain)
+			@user = User.friendly.find_by_subdomain!('wesadvance')
 		end
 		def get_user_content
 			# GETS USER CONTENT

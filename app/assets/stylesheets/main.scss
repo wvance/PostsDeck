@@ -30,6 +30,25 @@ blockquote {
   }
 }
 
+.fixedSideBar{
+  position: fixed;
+  background-color:#464646;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  width: 270px;
+  z-index: 99999;
+}
+.mainContent{
+  padding-left:270px;
+  // STRANGE BUG WITH 1PX?
+  margin-top:-1px;
+}
+
+.row{
+  padding-right:0px;
+  margin-right: 0px;
+}
 // .social-share-button-facebook {
 //   display: inline-block;
 //   width: 16px;
@@ -150,15 +169,6 @@ ul.links{
 	height:100vh;
 }
 
-.profileImg{
-	height: 150px;
-	width: 150px;
-}
-
-.profile{
-	padding-top: 20vh;
-}
-
 .topBottonBox{
 	position:absolute;
 }
@@ -217,7 +227,6 @@ ul.links{
   font-size:9px;
   color:#696969;
 }
-
 /*MAP FULL WIDTH W/NO GAP*/
 .fullWidth .col-xs-12{
 	padding-right: 0px;
@@ -266,10 +275,7 @@ ul.links{
 .blogPost{
 	margin-top: -20px;
 }
-.navBarLinks{
-	padding-left: 5px;
-	padding-right: 5px;
-}
+
 .navUser{
 	font-size: 20px;
 }

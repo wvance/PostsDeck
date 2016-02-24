@@ -19,10 +19,13 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # Subdomain Support: http://railscasts.com/episodes/123-subdomains-revised?autoplay=true
-  get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  # get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   get '/settings', to: 'users#edit', as: 'settings', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   # You can have the root of your site routed with "root"
-  root to: 'welcome#index'
+  # root to: 'welcome#index'
+
+  root :to => "users#show", :id => User.find_by_subdomain("wesadvance").id
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

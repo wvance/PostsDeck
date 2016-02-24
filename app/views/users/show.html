@@ -5,42 +5,8 @@
 
 
 <div class="row fullHeight" id="top">
-	<div id="navBar" class="col-xs-12 col-sm-5 col-md-4 col-lg-3 center">
-		<div class="sideBarSection">
-			<div class="profile">
-				<div class="profileName avatar">
-					<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
-					<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
-					<div class="twitterInfo" class="links">
-						<%= link_to @twitterLink, :target=>"_blank" do%>
-							<h5>@<%= @user.username %></h5>
-							<h6>
-								<%= @user.number_statuses%> <i class="fa fa-comment"></i>
-								<%= @user.number_followers%> <i class="fa fa-users"></i>
-								<%= @user.rating%> <i class="fa fa-heart"></i>
-							</h6>
-						<%end%>
-					</div>
-				</div>
-			</div>
-			<hr class="navBreak">
-			<div class="navBarLinks">
-				<ul class="links">
-					<li>
-						<h3><a href="#projects">Projects</a></h3>
-					</li>
-					<li>
-						<h3><a href="#map">Blog</a></h3>
-					</li>
-					<li>
-						<h3><a href="#connect">Connect</a></h3>
-					</li>
-				</ul>
-			</div>
-		</div>
-	</div>
 	<!-- ABOUT ME -->
-	<div class="aboutMeCol col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-5 col-lg-6">
+	<div class="aboutMeCol col-xs-10 col-xs-offset-1 col-sm-5 col-sm-offset-1 col-md-8 col-lg-8 col-lg-offset-2">
 		<div id="about" class="verticalCenter">
 			<hr>
 				<!-- USER BIO -->
@@ -72,6 +38,7 @@
 		</div>
 	<%end%>
 <%end%>
+
 <% if user_signed_in? %>
 	<% if current_user.id == @user.id %>
 		<%= render 'newProject' %>
@@ -82,13 +49,6 @@
 <br>
 <div class="row fullWidth">
 	<div class="col-xs-12">
-		<!-- <div id='legend' style='display:none;'>
-		  <nav class='legend clearfix'>
-		  	<h6>Post | Tweet</h6>
-		    <span style='background:#FFCC00;'></span>
-		    <span style='background:#4099FF;'></span>
-		  </nav>
-		</div> -->
 		<div id="map" class="mapSection", data-url="/users/<%= @user.id %>.json"></div>
 	</div>
 </div>
@@ -122,27 +82,6 @@
 	</div>
 </div>
 
-<hr>
-<div class="footer">
-	<div class="row" id="connect">
-		<div class="col-xs-12">
-			<h4 class="center links">
-				<%= link_to @twitterLink, :target => "_blank" do %>
-					<i class="fa fa-twitter"></i>
-				<% end %>
-			</h4>
-			<h6 class="center">
-				Made with love in
-				<a href="http://rubyonrails.org" target="_blank">
-					<span class="ruby">RoR</span>
-				</a> by
-				<%= link_to root_url(:subdomain => :wesadvance) do%>
-					<span class="yellow">Wesley Vance</span>
-				<%end%>
-			</h6>
-		</div>
-	</div>
-</div>
 
 <!-- <%= debug @geojson %> -->
 <div class="topBottonBox">
