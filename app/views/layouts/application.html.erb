@@ -74,7 +74,9 @@
 					<div class="profile">
 						<div class="profileName avatar">
 							<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
-							<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
+							<%=link_to root_path() do%>
+								<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
+							<%end%>
 							<div class="twitterInfo" class="links">
 								<%= link_to @twitterLink, :target=>"_blank" do%>
 									<h5>@<%= @user.username %></h5>
@@ -111,7 +113,7 @@
 			<div class="mainContent">
 				<%= yield %>
 			</div>
-			<hr>
+			<br>
 			<div class="footer">
 				<div class="row" id="connect">
 					<div class="col-xs-9 col-xs-offset-3">

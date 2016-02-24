@@ -85,7 +85,7 @@ h1.postTitle{
 }
 
 .bodyWrapper{
-	padding-bottom: 30px;
+	padding-bottom: 0px;
 	/*height:74vh;*/
 }
 /*SPAN TAGS*/
@@ -126,6 +126,14 @@ h1.postTitle{
 }
 .pagFooter{
 	text-align: center;
+}
+.footer{
+  background-color:#EFEFEF;
+  height:100px;
+  margin-bottom: 0px;
+  #connect{
+    padding-top:20px;
+  }
 }
 
 /*LINKS*/
