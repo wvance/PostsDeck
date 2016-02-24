@@ -12,15 +12,44 @@
 
 .sideBarSection{
   a:link{
-    color:black;
+    color:white;
     text-decoration: none !important;
   }
+  a:visited{
+    color:#EFEFEF;
+  }
+  a:hover{
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+  }
+  a {
+    -webkit-transition: all 500ms ease-out;
+    -moz-transition: all 500ms ease-out;
+    -ms-transition: all 500ms ease-out;
+    -o-transition: all 500ms ease-out;
+    transition: all 500ms ease-out;
+  }
+  /*NAV BAR LINKS*/
+  .links a:hover {
+    color: #FFCC00;
+  }
+
   .profile{
-    padding-top: 20vh;
+    padding-top: 15vh;
     color:white;
+
+    .profileBio{
+      padding-top:5px;
+      padding-bottom:5px;
+      margin-left:30px;
+      margin-right:30px;
+    }
     .profileImg{
-      height: 150px;
-      width: 150px;
+      height: 120px;
+      width: 120px;
     }
     .thinFont{
       font-family: 'ralewayextralight';
@@ -29,30 +58,17 @@
   .navBarLinks{
     padding-left: 5px;
     padding-right: 5px;
-    a:link{
-      color:#EFEFEF;
-      text-decoration: none !important;
-    }
-    a:visited{
-      color:#EFEFEF;
-    }
-    a:hover{
-      -webkit-transition: all 500ms ease;
-      -moz-transition: all 500ms ease;
-      -ms-transition: all 500ms ease;
-      -o-transition: all 500ms ease;
-      transition: all 500ms ease;
-    }
-    a {
-      -webkit-transition: all 500ms ease-out;
-      -moz-transition: all 500ms ease-out;
-      -ms-transition: all 500ms ease-out;
-      -o-transition: all 500ms ease-out;
-      transition: all 500ms ease-out;
-    }
-    /*NAV BAR LINKS*/
-    .links a:hover {
-      color: #FFCC00;
+
+  }
+  .profileFooter{
+    position:fixed;
+    bottom:10px;
+    left:90px;
+    color:white;
+    font-size: 20px;
+    .fa{
+      padding:5px;
+
     }
   }
 }

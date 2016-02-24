@@ -77,7 +77,8 @@
 							<%=link_to root_path() do%>
 								<h1><span class="thinFont"><span class="white"><%=@user.first_name%></span><span class="yellow"><%= @user.last_name%></span></span></h1>
 							<%end%>
-							<div class="twitterInfo" class="links">
+
+							<!-- <div class="twitterInfo" class="links">
 								<%= link_to @twitterLink, :target=>"_blank" do%>
 									<h5>@<%= @user.username %></h5>
 									<h6>
@@ -86,8 +87,17 @@
 										<%= @user.rating%> <i class="fa fa-heart"></i>
 									</h6>
 								<%end%>
-							</div>
+							</div> -->
 						</div>
+
+						<h6 class="profileBio">
+							<%if @user.bio.present? %>
+								<span class="offWhite"><%= @user.bio%></span>
+							<%else%>
+								Hello I am @<%= @user.username.capitalize %>
+							<%end%>
+						</h6>
+
 					</div>
 					<hr class="navBreak">
 					<div class="navBarLinks">
@@ -97,7 +107,6 @@
 							</li>
 							<li>
 								<h3><%=link_to('Blog', root_path(:anchor => 'map'))%></h3>
-
 							</li>
 							<li>
 								<h3>
@@ -108,6 +117,18 @@
 							</li>
 						</ul>
 					</div>
+					<div class="profileFooter links">
+
+						<%= link_to @twitterLink, :target => "_blank" do %>
+							<i class="fa fa-twitter"></i>
+						<% end %>
+						<%= link_to "https://www.linkedin.com/in/wesvance", :target=>"_blank" do %>
+							<i class="fa fa-linkedin"></i>
+						<%end%>
+						<%= mail_to "wesley.vance@mac.com", subject: "Introduction", body:"Hi Wesley, \n" do %>
+							<i class="fa fa-envelope"></i>
+						<% end %>
+					</div>
 				</div>
 			</div>
 			<div class="mainContent">
@@ -116,29 +137,18 @@
 			<br>
 			<div class="footer">
 				<div class="row" id="connect">
-					<div class="col-xs-9 col-xs-offset-3">
-						<h4 class="center links">
-							<%= link_to @twitterLink, :target => "_blank" do %>
-								<i class="fa fa-twitter"></i>
-							<% end %>
-						</h4>
-						<h6 class="center">
-							Made with love in
-							<a href="http://rubyonrails.org" target="_blank">
-								<span class="ruby">RoR</span>
-							</a> by
-							<%= link_to root_url(:subdomain => :wesadvance) do%>
-								<span class="yellow">Wesley Vance</span>
-							<%end%>
-						</h6>
-					</div>
+					<h4 class="center">
+						Made with love in
+						<a href="http://rubyonrails.org" target="_blank">
+							<span class="ruby">RoR</span>
+						</a> by
+						<%= link_to root_url(:subdomain => :wesadvance) do%>
+							<span class="yellow">Wesley Vance</span>
+						<%end%>
+					</h4>
 				</div>
 			</div>
-
 		</div>
-	</div>
-	<div id="version" class="links">
-		<h6><a href="https://trello.com/b/Xeqqh9j1/blog" target="_blank">Trello: Version .4</a></h6>
 	</div>
 </body>
 </html>
