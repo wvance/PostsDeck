@@ -6,6 +6,7 @@ class Content < ActiveRecord::Base
 	acts_as_taggable
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
+  is_impressionable
 
   def slug_candidates
   	[

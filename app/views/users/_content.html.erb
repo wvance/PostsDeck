@@ -47,7 +47,8 @@
 							<div class="blogFooter">
 								<div class="row">
 				          <div class="col-xs-6">
-				          	<div class="lightGrey"><i class="fa fa-clock-o"></i> <%= content.reading_time%> min</div>
+				          	<div class="lightGrey"><i class="fa fa-clock-o"></i> <%= content.reading_time%> Min</div>
+				          	<div class="lightGrey"><i class="fa fa-eye"></i> <%= content.impressionist_count(:filter=>:ip_address) %> Views</div>
 				            <% if content.tag_list.present? %>
 					            <div class="tags lightGrey">
 					              <i class="fa fa-tags"></i> <%= raw content.tag_list[0,5].map{ |t| link_to t, tag_path(t) }.join(', ')%>
@@ -65,6 +66,8 @@
 				                at <%= content.city%>, <%= content.state%>
 				              <%end%>
 				            </h5>
+				            <br>
+				            <h5 class="lightGrey pull-right"><%= User.find_by_id(content.author).full_name %></h5>
 				          </div>
 				        </div>
 							</div>

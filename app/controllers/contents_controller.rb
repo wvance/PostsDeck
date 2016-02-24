@@ -6,7 +6,6 @@ class ContentsController < ApplicationController
 
   # Need to fix for later
   # before_filter :load_user
-
   include TwitterHelper
 
   # GET /contents
@@ -18,9 +17,13 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
+    impressionist(@content, "Content View")
+
     @author = User.where(:id => @content.author).first
     @comments = @content.comments.all
     @comment = @content.comments.build
+
+    @view_count = @content.impressionist_count(:filter=>:ip_address)
 
     # THIS IS FOR THE DISPLAY MAP
     @geojson = Array.new

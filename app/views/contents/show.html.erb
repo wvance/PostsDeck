@@ -39,7 +39,10 @@
             <%end%>
           <%end%>
         </div>
-        <div class="lightGrey pull-right"><i class="fa fa-clock-o"></i> <%= @content.reading_time%> min</div>
+        <div class="lightGrey postMetaData pull-right">
+        <i class="fa fa-clock-o"></i> <%= @content.reading_time%> Min<br>
+        <i class="fa fa-eye"></i> <%= @view_count %> Views
+        </div>
 
         <div class="postContent">
           <p class="postContent"><%= markdown(@content.body).html_safe %></p>
