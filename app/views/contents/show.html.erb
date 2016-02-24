@@ -29,20 +29,23 @@
                 <%end%>
               </h3>
               <h6 class="pull-right">
-                <% if @content.is_sticky == true %>
-                  <span class="label label-warning">Sticky</span>
-                <%end%>
-                <% if @content.is_active == false %>
-                  <span class="label label-danger">Draft</span>
-                <%end%>
+
               </h6>
             <%end%>
           <%end%>
         </div>
 
-        <div class="lightGrey pull-right">
-          <i class="fa fa-clock-o"></i> <%= @content.reading_time%> Min |
-          <i class="fa fa-eye"></i> <%= @view_count %> Views
+        <div class="pull-right">
+          <% if @content.is_sticky == true %>
+            <span class="label label-warning">Sticky</span> |
+          <%end%>
+          <% if @content.is_active == false %>
+            <span class="label label-danger">Draft</span> |
+          <%end%>
+          <span class="lightGrey">
+            <i class="fa fa-clock-o"></i> <%= @content.reading_time%> Min |
+            <i class="fa fa-eye"></i> <%= @view_count %> Views
+          </span>
         </div>
 
         <div class="postContent">
