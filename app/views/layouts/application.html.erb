@@ -75,7 +75,7 @@
 						<div class="profileName avatar">
 							<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
 							<%=link_to root_path() do%>
-								<h1><%=@user.first_name%><span class="yellow"><%= @user.last_name%></span></h1>
+								<h1><span class="thinFont"><span class="white"><%=@user.first_name%></span><span class="yellow"><%= @user.last_name%></span></span></h1>
 							<%end%>
 							<div class="twitterInfo" class="links">
 								<%= link_to @twitterLink, :target=>"_blank" do%>
