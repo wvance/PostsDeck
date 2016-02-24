@@ -29,16 +29,6 @@
 									<%end%>
 								<%end%>
 							</div>
-							<% if user_signed_in? && current_user.id == @user.id %>
-							<h6 class="pull-right">
-								<% if content.is_sticky == true %>
-                  <span class="label label-warning">Sticky</span>
-                <%end%>
-                <% if content.is_active == false %>
-                  <span class="label label-danger">Draft</span>
-                <%end%>
-              </h6>
-              <%end%>
 							<div class="blogBody">
 								<% if content.body.present? %>
 									<%= markdown(content.body).truncate(800, separator: '', omission: '...').html_safe  %>
@@ -47,14 +37,23 @@
 							<div class="blogFooter">
 								<div class="row">
 				          <div class="col-xs-6">
-				          	<div class="lightGrey">
-				          		<i class="fa fa-clock-o"></i> <%= content.reading_time%> Min |
-				          		<i class="fa fa-eye"></i> <%= content.impressionist_count(:filter=>:ip_address) %> Views |
-					            <% if content.tag_list.present? %>
-						            <span class="tags">
-						              <i class="fa fa-tags"></i> <%= raw content.tag_list[0,5].map{ |t| link_to t, tag_path(t) }.join(', ')%>
-						            </span>
+				          	<div class="metaData">
+
+				          		<% if ((content.is_sticky == true) && (current_user.id == content.author)) %>
+						            <span class="label label-warning">Sticky</span> |
 						          <%end%>
+						          <% if ((content.is_active == false) && (current_user.id == content.author)) %>
+						            <span class="label label-danger">Draft</span> |
+						          <%end%>
+				          		<span class="lightGrey">
+					          		<i class="fa fa-clock-o"></i> <%= content.reading_time%> Min |
+					          		<i class="fa fa-eye"></i> <%= content.impressionist_count(:filter=>:ip_address) %> Views |
+						            <% if content.tag_list.present? %>
+							            <span class="tags">
+							              <i class="fa fa-tags"></i> <%= raw content.tag_list[0,5].map{ |t| link_to t, tag_path(t) }.join(', ')%>
+							            </span>
+							          <%end%>
+						          </span>
 						        </div>
 				          </div>
 				          <div class="col-xs-6">
