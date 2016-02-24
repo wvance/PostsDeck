@@ -33,10 +33,10 @@
         </div>
 
         <div class="pull-right">
-          <% if ((@content.is_sticky == true) && (current_user.id == @content.author)) %>
+          <% if ((@content.is_sticky == true) && (user_signed_in? && current_user.id == @user.id)) %>
             <span class="label label-warning">Sticky</span> |
           <%end%>
-          <% if ((@content.is_active == false) && (current_user.id == @content.author)) %>
+          <% if ((@content.is_active == false) && (user_signed_in? && current_user.id == @user.id)) %>
             <span class="label label-danger">Draft</span> |
           <%end%>
           <span class="lightGrey">
