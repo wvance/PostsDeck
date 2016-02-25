@@ -262,12 +262,18 @@ ul.links{
   height:80px;
 	padding-top: 20px;
 	z-index: 9999;
-}
-.adminBarLinks{
-  position:absolute;
-  padding-top:10px;
-  right:30px;
-  top:10px;
+  .adminBarLinks{
+    position:absolute;
+    padding-top:10px;
+    right:30px;
+    top:10px;
+    .adminBarLinkIcons{
+      font-size: 35px;
+      .fa{
+        padding:5px;
+      }
+    }
+  }
 }
 
 #projects{

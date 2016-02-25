@@ -42,10 +42,10 @@
 
 		<div class="adminBar">
 			<div class="adminBarLinks links">
-				<% if user_signed_in? %>
-			  	<h4>
+		  	<span class="adminBarLinkIcons">
+					<% if user_signed_in? %>
 			  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
-							Home
+							<i class="fa fa-home"></i>
 						<%end%>
 						<!-- <%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
 							Tweet
@@ -54,16 +54,14 @@
 							Settings
 						<%end%> -->
 			  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
-			  			Sign Out
+			  			<i class="fa fa-sign-out"></i>
 			  		<%end%>
-			  	</h4>
-			  <%else%>
-			  	<h4>
+				  <%else%>
 			  		<%= link_to user_omniauth_authorize_path(:twitter), :class=>"navBarLinks" do%>
-							Sign In
+							<i class="fa fa-sign-in"></i>
 						<%end%>
-					</h4>
-		  	<%end%>
+			  	<%end%>
+		  	</span>
 		  </div>
 	  </div>
 
