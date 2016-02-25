@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_filter :set_user
 	before_filter :get_user_content
+	require 'sanitize'
 
 	def edit
 

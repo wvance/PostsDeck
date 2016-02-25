@@ -31,10 +31,9 @@
 							</div>
 							<div class="blogBody">
 								<% if content.body.present? %>
-									<%= markdown(content.body).truncate(500, separator: '', omission: '...').html_safe  %>
+									<p><%= Sanitize.clean(markdown(content.body).truncate(500, separator: '', omission: '...').html_safe)%></p>
 								<%end%>
 							</div>
-							<hr>
 							<div class="blogFooter">
 								<div class="row">
 				          <div class="col-xs-6">
