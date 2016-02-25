@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   # Subdomain Support: http://railscasts.com/episodes/123-subdomains-revised?autoplay=true
   # get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
-  get '/settings', to: 'users#edit', as: 'settings', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
+  get '/settings', to: 'users#edit', as: 'settings'
   # You can have the root of your site routed with "root"
   # root to: 'welcome#index'
 

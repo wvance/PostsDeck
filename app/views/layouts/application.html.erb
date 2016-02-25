@@ -44,15 +44,15 @@
 			<div class="adminBarLinks links">
 		  	<span class="adminBarLinkIcons">
 					<% if user_signed_in? %>
-			  		<%= link_to root_url(:subdomain => false), :class=>"navBarLinks" do%>
+			  		<%= link_to root_url(:subdomain => current_user.subdomain), :class=>"navBarLinks" do%>
 							<i class="fa fa-home"></i>
 						<%end%>
 						<!-- <%= link_to(contents_path(@content, content: {:kind => "twitter"}), :method => :post) do%>
 							Tweet
 						<%end%> -->
-						<!-- <%= link_to settings_path(:subdomain => current_user.subdomain) do %>
-							Settings
-						<%end%> -->
+						<%= link_to settings_path() do %>
+							<i class="fa fa-cog"></i>
+						<%end%>
 			  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
 			  			<i class="fa fa-sign-out"></i>
 			  		<%end%>
@@ -122,6 +122,9 @@
 						<% end %>
 						<%= link_to "https://www.linkedin.com/in/wesvance", :target=>"_blank" do %>
 							<i class="fa fa-linkedin"></i>
+						<%end%>
+						<%= link_to "https://github.com/wvance", :target=>"_blank" do %>
+							<i class="fa fa-github"></i>
 						<%end%>
 						<%= mail_to "wesley.vance@mac.com", subject: "Introduction", body:"Hi Wesley, \n" do %>
 							<i class="fa fa-envelope"></i>
