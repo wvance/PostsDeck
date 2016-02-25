@@ -31,7 +31,10 @@
 							</div>
 							<div class="blogBody">
 								<% if content.body.present? %>
-									<p><%= Sanitize.clean(markdown(content.body).truncate(500, separator: '', omission: '...').html_safe)%></p>
+									<!-- DEFINED IN USER HELPER -->
+									<p>
+										<%= sanitize_markdown(content)%>
+									</p>
 								<%end%>
 							</div>
 							<div class="blogFooter">
