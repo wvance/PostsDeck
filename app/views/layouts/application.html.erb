@@ -106,13 +106,15 @@
 							<li>
 								<h3><%=link_to('Blog', root_path(:anchor => 'map'))%></h3>
 							</li>
-							<li>
-								<h3>
-									<%= mail_to "wesley.vance@mac.com", subject: "Project Proposal", body:"Hi Wesley, \n" do %>
-									  Hire
-									<% end %>
-								</h3>
-							</li>
+							<% if @user.email.present? %>
+								<li>
+									<h3>
+										<%= mail_to @user.email, subject: "Project Proposal", body:"Hi " + @user.first_name + "," do %>
+										  Hire
+										<% end %>
+									</h3>
+								</li>
+							<%end%>
 						</ul>
 					</div>
 					<div class="profileFooter links">

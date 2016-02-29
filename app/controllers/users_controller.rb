@@ -1,11 +1,28 @@
 class UsersController < ApplicationController
 	before_filter :set_user
+
+	before_action :verify_is_owner, only: [:edit, :update]
 	before_filter :get_user_content
 	require 'sanitize'
 
 	def edit
 
 	end
+
+	# PATCH/PUT /projects/1
+  # PATCH/PUT /projects/1.json
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'Profile was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
+      else
+        format.html { render :edit }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
 
 	def show
 
@@ -93,6 +110,15 @@ class UsersController < ApplicationController
 			# @user = User.friendly.find_by_subdomain!(request.subdomain)
 			@user = User.friendly.find_by_subdomain!('wesadvance')
 		end
+
+		def verify_is_owner
+      if (current_user == User.where(:id => @user.id).first)
+        return
+      else
+        redirect_to(root_path)
+      end
+    end
+
 		def get_user_content
 			# GETS USER CONTENT
 			@userContent = Content.order('is_sticky DESC, created_at DESC').where(:author => @user.id)
