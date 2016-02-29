@@ -105,7 +105,7 @@ class UsersController < ApplicationController
 	private
 		def set_user
 			# GET USER ID FROM SUBDOMAIN
-			if request.subdomain.present?
+			if (request.subdomain.present? && request.subdomain != "www")
 				@user = User.friendly.find_by_subdomain!(request.subdomain)
 			else
 				@user = User.friendly.find_by_subdomain!('wesadvance')
