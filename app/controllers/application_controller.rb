@@ -9,7 +9,11 @@ class ApplicationController < ActionController::Base
 
 private
   def load_user
-    @user = User.find_by_subdomain!('wesadvance')
+    if request.subdomain.present? && request.subdomain != "www"
+      @user = User.find_by_subdomain!(request.subdomain)
+    else
+      @user = User.find_by_subdomain!('wesadvance')
+    end
   end
 
   def set_twitter_client
