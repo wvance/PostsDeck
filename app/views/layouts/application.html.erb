@@ -117,22 +117,40 @@
 							<%end%>
 						</ul>
 					</div>
-					<div class="profileFooter links">
 
-						<%= link_to @twitterLink, :target => "_blank" do %>
-							<i class="fa fa-twitter"></i>
-						<% end %>
-						<%= link_to "https://www.linkedin.com/in/wesvance", :target=>"_blank" do %>
-							<i class="fa fa-linkedin"></i>
+					<div class="profileFooter links">
+						<% if @user.username.present? %>
+							<%= link_to "http://www.twitter.com/" + @user.username, :target => "_blank" do %>
+								<i class="fa fa-twitter"></i>
+							<%end%>
 						<%end%>
-						<%= link_to "https://github.com/wvance", :target=>"_blank" do %>
-							<i class="fa fa-github"></i>
+
+						<% if @user.linkedin.present? %>
+							<%= link_to "http://www.linkedin.com/in/" + @user.linkedin , :target=>"_blank" do %>
+								<i class="fa fa-linkedin"></i>
+							<%end%>
 						<%end%>
-						<%= mail_to "wesley.vance@mac.com", subject: "Introduction", body:"Hi Wesley, \n" do %>
-							<i class="fa fa-envelope"></i>
-						<% end %>
+
+						<% if @user.github.present? %>
+							<%= link_to "http://github.com/" + @user.github, :target=>"_blank" do %>
+								<i class="fa fa-github"></i>
+							<%end%>
+						<%end%>
+
+						<% if @user.facebook.present? %>
+							<%= link_to "http://facebook.com/" + @user.facebook, :target=>"_blank" do %>
+								<i class="fa fa-facebook"></i>
+							<%end%>
+						<%end%>
+
+						<% if @user.email.present? %>
+							<%= mail_to @user.email , subject: "Introduction", body:"Hi Wesley, \n" do %>
+								<i class="fa fa-envelope"></i>
+							<% end %>
+						<%end%>
 					</div>
 				</div>
+
 			</div>
 			<div class="mainContent">
 				<%= yield %>
