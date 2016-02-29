@@ -25,8 +25,6 @@ class UsersController < ApplicationController
 
 
 	def show
-
-
 		# COUNTS NUMBER OF TWEETS FROM USER
 		@userTweetCount = @userTweet.count
 		@posts = @user.number_statuses - @userTweetCount
@@ -107,8 +105,11 @@ class UsersController < ApplicationController
 	private
 		def set_user
 			# GET USER ID FROM SUBDOMAIN
-			# @user = User.friendly.find_by_subdomain!(request.subdomain)
-			@user = User.friendly.find_by_subdomain!('wesadvance')
+			if request.subdomain.present?
+				@user = User.friendly.find_by_subdomain!(request.subdomain)
+			else
+				@user = User.friendly.find_by_subdomain!('wesadvance')
+			end
 		end
 
 		def verify_is_owner
