@@ -140,6 +140,12 @@
 							<%end%>
 						<%end%>
 
+						<% if @user.calendly.present? %>
+							<%= link_to schedule_path() do %>
+								<i class="fa fa-calendar"></i>
+							<%end%>
+						<%end%>
+
 						<% if @user.email.present? %>
 							<%= mail_to @user.email , subject: "Introduction", body:"Hi Wesley, \n" do %>
 								<i class="fa fa-envelope"></i>

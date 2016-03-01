@@ -9,6 +9,14 @@ class UsersController < ApplicationController
 
 	end
 
+	def schedule
+		if @user.calendly.present?
+			@calendly_link = "https://calendly.com/" + @user.calendly
+		else
+			redirect_to @user
+		end
+	end
+
 	# PATCH/PUT /projects/1
   # PATCH/PUT /projects/1.json
   def update
@@ -131,6 +139,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:username, :email, :bio, :avatar, :address, :street, :city, :postal, :first_name, :last_name, :github, :linkedin, :facebook)
+      params.require(:user).permit(:username, :email, :bio, :avatar, :address, :street, :city, :postal, :first_name, :last_name, :github, :linkedin, :facebook, :calendly)
     end
 end

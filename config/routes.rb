@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  resources :comments
 
+  resources :comments
   resources :projects
   resources :contents
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
@@ -9,10 +9,14 @@ Rails.application.routes.draw do
   resources :projects do
     collection {post :sort}
   end
+
   get 'welcome/index'
   get 'welcome/tweet'
   get 'contents/timeline'
   get 'contents/create_tweet'
+
+  get '/schedule', to: 'users#schedule', as:'schedule'
+
 
   get 'tags/:tag', to: 'users#show', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.
@@ -21,6 +25,7 @@ Rails.application.routes.draw do
   # Subdomain Support: http://railscasts.com/episodes/123-subdomains-revised?autoplay=true
   get '', to: 'users#show', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
   get '/settings', to: 'users#edit', as: 'settings'
+
   # get '/settings', to: 'users#edit', as: 'settings', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
   # You can have the root of your site routed with "root"
