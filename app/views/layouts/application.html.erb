@@ -18,11 +18,11 @@
 	<meta name='keywords'
     content='<%= yield_meta_tag(:keywords, 'PostsDeck, Blog') %>' />
 
-	<% if Rails.env == "production" %>
   <!-- GOOGLE ANALYTICS -->
+	<% if Rails.env == "production" %>
 		<%if user_signed_in?%>
 			<script>
-				ga('set', 'userId', {{<%=current_user.id%>}}); // Set the user ID using signed-in user_id.
+				ga('set', 'userId', <%=current_user.id%>); // Set the user ID using signed-in user_id.
 			</script>
 		<%end%>
 		<script>
