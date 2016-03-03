@@ -58,12 +58,19 @@ blockquote {
 
 .flashNotices{
   position:fixed;
-  top:40px;
-  padding-left:270px;
-  width:100%;
-  text-align: center;
-  height:80px;
-  z-index: 9999;
+  top:20px;
+  right:20px;
+  z-index: 99999999;
+  width:35%;
+  .alert{
+    position:relative;
+    text-align: center;
+    background-color:#464646;
+    color: white;
+  }
+  .flashClose{
+    color:white;
+  }
 }
 
 .adminAdd{
