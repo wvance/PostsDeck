@@ -22,7 +22,7 @@
   <!-- GOOGLE ANALYTICS -->
 		<%if user_signed_in?%>
 			<script>
-				ga('set', 'userId', {{current_user.id}}); // Set the user ID using signed-in user_id.
+				ga('set', 'userId', {{<%=current_user.id%>}}); // Set the user ID using signed-in user_id.
 			</script>
 		<%end%>
 		<script>
