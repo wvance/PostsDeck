@@ -1,9 +1,13 @@
 <div class="row center emailResponseForm">
   <!-- <h1>Get My Awesome News Letter</h1> -->
-  <p>Subscribe and get RoR and Startup Tips!</p>
-  <div id="response"></div>
-  <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true", class:"formSubscribe") do -%>
-     <%= email_field(:email, :address, {id: "email", class:"form-group", placeholder: "Email Address", required: true}) %>
-     <%= submit_tag("Sign Up!", class: "btn btn-default") %>
+  <p>Subscribe to get RoR and Startup Tips!</p>
+  <p><div id="response"></div></p>
+  <%= form_tag('/emailapi/subscribe', method: "post", id: "subscribe", remote: "true", class:"formSubscribe form-group") do -%>
+    <div class="col-xs-5 col-xs-offset-2">
+      <%= email_field(:email, :address, {id: "email", class:"form-control", placeholder: "Email Address", required: true}) %>
+    </div>
+    <div class="col-xs-3">
+      <%= submit_tag("Sign Up!", class: "btn btn-default") %>
+    </div>
   <% end %>
 </div>
