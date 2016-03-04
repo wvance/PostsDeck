@@ -46,7 +46,7 @@
 
 	<div id="container">
 
-		<div class="flashNotices">
+		<div class="flashNotices" id="flash">
 			<% flash.each do |key, value| %>
 		    <%= content_tag(:div, class: "alert alert-#{key}") do%>
 	        <button type="button" class="close flashClose" data-dismiss="alert">&times;</button>
@@ -165,17 +165,22 @@
 			<br>
 			<div class="footer">
 				<div class="row" id="connect">
-					<span class="center">
-						<h4>
-							Made with love in
-							<a href="http://rubyonrails.org" target="_blank">
-								<span class="ruby">RoR</span>
-							</a> by
-							<%= link_to root_url(:subdomain => :wesadvance) do%>
-								<span class="yellow">Wesley Vance</span>
-							<%end%>
-						</h4>
-					</span>
+					<div class="col-xs-6">
+						<span class="center">
+							<h4>
+								Made with love in
+								<a href="http://rubyonrails.org" target="_blank">
+									<span class="ruby">RoR</span>
+								</a> by
+								<%= link_to root_url(:subdomain => :wesadvance) do%>
+									<span class="yellow">Wesley Vance</span>
+								<%end%>
+							</h4>
+						</span>
+					</div>
+					<div class="col-xs-6">
+						<%= render 'emailapi/email' %>
+					</div>
 				</div>
 			</div>
 		</div>

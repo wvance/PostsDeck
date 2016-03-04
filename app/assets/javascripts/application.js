@@ -57,9 +57,14 @@ $(document).ready(function(){
   // AUTOGROW TEXT AREA
   $('.autoGrowText').autogrow();
 
+  $("#subscribe").bind("ajax:complete", function(event,xhr,status){
+    $('#email').val('');
+  });
+
   // INITIALIZE MARKDOWN INPUT BOX
   var converter = Markdown.getSanitizingConverter();
   var editor = new Markdown.Editor(converter);
 
   editor.run();
+
 });

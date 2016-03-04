@@ -127,6 +127,9 @@ GEM
     friendly_id (5.1.0)
       activerecord (>= 4.0.0)
     geocoder (1.2.9)
+    gibbon (2.2.1)
+      faraday (>= 0.9.1)
+      multi_json (>= 1.11.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     gravtastic (3.2.6)
@@ -299,6 +302,7 @@ DEPENDENCIES
   foursquare2
   friendly_id
   geocoder
+  gibbon
   gravtastic
   impressionist
   jbuilder (~> 2.0)

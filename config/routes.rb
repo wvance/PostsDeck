@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'welcome/tweet'
   get 'contents/timeline'
   get 'contents/create_tweet'
+  post 'emailapi/subscribe' => 'emailapi#subscribe'
 
   get '/schedule', to: 'users#schedule', as:'schedule'
 

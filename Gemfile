@@ -21,6 +21,7 @@ gem 'kaminari'                      # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
 gem "d3-rails"											#D3.JS
 gem 'sanitize'
+gem 'gibbon'
 
 gem 'gravtastic'                    # ADDED GRAVATAR: PROFILE PICTURE
 
