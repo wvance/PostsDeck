@@ -142,11 +142,11 @@ h1.postTitle{
 	text-align: center;
 }
 .footer{
+  padding-left:350px;
   background-color:#EFEFEF;
   width:100%;
-  height:130px;
+  height:150px;
   #connect{
-    margin-left: 20%;
     padding-top:30px;
     .signature{
       padding-top:20px;
@@ -197,14 +197,14 @@ ul.links{
 
 .topBottonBox{
 	position:absolute;
+  z-index: 99999;
+  .topButton{
+    font-size: 20px;
+    position:fixed;
+    bottom:40px;
+    right:50px;
+  }
 }
-.topButton{
-	font-size: 20px;
-	position:fixed;
-	bottom:40px;
-  right:50px;
-}
-
 /*BUTTON AT BOTTOM TO GO TO TOP*/
 .topBottonBox a:hover {
   color: #FFCC00;
