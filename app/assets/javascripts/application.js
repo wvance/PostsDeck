@@ -61,6 +61,12 @@ $(document).ready(function(){
     $('#email').val('');
   });
 
+  // HIDE FLASH AFTER 3 SECONDS
+  $(".alert").delay(2000).fadeOut(1000, function(){
+      $(".alert").alert('close');
+  });
+
+
   // INITIALIZE MARKDOWN INPUT BOX
   var converter = Markdown.getSanitizingConverter();
   var editor = new Markdown.Editor(converter);
