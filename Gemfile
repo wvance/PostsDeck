@@ -16,6 +16,7 @@ gem 'foursquare2'
 gem 'jquery-turbolinks'
 gem 'friendly_id'
 gem 'redcarpet'											# USED FOR MARKDOWN INTERPRETATION
+gem 'rouge'
 
 gem 'kaminari'                      # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
