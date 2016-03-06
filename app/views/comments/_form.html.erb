@@ -17,11 +17,11 @@
       <div class="form-group commentEmail">
         <%= f.label :email , class: "col-xs-2 col-xs-offset-1 control-label lightGrey" %>
         <div class="col-xs-9">
-          <%= f.text_field :email, class: "form-control commentEmail", placeholder:"Email Address", :required => true%>
+          <%= f.text_field :email, class: "form-control commentEmail formText ", placeholder:"Email Address", :required => true%>
         </div>
       </div>
       <div class="form-group commentBody">
-        <%= f.label :body , class: "col-xs-2 col-xs-offset-1 control-label lightGrey" %>
+        <%= f.label :body , class: "col-xs-2 col-xs-offset-1 control-label formText  lightGrey" %>
         <div class="col-xs-9">
           <%= f.text_area :body, :placeholder => "What do you think?", :class=>"wmd-input autoGrowText form-control", :rows=>"2", :required => true%>
         </div>
