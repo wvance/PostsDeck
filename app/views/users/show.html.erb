@@ -1,5 +1,5 @@
 <!-- Title -->
-<% title @user.username.capitalize%>
+<% title @user.username.capitalize + ": " + @user.bio.truncate(50)%>
 <% meta_tag :description, @user.bio %>
 <% meta_tag :keywords, @user.username %>
 

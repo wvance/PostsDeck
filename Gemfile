@@ -5,7 +5,7 @@ gem 'figaro'
 
 gem 'omniauth-twitter'
 gem 'awesome-share-buttons', github: 'evansobkowicz/awesome-share-buttons'
-gem 'impressionist' # USED FOR TRACKING PAGE VIEWS
+gem 'impressionist'           # USED FOR TRACKING PAGE VIEWS 'IMPRESSIONS'
 
 
 gem 'acts-as-taggable-on'
