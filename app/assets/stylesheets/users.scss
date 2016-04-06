@@ -9,6 +9,14 @@
     width: 90px;
   }
 }
+// .sectionTitle{
+//   color:#464646;
+//   .sectionTitleText{
+//     font-family: 'Raleway Dots';
+//     font-weight: 300;
+//     font-size: 50px;
+//   }
+// }
 
 .sideBarSection{
   a:link{
@@ -31,6 +39,11 @@
     -ms-transition: all 500ms ease-out;
     -o-transition: all 500ms ease-out;
     transition: all 500ms ease-out;
+  }
+  .links{
+    a.active{
+      color: #FFCC00;
+    }
   }
   /*NAV BAR LINKS*/
   .links a:hover {

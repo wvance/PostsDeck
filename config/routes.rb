@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get 'contents/timeline'
   get 'contents/create_tweet'
 
+  get '/consulting', to: "users#show", as:'consulting'
+
   post 'emailapi/subscribe' => 'emailapi#subscribe'
 
   get '/schedule', to: 'users#schedule', as:'schedule'
