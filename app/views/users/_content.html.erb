@@ -53,7 +53,7 @@
 
 				          		<span class="lightGrey">
 					          		<i class="fa fa-clock-o"></i> <%= content.reading_time%> Min |
-					          		<i class="fa fa-eye"></i> <%= content.impressionist_count(:filter=>:ip_address) %> Views |
+					          		<i class="fa fa-eye"></i> <%= content.impressionist_count(:filter=>:all) %> Views |
 					          		<% if content.comments.count > 0 %>
 					          			<i class="fa fa-comment"></i> <%= content.comments.count %> Comments |
 					          		<%end%>

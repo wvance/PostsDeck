@@ -1,11 +1,11 @@
 # Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
-jQuery ->
+$(document).on "turbolinks:load", ->
   # SHOW ABOUT SECTION ON DOCUMENT READY
-  $(document).ready ->
-    $('#about').show 'fade', 1250
-    return
+  # $(document).on "turbolinks:load", ->
+  #   $('#about').show 'fade', 1250
+  #   return
 
   # HIDE BUTTON AND SHOW PROJECT ON BUTTON CLICK
   $('#newProjectButton').click ->

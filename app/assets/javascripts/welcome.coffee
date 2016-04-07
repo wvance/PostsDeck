@@ -25,81 +25,82 @@ jQuery ->
   	$('#twitterSignInButton').show 'fade', 1000
   	return
 
-$(".users.show").ready ->
-	L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
-	map = L.mapbox.map('map', 'wesvance.n3ejgh0a', {
-  	# zoomControl: false
-	})
+$(document).on "turbolinks:load", ->
+  $(".users.show").ready ->
+  	L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
+  	map = L.mapbox.map('map', 'wesvance.n3ejgh0a', {
+    	# zoomControl: false
+  	})
 
-	# map.touchZoom.disable();
-	map.doubleClickZoom.disable();
-	map.scrollWheelZoom.disable();
-	map.attributionControl = false;
+  	# map.touchZoom.disable();
+  	map.doubleClickZoom.disable();
+  	map.scrollWheelZoom.disable();
+  	map.attributionControl = false;
 
-	# get JSON object
-	# on success, parse it and
-	# hand it over to MapBox for mapping
-	# OLD WAY OF DOING IT?
+  	# get JSON object
+  	# on success, parse it and
+  	# hand it over to MapBox for mapping
+  	# OLD WAY OF DOING IT?
 
-	# $.ajax
-	#   dataType: 'text'
-	#   url: '/welcome/index.json'
-	#   success: (data) ->
-	#     geojson = $.parseJSON(data)
-	#     map.featureLayer.setGeoJSON(geojson)
+  	# $.ajax
+  	#   dataType: 'text'
+  	#   url: '/welcome/index.json'
+  	#   success: (data) ->
+  	#     geojson = $.parseJSON(data)
+  	#     map.featureLayer.setGeoJSON(geojson)
 
-	$link = $('#map').data('url')
-	featureLayer = L.mapbox.featureLayer().loadURL($link).on 'ready', (e) ->
-  clusterGroup = new (L.MarkerClusterGroup)(
-    # iconCreateFunction: (cluster) ->
-    #   L.mapbox.marker.icon
-    #     'marker-symbol': cluster.getChildCount()
-    #     'marker-color': '#FFCC00'
-    # spiderfyOnMaxZoom: true
-    showCoverageOnHover: true
-    polygonOptions:
-      fillColor: '#FFCC00'
-      color: '#FFCC00'
-      weight:2
-      opacity:1
-      fillOpacity: 0.5)
-  e.target.eachLayer (layer) ->
-    clusterGroup.addLayer layer
+  	$link = $('#map').data('url')
+  	featureLayer = L.mapbox.featureLayer().loadURL($link).on 'ready', (e) ->
+    clusterGroup = new (L.MarkerClusterGroup)(
+      # iconCreateFunction: (cluster) ->
+      #   L.mapbox.marker.icon
+      #     'marker-symbol': cluster.getChildCount()
+      #     'marker-color': '#FFCC00'
+      # spiderfyOnMaxZoom: true
+      showCoverageOnHover: true
+      polygonOptions:
+        fillColor: '#FFCC00'
+        color: '#FFCC00'
+        weight:2
+        opacity:1
+        fillOpacity: 0.5)
+    e.target.eachLayer (layer) ->
+      clusterGroup.addLayer layer
+      return
+    map.addLayer clusterGroup
     return
-  map.addLayer clusterGroup
-  return
 
-	featureLayer.on 'ready', (e) ->
-		map.fitBounds(featureLayer.getBounds(), {padding: [50,50]});
+  	featureLayer.on 'ready', (e) ->
+  		map.fitBounds(featureLayer.getBounds(), {padding: [50,50]});
 
-  # featureLayer.addTo(map);
+    # featureLayer.addTo(map);
 
-	# add custom popups to each marker
-	featureLayer.on 'layeradd', (e) ->
-	  marker = e.layer
-	  properties = marker.feature.properties
+  	# add custom popups to each marker
+  	featureLayer.on 'layeradd', (e) ->
+  	  marker = e.layer
+  	  properties = marker.feature.properties
 
-	  # create custom popup
-	  popupContent = 	'<div class="popup">' +
-	  								'<a href="' + properties.link + '">' +
-		                    '<h3>' + properties.name + '</h3>' +
-		                    '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
-		                    '</a>' +
-		                  '</div>'
+  	  # create custom popup
+  	  popupContent = 	'<div class="popup">' +
+  	  								'<a href="' + properties.link + '">' +
+  		                    '<h3>' + properties.name + '</h3>' +
+  		                    '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
+  		                    '</a>' +
+  		                  '</div>'
 
-	  # http://leafletjs.com/reference.html#popup
-	  marker.bindPopup popupContent,
-	    closeButton: false
-	    minWidth: 200
-	    keepInView: true
+  	  # http://leafletjs.com/reference.html#popup
+  	  marker.bindPopup popupContent,
+  	    closeButton: false
+  	    minWidth: 200
+  	    keepInView: true
 
-	featureLayer.on 'click', (e) ->
-		map.panTo(e.layer.getLatLng());
-		e.layer.openPopup();
+  	featureLayer.on 'click', (e) ->
+  		map.panTo(e.layer.getLatLng());
+  		e.layer.openPopup();
 
 
-	featureLayer.on 'mouseover', (e) ->
-    e.layer.openPopup();
+  	featureLayer.on 'mouseover', (e) ->
+      e.layer.openPopup();
 
   # OPTION TO HAVE LEGEND
   # map.legendControl.addLegend(document.getElementById('legend').innerHTML);

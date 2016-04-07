@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery-ui
-//= require jquery.turbolinks
+// require jquery.turbolinks
 //= require jquery_ujs
 //
 //= require d3
@@ -35,25 +35,7 @@ function setGeoCookie(position) {
   document.cookie = "lat_lng=" + escape(cookie_val);
 }
 
-// FUNCTION FOR SMOOTH SCROLLING
-$(function() {
-  // CHECK IF LINK
-  $('a[href*=#]:not([href=#])').click(function() {
-    if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-      var target = $(this.hash);
-      target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
-      if (target.length) {
-        $('html,body').animate({
-          scrollTop: target.offset().top
-        }, 1000);
-        console.log("Success");
-        return false;
-      }
-    }
-  });
-});
-
-$(document).ready(function(){
+$(document).on("turbolinks:load", function() {
   // AUTOGROW TEXT AREA
   $('.autoGrowText').autogrow();
 
@@ -66,11 +48,26 @@ $(document).ready(function(){
       $(".alert").alert('close');
   });
 
-
   // INITIALIZE MARKDOWN INPUT BOX
   var converter = Markdown.getSanitizingConverter();
   var editor = new Markdown.Editor(converter);
 
   editor.run();
 
+    // FUNCTION FOR SMOOTH SCROLLING
+  $(function() {
+    $("a[href*='#']:not([href='#'])").click(function() {
+      if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+        var target = $(this.hash);
+        target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+        if (target.length) {
+          $('html,body').animate({
+            scrollTop: target.offset().top
+          }, 1000);
+          console.log("Success");
+          return false;
+        }
+      }
+    });
+  });
 });

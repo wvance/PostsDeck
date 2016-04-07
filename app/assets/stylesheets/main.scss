@@ -29,6 +29,11 @@ blockquote {
     -webkit-margin-before: 0em;
   }
 }
+// TURBOLINKS LOADING BAR
+.turbolinks-progress-bar {
+  height: 3px;
+  background-color: #FFCC00;
+}
 
 .fixedSideBar{
   position: fixed;
@@ -358,3 +363,4 @@ ul.links{
 #newProject, #newPost{
   display: none;
 }
+

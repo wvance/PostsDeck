@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-gem 'devise'
+gem 'devise', github: 'plataformatec/devise'
+# gem 'devise', '4.0.0.rc2'
+
 gem "twitter-bootstrap-rails"
 gem 'figaro'
 
@@ -7,8 +9,7 @@ gem 'omniauth-twitter'
 gem 'awesome-share-buttons', github: 'evansobkowicz/awesome-share-buttons'
 gem 'impressionist'           # USED FOR TRACKING PAGE VIEWS 'IMPRESSIONS'
 
-
-gem 'acts-as-taggable-on'
+gem 'acts-as-taggable-on', github: 'mbleigh/acts-as-taggable-on'
 
 gem 'twitter'
 gem 'foursquare2'
@@ -18,7 +19,7 @@ gem 'friendly_id'
 gem 'redcarpet'											# USED FOR MARKDOWN INTERPRETATION
 gem 'rouge'
 
-gem 'kaminari'                      # PAGINATION GEM
+gem "kaminari", github: "amatsuda/kaminari" # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION
 gem "d3-rails"											#D3.JS
 gem 'sanitize'
@@ -40,23 +41,26 @@ gem 'pagedown-rails', :git => 'git://github.com/wvance/pagedown-rails'
 gem 'pg'
 gem 'rails_12factor', group: :production
 
+
+gem 'record_tag_helper', '~> 1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.0'
+gem 'rails', '5.0.0.beta3'
+
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
+gem 'turbolinks', '~> 5.0.0.beta'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.0'
+gem 'jbuilder'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
@@ -70,6 +74,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+  gem 'listen'
 	# Using POW Server for dev pow.cx
 
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -82,4 +87,6 @@ group :development, :test do
   # gem 'spring'
   # gem 'sqlite3'
 end
+
+ruby "2.3.0"
 

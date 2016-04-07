@@ -20,7 +20,7 @@ class ContentsController < ApplicationController
     @comments = @content.comments.all
     @comment = @content.comments.build
 
-    @view_count = @content.impressionist_count(:filter=>:ip_address)
+    @view_count = @content.impressionist_count(:filter=>:all)
 
     # THIS IS FOR THE DISPLAY MAP
     @geojson = Array.new
