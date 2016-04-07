@@ -36,25 +36,8 @@ function setGeoCookie(position) {
 }
 
 $(document).on("turbolinks:load", function() {
-  // AUTOGROW TEXT AREA
-  $('.autoGrowText').autogrow();
 
-  $("#subscribe").bind("ajax:complete", function(event,xhr,status){
-    $('#email').val('');
-  });
-
-  // HIDE FLASH AFTER 3 SECONDS
-  $(".alert").delay(2000).fadeOut(1000, function(){
-      $(".alert").alert('close');
-  });
-
-  // INITIALIZE MARKDOWN INPUT BOX
-  var converter = Markdown.getSanitizingConverter();
-  var editor = new Markdown.Editor(converter);
-
-  editor.run();
-
-    // FUNCTION FOR SMOOTH SCROLLING
+  // FUNCTION FOR SMOOTH SCROLLING
   $(function() {
     $("a[href*='#']:not([href='#'])").click(function() {
       if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -70,4 +53,31 @@ $(document).on("turbolinks:load", function() {
       }
     });
   });
+
+  // AUTOGROW TEXT AREA
+  growObject = document.getElementById('.autoGrowText');
+
+  if(growObject != null){
+    growObject.autogrow();
+  }
+
+  // $('.autoGrowText').autogrow();
+
+  $("#subscribe").bind("ajax:complete", function(event,xhr,status){
+    $('#email').val('');
+  });
+
+  // HIDE FLASH AFTER 3 SECONDS
+  $(".alert").delay(2000).fadeOut(1000, function(){
+      $(".alert").alert('close');
+  });
+
+  markdownEditor = document.getElementById('.wmd-button-bar');
+  if(markdownEditor != null){
+    // INITIALIZE MARKDOWN INPUT BOX
+    var converter = Markdown.getSanitizingConverter();
+    var editor = new Markdown.Editor(converter);
+    editor.run();
+  }
+
 });
