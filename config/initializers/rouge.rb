@@ -9,7 +9,7 @@ class HTMLwithPygments < Redcarpet::Render::HTML
       line_numbers: true,
       wrap: true,
     }
-    Rouge::Formatters::HTML.new(opts)
+    Rouge::Formatters::HTMLwithPygments.new(opts)
   end
 
   # overriding Redcarpet method

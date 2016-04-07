@@ -38,7 +38,7 @@ module ApplicationHelper
       tables: true
     }
 
-    renderer = HTML.new(render_options)
+    renderer = HTMLwithPygments.new(render_options)
 
     extensions = {
       autolink:           true,
