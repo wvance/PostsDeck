@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160301184806) do
+ActiveRecord::Schema.define(version: 20160406164710) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160301184806) do
     t.integer  "author"
     t.text     "body"
     t.string   "image"
-    t.integer  "external_id",   limit: 8
+    t.integer  "external_id",      limit: 8
     t.string   "external_link"
     t.string   "kind"
     t.string   "rating"
@@ -50,14 +50,23 @@ ActiveRecord::Schema.define(version: 20160301184806) do
     t.boolean  "is_active"
     t.datetime "created"
     t.datetime "updated"
-    t.datetime "created_at",                              null: false
-    t.datetime "updated_at",                              null: false
+    t.datetime "created_at",                                 null: false
+    t.datetime "updated_at",                                 null: false
     t.string   "slug"
     t.boolean  "has_comments"
-    t.boolean  "is_sticky",               default: false
+    t.boolean  "is_sticky",                  default: false
+    t.string   "related_contents"
+    t.text     "words"
+    t.datetime "publish_at"
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree
+
+  create_table "events", force: :cascade do |t|
+    t.string   "ip_address"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"

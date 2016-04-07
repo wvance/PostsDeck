@@ -1,17 +1,14 @@
 class ContentsController < ApplicationController
   before_action :set_content, only: [:show, :edit, :update, :destroy]
   before_action :set_author, only: [:show]
-  before_action :verify_is_admin, only: [:index]
-  before_action :verify_is_owner, only: [:edit, :update, :destory]
+  before_action :verify_is_owner, only: [:index, :edit, :update, :destory]
 
-  # Need to fix for later
-  # before_filter :load_user
   include TwitterHelper
 
   # GET /contents
   # GET /contents.json
   def index
-    @contents = Content.all
+    @contents = Content.where(:author => current_user)
   end
 
   # GET /contents/1
@@ -201,11 +198,18 @@ class ContentsController < ApplicationController
   end
 
   private
-    def verify_is_admin
-      (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
-    end
+    # def verify_is_admin
+    #   (current_user.nil?) ? redirect_to(root_path) : (redirect_to(root_path) unless current_user.admin?)
+    # end
+
     def verify_is_owner
-      if (current_user == User.where(:id => @content.author).first)
+      if (request.subdomain.present?)
+        user = User.where(:username => request.subdomain).first
+      else
+        user = User.where(:username => "wesadvance").first
+      end
+
+      if (current_user == user)
         return
       else
         redirect_to(root_path)
