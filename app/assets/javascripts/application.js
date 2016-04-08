@@ -22,6 +22,8 @@
 //= require markdown.sanitizer
 //= require markdown.editor
 //= require awesome-share-buttons
+//= require jquery.datetimepicker
+//= require jquery.datetimepicker/init
 //
 //= require turbolinks
 //= require_tree .
@@ -55,9 +57,9 @@ $(document).on("turbolinks:load", function() {
   });
 
   // AUTOGROW TEXT AREA
-  growObject = document.getElementById('.autoGrowText');
-
+  growObject = $(".autoGrowText");
   if(growObject != null){
+    console.log("Found Grow!");
     growObject.autogrow();
   }
 
@@ -72,8 +74,9 @@ $(document).on("turbolinks:load", function() {
       $(".alert").alert('close');
   });
 
-  markdownEditor = document.getElementById('.wmd-button-bar');
+  markdownEditor = $("#wmd-button-bar");
   if(markdownEditor != null){
+    console.log("Found Markdown Editor!");
     // INITIALIZE MARKDOWN INPUT BOX
     var converter = Markdown.getSanitizingConverter();
     var editor = new Markdown.Editor(converter);

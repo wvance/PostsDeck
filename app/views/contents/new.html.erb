@@ -1,63 +1,121 @@
-<%= form_for(@content, :html => { :multipart => true }) do |f| %>
-	<%- unless @lat_lng %>
-		<script>
-		  getGeoLocation();
-		</script>
-	<%- end %>
+<div class="editPost">
+  <div class="row">
+    <div class="col-xs-12">
+			<%= form_for(@content, :html => { :multipart => true }) do |f| %>
+        <% if @content.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@content.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-	<div class="center" id="contentErrors">
-	  <% if @content.errors.any? %>
-	    <div id="error_explanation">
-	      <h3><%= pluralize(@content.errors.count, "error") %> prohibited this content from being saved</h3>
-	      <ul>
-	      <% @content.errors.full_messages.each do |message| %>
-	        <li><h4><%= message %></h4></li>
-	      <% end %>
-	      </ul>
-	    </div>
-	  <% end %>
-  </div>
+            <ul>
+            <% @content.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
 
-  <div class="newPost">
-	  <div class="row">
-      <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
-			  <div class="row">
-			    <div class="col-sm-6">
-			      <div class="field form-group">
-			        <%= f.text_field :title, class: "form-control", placeholder:"Title"%>
-			      </div>
-			    </div>
-			  </div>
-			  <div class="row">
-			  	<div class="col-xs-12 form-group">
-			      <div class="field">
-			        <div class='wmd-panel'>
-						  	<div id='wmd-button-bar'></div>
-				  			<%= f.text_area :body, :placeholder => "Post a new thought using Markdown!", :class=>"wmd-input autoGrowText form-control", :rows=>"5", :required => true%>
-				  		</div>
-			      </div>
-			      <div class="field pull-left">
-			        Active
-			        <%= f.check_box :is_active %>
-			        Sticky
-			        <%= f.check_box :is_sticky %>
-			      </div>
-						<br>
+        <div class="newPost">
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="field form-group">
+                    <span class="postTitle"><%= f.text_field :title, class: "form-control", placeholder:"Title"%></span>
+                    <% if @content.is_active == false %>
+                      <span class="label label-danger pull-right">Draft</span>
+                    <%end%>
+                    <span class="childElement">
+                      <% if @content.created.present? %>
+                        <%= formatDate(@content.created) %>
+                      <%end%>
+                      <% if @content.kind =="twitter" %>
+                        at <%= @content.location %>
+                      <%elsif @content.city.present? || @content.state.present?%>
+                        at <%= @content.city%>, <%= @content.state%>
+                      <%end%>
+                    </span>
+                  </div>
+                </div>
+                <!-- <div class="col-sm-4">
+                  <%= f.text_field :ip, class: "form-control" %>
+                  <%= f.datetime_select :created, class: "form-control" %>
+                  <%= f.datetime_select :updated, class: "form-control" %>
+                  <%= f.number_field :rating, class: "form-control" %>
+                </div> -->
+              </div>
 
-						<%= f.hidden_field :kind, :value => "post" %>
+              <div class="row">
+                <div class="row">
+                  <div class="col-xs-12 form-group">
+                    <div class="field">
+                      <div class='wmd-panel'>
+                        <div id='wmd-button-bar'></div>
+                        <%= f.text_area :body, :placeholder => "Create a new post using markdown!", :class=>"wmd-input autoGrowText form-control", :rows=>"5", :required => true%>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-8 form-group">
+                    <h3><i class="fa fa-tags"></i> Tags</h3>
+                    <%= f.text_field(:tag_list, value: @content.tag_list.join(", "), :placeholder => "Add some tags to describe your post, seperated by commas!", :class=>"form-control formText", :required => true )%>
+                    <br />
+                  </div>
+									<div class="col-xs-12 col-sm-4 form-group">
+                    <h3><i class="fa fa-calendar"></i> Publish Date</h3>
+                      <%= f.date_field(:publish_at, :placeholder => "Date", :class=>'datetimepicker form-control formText')%>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6 form-group">
+                    <%= f.hidden_field :kind, :value => "post" %>
+                    <!-- <h3><i class="fa fa-question"></i> Post Kind</h3> -->
+                    <%# f.collection_select :kind, @contents.select(:kind).uniq, :kind, :kind, {:include_blank => "Select Kind"}, :class=>"form-control" %>
+                  </div>
+                </div>
+              </div>
 
-						<%= f.fields_for :content_attachments do |p| %>
-					    <div class="field">
-					      <%= p.file_field :image, :multiple => true, name: "content_attachments[image][]" %>
-					    </div>
-				    <%end%>
-
-			      <div class="btn-group pull-right" role="group" aria-label="...">
-				      <%= f.submit "Submit", class: "btn btn-default"%>
-			     	</div>
-			    </div>
-			  </div>
-			</div>
+              <hr>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="form-group pull-right">
+                    Comments
+                    <%= f.check_box :has_comments %>
+                    Sticky
+                    <%= f.check_box :is_sticky %>
+                    Active
+                    <%= f.check_box :is_active %>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="btn-group pull-right" role="group" aria-label="...">
+                     <%= f.submit "Submit", :class=> "btn btn-default"%>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+            <br>
+              <% if @content_attachments.present? %>
+                <% @content_attachments.each do |p| %>
+                  <div class="col-xs-4 col-md-4">
+                    <%= link_to p.image_url, :class=> "thumbnail" do%>
+                      <%= image_tag(p.image_url, :class=>"img-responsive") if p.image? %>
+                    <%end%>
+                    <% if user_signed_in?%>
+                      <%= link_to "Edit", edit_content_attachment_path(p), :class=>"btn btn-default" %>
+                    <%end%>
+                  </div>
+                <%end%>
+              <%end%>
+            </div>
+          </div>
+        </div>
+      <% end %>
 		</div>
 	</div>
-<% end %>
+</div>

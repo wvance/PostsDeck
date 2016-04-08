@@ -1,67 +1,22 @@
 <div class="row">
-  <div class="col-xs-10 col-xs-offset-1">
+  <div class="col-xs-10 col-xs-offset-1" id="editorialCalendar">
+    <%= month_calendar(attribute: :publish_at, events: @calendar_contents) do |date, contents| %>
+      <div class="dayDate">
+        <%= date.strftime("%d") %>
+      </div>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Author</th>
-          <th>Body</th>
-          <th>External</th>
-          <th>location</th>
-          <th>Address</th>
-          <th>City</th>
-          <th>State</th>
-          <th>Country</th>
-          <th>Postal</th>
-          <th>Ip</th>
-          <th>Latitude</th>
-          <th>Longitude</th>
-          <th>Is active</th>
-          <th>Image</th>
-          <th>External link</th>
-          <th>Kind</th>
-          <th>Has comments</th>
-          <th>Rating</th>
-          <th>Images</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <% @contents.each do |content| %>
-          <tr>
-            <td><%= content.id %></td>
-            <td><%= content.title %></td>
-            <td><%= content.author %></td>
-            <td><%= truncate content.body, length: 125%></td>
-            <td><%= content.external_id %></td>
-            <td><%= content.location %></td>
-            <td><%= content.address %></td>
-            <td><%= content.city %></td>
-            <td><%= content.state %></td>
-            <td><%= content.country %></td>
-            <td><%= content.postal %></td>
-            <td><%= content.ip %></td>
-            <td><%= content.latitude %></td>
-            <td><%= content.longitude %></td>
-            <td><%= content.is_active %></td>
-            <td><%= content.image %></td>
-            <td><%= content.external_link %></td>
-            <td><%= content.kind %></td>
-            <td><%= content.has_comments %></td>
-            <td><%= content.rating %></td>
-            <td><%= link_to 'Show', content, :class=> "btn btn-default" %></td>
-            <td><%= link_to 'Edit', edit_content_path(content), :class=> "btn btn-default" %></td>
-            <td><%= link_to 'Destroy', content, method: :delete, data: { confirm: 'Are you sure?' }, :class=> "btn btn-danger"  %></td>
-          </tr>
+      <div class="dayEvents">
+        <% contents[0...3].each do |content| %>
+          <div>
+            <%= link_to content do%>
+              <%= kind_to_symbol(content.kind) %>  <%= content.title %>
+            <%end%>
+          </div>
         <% end %>
-      </tbody>
-    </table>
+      </div>
+      <div class="dayEventNumber">
+        <%# contents.length %>
+      </div>
+    <% end %>
   </div>
 </div>
-
-<br>
-
-<%= link_to 'New Content', new_content_path %>

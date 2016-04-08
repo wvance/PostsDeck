@@ -15,9 +15,11 @@ gem 'twitter'
 gem 'foursquare2'
 
 gem 'jquery-turbolinks'
+gem 'jquery-datetimepicker-rails'
 gem 'friendly_id'
 gem 'redcarpet'											# USED FOR MARKDOWN INTERPRETATION
 gem 'rouge'
+gem "simple_calendar"
 
 gem "kaminari", github: "amatsuda/kaminari" # PAGINATION GEM
 gem 'geocoder' 											# IP TO LOCATION

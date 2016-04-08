@@ -12,6 +12,8 @@
  *
  *= require jquery-ui
  *= require markdown
+ *= require simple_calendar
+ *= require jquery.datetimepicker
  *= require_tree .
  *= require_self
  */

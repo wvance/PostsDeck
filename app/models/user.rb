@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   friendly_id :username
 
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # # :confirmable, :lockable, :timeoutable and :omniauthable
+  # devise :database_authenticatable, :registerable, :omniauthable,
+  #        :recoverable, :rememberable, :trackable, :validatable
 
   devise :database_authenticatable, :registerable, :omniauthable,
      :recoverable, :rememberable, :trackable, :validatable,
@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
 
   has_many :contents
   has_many :projects
-  has_many :user_provider, :dependent => :destroy
+  has_many :user_providers, :dependent => :destroy
 
   require 'json'
 

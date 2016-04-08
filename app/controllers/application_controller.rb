@@ -21,8 +21,8 @@ private
       @@twitter_client ||= Twitter::REST::Client.new do |config|
 	      config.consumer_key = ENV['twitter_consumer_key']
 	      config.consumer_secret = ENV['twitter_consumer_secret']
-	      config.access_token = current_user.user_provider.where(:provider => "twitter").first.token
-	      config.access_token_secret = current_user.user_provider.where(:provider => "twitter").first.secret
+	      config.access_token = current_user.user_providers.where(:provider => "twitter").first.token
+	      config.access_token_secret = current_user.user_providers.where(:provider => "twitter").first.secret
 	    end
     end
   end
@@ -60,8 +60,10 @@ private
 
       if tweet.created_at.present?
         new_tweet.created = tweet.created_at
+        new_tweet.publish_at = tweet.created_at
       else
         new_tweet.created = DateTime.now
+        new_tweet.publish_at = DateTime.now
       end
       new_tweet.updated = DateTime.now
 

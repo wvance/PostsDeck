@@ -9,6 +9,7 @@ class ContentsController < ApplicationController
   # GET /contents.json
   def index
     @contents = Content.where(:author => current_user)
+    @calendar_contents =@contents.where.not('publish_at' => nil)
   end
 
   # GET /contents/1
@@ -72,6 +73,7 @@ class ContentsController < ApplicationController
 
   # GET /contents/new
   def new
+    @contents = Content.select(:kind).uniq
     @content = Content.new
     @author = User.where(:id => @content.author).first
   end
@@ -146,6 +148,7 @@ class ContentsController < ApplicationController
       end
       # send_tweet(@content.title, request.fullpath)
     else
+      @content.author = current_user.id
       if cookies[:lat_lng] != nil
         @lat_lng = cookies[:lat_lng].split("|")
         @content.latitude = @lat_lng[0]
@@ -155,12 +158,18 @@ class ContentsController < ApplicationController
       end
     end
 
+    if @content.is_active == true
+      @content.publish_at = DateTime.now;
+    end
+
     # SET DATE TIME TO NOW
     @content.created = DateTime.now;
     @content.updated = DateTime.now;
 
     # FOR NOW ALWAYS SET TO TRUE
     @content.has_comments = "t";
+
+    # raise @content.inspect
 
     respond_to do |format|
       if @content.save
@@ -233,6 +242,6 @@ class ContentsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list)
+      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list, :publish_at)
     end
 end

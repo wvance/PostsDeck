@@ -50,5 +50,14 @@ module ApplicationHelper
     }
     Redcarpet::Markdown.new(renderer, extensions).render(text).html_safe
   end
+
+  def kind_to_symbol(kind)
+    if kind == "post"
+      return '<i class="fa fa-file"></i>'.html_safe
+    elsif kind == "twitter"
+      return '<i class="fa fa-twitter"></i>'.html_safe
+    end
+  end
+
 end
 

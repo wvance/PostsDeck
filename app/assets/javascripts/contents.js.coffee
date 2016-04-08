@@ -134,3 +134,16 @@ $(document).on "turbolinks:load", ->
     featureLayer.on 'mouseover', (e) ->
       e.layer.openPopup();
 
+    selector = $('.datepicker')
+    if selector != null
+      selector.datepicker({
+        autoSize: true
+      })
+
+$(document).on "turbolinks:load", ->
+  $(".contents.new").ready ->
+    selector = $('.datetimepicker')
+    if selector != null
+      selector.datetimepicker();
+
+

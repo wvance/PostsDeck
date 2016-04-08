@@ -172,6 +172,7 @@ GEM
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jquery-datetimepicker-rails (2.4.1.0)
     jquery-rails (4.1.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -286,6 +287,8 @@ GEM
     sdoc (0.4.1)
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
+    simple_calendar (2.1.0)
+      rails (>= 3.0)
     simple_oauth (0.3.1)
     sitemap_generator (5.1.0)
       builder
@@ -357,6 +360,7 @@ DEPENDENCIES
   gravtastic
   impressionist
   jbuilder
+  jquery-datetimepicker-rails
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
@@ -374,6 +378,7 @@ DEPENDENCIES
   sanitize
   sass-rails
   sdoc (~> 0.4.0)
+  simple_calendar
   sitemap_generator
   turbolinks (~> 5.0.0.beta)
   twitter

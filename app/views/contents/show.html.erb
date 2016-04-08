@@ -85,8 +85,8 @@
           <div class="col-xs-8">
             <div class="row lightGrey pull-right">
               <h5>
-                <% if @content.created.present? %>
-                  <%= formatDate(@content.created) %>
+                <% if @content.publish_at.present? %>
+                  <%= formatDate(@content.publish_at) %>
                 <%end%>
                 <% if @content.kind =="twitter" %>
                   at <%= @content.location %>

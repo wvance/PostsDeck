@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20160407153637) do
     t.integer  "author"
     t.text     "body"
     t.string   "image"
-    t.integer  "external_id",      limit: 8
+    t.integer  "external_id",   limit: 8
     t.string   "external_link"
     t.string   "kind"
     t.string   "rating"
@@ -50,23 +50,15 @@ ActiveRecord::Schema.define(version: 20160407153637) do
     t.boolean  "is_active"
     t.datetime "created"
     t.datetime "updated"
-    t.datetime "created_at",                                 null: false
-    t.datetime "updated_at",                                 null: false
+    t.datetime "created_at",                              null: false
+    t.datetime "updated_at",                              null: false
     t.string   "slug"
     t.boolean  "has_comments"
-    t.boolean  "is_sticky",                  default: false
-    t.string   "related_contents"
-    t.text     "words"
+    t.boolean  "is_sticky",               default: false
     t.datetime "publish_at"
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree
-
-  create_table "events", force: :cascade do |t|
-    t.string   "ip_address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
@@ -113,10 +105,10 @@ ActiveRecord::Schema.define(version: 20160407153637) do
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
-    t.integer  "taggable_id"
     t.string   "taggable_type"
-    t.integer  "tagger_id"
+    t.integer  "taggable_id"
     t.string   "tagger_type"
+    t.integer  "tagger_id"
     t.string   "context",       limit: 128
     t.datetime "created_at"
   end
