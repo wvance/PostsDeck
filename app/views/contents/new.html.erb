@@ -91,7 +91,8 @@
               <div class="row">
                 <div class="col-xs-12">
                   <div class="btn-group pull-right" role="group" aria-label="...">
-                     <%= f.submit "Submit", :class=> "btn btn-default"%>
+                    <input type="button" class="btn btn-link link formButton" value="Add Geo Data" onclick="getGeoLocation()">
+                    <%= f.submit "Submit", :class=> "btn btn-link link formButton"%>
                   </div>
                 </div>
               </div>

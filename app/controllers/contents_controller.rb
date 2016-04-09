@@ -119,7 +119,12 @@ class ContentsController < ApplicationController
         }
       }
     end
-    # puts @geojson
+
+    if @content.is_active == true
+      @content.publish_at = DateTime.now
+    elsif !@content.publish_at.present?
+      @content.publish_at = DateTime.now
+    end
 
     respond_to do |format|
       format.html
