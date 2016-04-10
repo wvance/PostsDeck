@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-sm-12 center">
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Content:</strong>
+		  <%= @content_attachment.content_id %>
+		</p>
+
+		<p>
+		  <strong>Image:</strong>
+		  <%= @content_attachment.image %>
+		</p>
+
+		<%= link_to 'Edit', edit_content_attachment_path(@content_attachment) %> |
+		<%= link_to 'Back', content_attachments_path %>
+	</div>
+</div>

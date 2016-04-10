@@ -1,0 +1,29 @@
+<%= form_for(@content_attachment, :html => { :multipart => true }) do |f| %>
+  <% if @content_attachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@content_attachment.errors.count, "error") %> prohibited this content_attachment from being saved:</h2>
+
+      <ul>
+      <% @content_attachment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= image_tag(@content_attachment.image, :width => 300)%>
+  <%= form_for(@content_attachment) do |f| %>
+    <div class="field">
+      <%= f.label :image %><br>
+      <%= f.file_field :image %>
+    </div>
+    <div class="field">
+      <%= f.label :content_id %><br>
+      <%= f.number_field :content_id %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
