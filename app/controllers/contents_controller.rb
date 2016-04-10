@@ -21,7 +21,7 @@ class ContentsController < ApplicationController
     @comments = @content.comments.all
     @comment = @content.comments.build
 
-    @view_count = @content.impressionist_count(:filter=>:all)
+    @view_count = @content.impressionist_count(:filter=>:session_hash)
 
     @content_attachments = ContentAttachment.where(:content_id => @content.id)
     # raise ContentAttachment.all.inspect
