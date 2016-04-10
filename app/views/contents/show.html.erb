@@ -7,13 +7,18 @@
 
 <div class="row fullWidth">
   <div class="col-xs-12">
-    <% if @geojson.present? %>
-      <div id="contentMap" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+    <% if @content_attachments.present? %>
+      <div class="imageFullWidth">
+        <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
+      </div>
+    <%elsif @geojson.present? %>
+      <div id="contentMapEdit" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
     <%else%>
       <div class="noContentMap"></div>
     <%end%>
   </div>
 </div>
+
 
 <div class="displayPost">
   <div class="row">
@@ -55,20 +60,13 @@
   <div class="row">
     <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
       <% if @content_attachments.present? %>
-        <% @content_attachments.each do |p| %>
+        <% @content_attachments.each do |image| %>
           <div class="col-xs-4 col-md-4">
-            <%= link_to p.image_url, :class=> "" do%>
-              <%= image_tag(p.image, :class=>"img-responsive") if p.image? %>
+            <%= link_to image.image_url, :class=> "" do%>
+              <%= image_tag(image.image, :class=>"img-responsive", :alt=>image.description) if image.image? %>
             <%end%>
           </div>
         <%end%>
-      <%end%>
-      <% if @content.image.present? %>
-        <div class="col-xs-4 col-md-4">
-          <%= link_to @content.external_link, :class=> "", :target => "_blank" do%>
-            <%= image_tag(@content.image, :class=>"img-responsive") if @content.image? %>
-          <%end%>
-        </div>
       <%end%>
     </div>
   </div>

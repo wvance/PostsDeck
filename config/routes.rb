@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
   resources :comments
-  resources :projects
+  resources :projects, :only => [:new, :create, :destroy]
   resources :contents
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
   resources :users
+  resources :content_attachments, :only => [:new, :create, :destroy]
+
+  get 'content_attachment/new/:id', to: 'content_attachments#new', :as => :newContentAttachment
 
   resources :projects do
     collection {post :sort}
@@ -20,7 +23,7 @@ Rails.application.routes.draw do
   post 'emailapi/subscribe' => 'emailapi#subscribe'
 
   get '/schedule', to: 'users#schedule', as:'schedule'
-
+  # get 'content_attachments/new', to: 'content_attachments#new', :as => :newContentAttachment
 
   get 'tags/:tag', to: 'users#show', as: :tag
   # The priority is based upon order of creation: first created -> highest priority.

@@ -23,6 +23,9 @@ class ContentsController < ApplicationController
 
     @view_count = @content.impressionist_count(:filter=>:all)
 
+    @content_attachments = ContentAttachment.where(:content_id => @content.id)
+    # raise ContentAttachment.all.inspect
+
     # THIS IS FOR THE DISPLAY MAP
     @geojson = Array.new
 
@@ -82,6 +85,8 @@ class ContentsController < ApplicationController
   def edit
     @author = User.where(:id => @content.author).first
 
+    @content_attachments = ContentAttachment.where(:content_id => @content.id)
+    @new_attachment = ContentAttachment.new
     # THIS IS FOR THE DISPLAY MAP
     @geojson = Array.new
 
@@ -93,14 +98,14 @@ class ContentsController < ApplicationController
       marker_color = '#FFCC00'
     end
 
-     # GEO LOCATION: USE PRECISE LAT LONG IF POSSIBLE, OTHERWISE USE IP CONVERSION
-    # if cookies[:lat_lng] != nil
-    #   @lat_lng = cookies[:lat_lng].split("|")
-    #   @content.latitude = @lat_lng[0]
-    #   @content.longitude = @lat_lng[1]
-    # else
-    #   @content.ip = request.remote_ip
-    # end
+    # GEO LOCATION: USE PRECISE LAT LONG IF POSSIBLE, OTHERWISE USE IP CONVERSION
+    if cookies[:lat_lng] != nil
+      @lat_lng = cookies[:lat_lng].split("|")
+      @content.latitude = @lat_lng[0]
+      @content.longitude = @lat_lng[1]
+    else
+      @content.ip = request.remote_ip
+    end
 
 
     unless (@content.longitude.nil? || @content.latitude.nil?) || (@content.longitude == '0' || @content.latitude == '0')

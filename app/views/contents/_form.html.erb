@@ -3,8 +3,12 @@
 
 <div class="row fullWidth">
   <div class="col-xs-12">
-    <% if @geojson.present? %>
-      <div id="contentMapEdit" class="contentsEditMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+    <% if @content_attachments.present? %>
+      <div class="imageFullWidth">
+        <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
+      </div>
+    <%elsif @geojson.present? %>
+      <div id="contentMapEdit" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
     <%else%>
       <div class="noContentMap"></div>
     <%end%>
@@ -128,27 +132,49 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
-            <br>
-              <% if @content_attachments.present? %>
-                <% @content_attachments.each do |p| %>
-                  <div class="col-xs-4 col-md-4">
-                    <%= link_to p.image_url, :class=> "thumbnail" do%>
-                      <%= image_tag(p.image_url, :class=>"img-responsive") if p.image? %>
-                    <%end%>
-                    <% if user_signed_in?%>
-                      <%= link_to "Edit", edit_content_attachment_path(p), :class=>"btn btn-default" %>
-                    <%end%>
-                  </div>
-                <%end%>
-              <%end%>
+              <hr>
             </div>
           </div>
         </div>
       <% end %>
+
+      <!-- CREATE IMAGE ATTACHMENTS :D  -->
+      <div class="row">
+        <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+          <%= form_for ContentAttachment.new, :url => content_attachments_path, :html => {:method => :post, :multipart => true} do |image|  %>
+            <div class="row">
+              <div class="col-xs-12 col-sm-6 form-group">
+                <h3><i class="fa fa-picture-o"></i> Images</h3>
+                <%= image.file_field :image, :class=>"form-control formText", :required => true%>
+                <%= image.text_field(:description, :placeholder => "Enter Image description", :class=>"form-control formText")%>
+                <div class="actions">
+                  <%= image.hidden_field :content_id, value: @content.id %>
+                  <%= image.submit 'Submit', :class=>"btn btn-link pull-right link formButton"%>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-6 form-group">
+              </div>
+            </div>
+          <% end %>
+
+          <% if @content_attachments.present? %>
+            <div class="row">
+              <% @content_attachments.each do |attachment| %>
+                <div class="col-xs-4 col-md-4">
+                  <%= link_to attachment.image_url, :class=> "thumbnail" do%>
+                    <%= image_tag(attachment.image_url, :class=>"img-responsive", :alt=>attachment.description) if attachment.image? %>
+                  <%end%>
+                  <div class="deleteImage">
+                    <%= link_to content_attachment_path(attachment), method: :delete do %>
+                      <h2><i class="fa fa-times"></i></h2>
+                    <%end%>
+                  </div>
+                </div>
+              <%end%>
+            </div>
+          <%end%>
+        </div>
+      </div>
     </div>
   </div>
 </div>
