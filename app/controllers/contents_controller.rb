@@ -93,6 +93,16 @@ class ContentsController < ApplicationController
       marker_color = '#FFCC00'
     end
 
+     # GEO LOCATION: USE PRECISE LAT LONG IF POSSIBLE, OTHERWISE USE IP CONVERSION
+    # if cookies[:lat_lng] != nil
+    #   @lat_lng = cookies[:lat_lng].split("|")
+    #   @content.latitude = @lat_lng[0]
+    #   @content.longitude = @lat_lng[1]
+    # else
+    #   @content.ip = request.remote_ip
+    # end
+
+
     unless (@content.longitude.nil? || @content.latitude.nil?) || (@content.longitude == '0' || @content.latitude == '0')
       @geojson << {
         type: 'Feature',
