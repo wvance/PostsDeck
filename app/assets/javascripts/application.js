@@ -71,7 +71,7 @@ $(document).on("turbolinks:load", function() {
 
   // HIDE FLASH AFTER 3 SECONDS
   $(".alert").delay(2000).fadeOut(1000, function(){
-      $(this).remove();
+    $(this).remove();
   });
 
   markdownEditor = $("#wmd-button-bar");

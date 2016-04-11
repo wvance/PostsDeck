@@ -12,7 +12,7 @@
         <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
       </div>
     <%elsif @geojson.present? %>
-      <div id="contentMapEdit" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
+      <div id="contentMap" class="contentsMapSection", data-url="/contents/<%= @content.id %>.json"></div>
     <%else%>
       <div class="noContentMap"></div>
     <%end%>

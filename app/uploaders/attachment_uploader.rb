@@ -17,6 +17,11 @@ class AttachmentUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
 
+  configure do |c|
+    c.fog_public = true # or false
+  end
+
+
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
