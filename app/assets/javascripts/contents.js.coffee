@@ -20,125 +20,131 @@
 #     $(window).scroll()
 $(document).on "turbolinks:load", ->
   $(".contents.show").ready ->
-    console.log("Success Loading Contents show")
-    L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
-    map = L.mapbox.map('contentMap', 'wesvance.n3ejgh0a', {
-      zoomControl: false
-      maxZoom: 14
-    })
 
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.attributionControl = false;
+    mapObject = $("#contentMap")
+    if mapObject.length != 0
+      console.log("Success Loading Contents show")
+      console.log(mapObject)
+      L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
+      map = L.mapbox.map('contentMap', 'wesvance.n3ejgh0a', {
+        zoomControl: false
+        maxZoom: 14
+      })
 
-    # get JSON object
-    # on success, parse it and
-    # hand it over to MapBox for mapping
-    # OLD WAY OF DOING IT?
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.attributionControl = false;
 
-    # $.ajax
-    #   dataType: 'text'
-    #   url: '/welcome/index.json'
-    #   success: (data) ->
-    #     geojson = $.parseJSON(data)
-    #     map.featureLayer.setGeoJSON(geojson)
+      # get JSON object
+      # on success, parse it and
+      # hand it over to MapBox for mapping
+      # OLD WAY OF DOING IT?
 
-    $link = $('#contentMap').data('url')
-    console.log($link)
-    featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
+      # $.ajax
+      #   dataType: 'text'
+      #   url: '/welcome/index.json'
+      #   success: (data) ->
+      #     geojson = $.parseJSON(data)
+      #     map.featureLayer.setGeoJSON(geojson)
 
-    featureLayer.on 'ready', (e) ->
-      map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
+      $link = $('#contentMap').data('url')
+      console.log($link)
+      featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
 
-    # featureLayer.addTo(map);
+      featureLayer.on 'ready', (e) ->
+        map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
 
-    # add custom popups to each marker
-    featureLayer.on 'layeradd', (e) ->
-      marker = e.layer
-      properties = marker.feature.properties
+      # featureLayer.addTo(map);
 
-      # create custom popup
-      popupContent =  '<div class="popup">' +
-                      '<a href="' + properties.link + '">' +
-                          '<h3>' + properties.name + '</h3>' +
-                          '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
-                          '</a>' +
-                        '</div>'
+      # add custom popups to each marker
+      featureLayer.on 'layeradd', (e) ->
+        marker = e.layer
+        properties = marker.feature.properties
 
-      # http://leafletjs.com/reference.html#popup
-      marker.bindPopup popupContent,
-        closeButton: false
-        minWidth: 200
-        keepInView: true
+        # create custom popup
+        popupContent =  '<div class="popup">' +
+                        '<a href="' + properties.link + '">' +
+                            '<h3>' + properties.name + '</h3>' +
+                            '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
+                            '</a>' +
+                          '</div>'
 
-    featureLayer.on 'click', (e) ->
-      map.panTo(e.layer.getLatLng());
-      e.layer.openPopup();
+        # http://leafletjs.com/reference.html#popup
+        marker.bindPopup popupContent,
+          closeButton: false
+          minWidth: 200
+          keepInView: true
 
-    featureLayer.on 'mouseover', (e) ->
-      e.layer.openPopup();
+      featureLayer.on 'click', (e) ->
+        map.panTo(e.layer.getLatLng());
+        e.layer.openPopup();
+
+      featureLayer.on 'mouseover', (e) ->
+        e.layer.openPopup();
 
 $(document).on "turbolinks:load", ->
   $(".contents.edit").ready ->
     console.log("Success Loading Contents Edit")
-    L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
-    map = L.mapbox.map('contentMapEdit', 'wesvance.n3ejgh0a', {
-      zoomControl: true
-      maxZoom: 14
-    })
-
-    map.touchZoom.disable();
-    map.doubleClickZoom.disable();
-    map.scrollWheelZoom.disable();
-    map.attributionControl = false;
-
-    $link = $('#contentMapEdit').data('url')
-    console.log($link)
-    featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
-
-    # marker = L.marker(new (L.LatLng)(37.9, -77),
-    #   icon: L.mapbox.marker.icon('marker-color': 'ff8888')
-    #   draggable: true)
-    # marker.bindPopup 'This marker is draggable! Move it around.'
-    # marker.addTo map
-
-    featureLayer.on 'ready', (e) ->
-      map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
-
-    # featureLayer.addTo(map);
-
-    # add custom popups to each marker
-    featureLayer.on 'layeradd', (e) ->
-      marker = e.layer
-      properties = marker.feature.properties
-
-      # create custom popup
-      popupContent =  '<div class="popup">' +
-                      '<a href="' + properties.link + '">' +
-                          '<h3>' + properties.name + '</h3>' +
-                          '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
-                          '</a>' +
-                        '</div>'
-
-      # http://leafletjs.com/reference.html#popup
-      marker.bindPopup popupContent,
-        closeButton: false
-        minWidth: 200
-        keepInView: true
-
-    featureLayer.on 'click', (e) ->
-      map.panTo(e.layer.getLatLng());
-      e.layer.openPopup();
-
-    featureLayer.on 'mouseover', (e) ->
-      e.layer.openPopup();
-
-    selector = $('.datepicker')
-    if selector != null
-      selector.datepicker({
-        autoSize: true
+    mapObject = $("#contentMapEdit")
+    if mapObject.length != 0
+      L.mapbox.accessToken = 'pk.eyJ1Ijoid2VzdmFuY2UiLCJhIjoiV3RpaE1xNCJ9.t3DpzGpN43q23tRcKMzLqQ';
+      map = L.mapbox.map('contentMapEdit', 'wesvance.n3ejgh0a', {
+        zoomControl: true
+        maxZoom: 14
       })
+
+      map.touchZoom.disable();
+      map.doubleClickZoom.disable();
+      map.scrollWheelZoom.disable();
+      map.attributionControl = false;
+
+      $link = $('#contentMapEdit').data('url')
+      console.log($link)
+      featureLayer = L.mapbox.featureLayer().loadURL($link).addTo(map);
+
+      # marker = L.marker(new (L.LatLng)(37.9, -77),
+      #   icon: L.mapbox.marker.icon('marker-color': 'ff8888')
+      #   draggable: true)
+      # marker.bindPopup 'This marker is draggable! Move it around.'
+      # marker.addTo map
+
+      featureLayer.on 'ready', (e) ->
+        map.fitBounds(featureLayer.getBounds(), {padding: [100,100]});
+
+      # featureLayer.addTo(map);
+
+      # add custom popups to each marker
+      featureLayer.on 'layeradd', (e) ->
+        marker = e.layer
+        properties = marker.feature.properties
+
+        # create custom popup
+        popupContent =  '<div class="popup">' +
+                        '<a href="' + properties.link + '">' +
+                            '<h3>' + properties.name + '</h3>' +
+                            '<p>'  + properties.body.substring(0,125) + "..." + '</p>' +
+                            '</a>' +
+                          '</div>'
+
+        # http://leafletjs.com/reference.html#popup
+        marker.bindPopup popupContent,
+          closeButton: false
+          minWidth: 200
+          keepInView: true
+
+      featureLayer.on 'click', (e) ->
+        map.panTo(e.layer.getLatLng());
+        e.layer.openPopup();
+
+      featureLayer.on 'mouseover', (e) ->
+        e.layer.openPopup();
+
+      selector = $('.datepicker')
+      if selector != null
+        selector.datepicker({
+          autoSize: true
+        })
 
 $(document).on "turbolinks:load", ->
   $(".contents.new").ready ->
