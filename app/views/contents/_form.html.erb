@@ -3,7 +3,7 @@
 
 <div class="row fullWidth">
   <div class="col-xs-12">
-    <% if @content_attachments.present? %>
+    <% if @content_attachments.present? && @content.has_cover_photo == true  %>
       <div class="imageFullWidth">
         <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
       </div>
@@ -113,6 +113,8 @@
                     <%= f.check_box :has_comments %>
                     Sticky
                     <%= f.check_box :is_sticky %>
+                    Cover Photo
+                    <%= f.check_box :has_cover_photo %>
                     Active
                     <%= f.check_box :is_active %>
                   </div>

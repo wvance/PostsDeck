@@ -178,7 +178,7 @@ class ContentsController < ApplicationController
       end
     end
 
-    if @content.is_active == true
+    unless @content.publish_at.present?
       @content.publish_at = DateTime.now;
     end
 
@@ -262,6 +262,6 @@ class ContentsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list, :publish_at)
+      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list, :publish_at, :has_cover_photo)
     end
 end
