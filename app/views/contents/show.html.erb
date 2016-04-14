@@ -7,7 +7,7 @@
 
 <div class="row fullWidth">
   <div class="col-xs-12">
-    <% if @content_attachments.present? && @content.has_cover_photo == true %>
+    <% if @content_attachments.present? && @content.has_cover_photo == 1 %>
       <div class="imageFullWidth contentsImageHeaderSection">
         <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
       </div>
