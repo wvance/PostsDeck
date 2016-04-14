@@ -8,7 +8,7 @@
 <div class="row fullWidth">
   <div class="col-xs-12">
     <% if @content_attachments.present? %>
-      <div class="imageFullWidth">
+      <div class="imageFullWidth contentsImageHeaderSection">
         <%= image_tag(@content_attachments.first.image, :class=>"img-responsive", :alt=>@content_attachments.first.description) %>
       </div>
     <%elsif @geojson.present? %>
