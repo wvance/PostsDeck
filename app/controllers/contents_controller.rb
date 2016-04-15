@@ -22,7 +22,7 @@ class ContentsController < ApplicationController
     @comment = @content.comments.build
 
     if @content.related.present?
-      @related = @content.related.first(3)
+      @related = @content.related.first(2)
     end
 
     @view_count = @content.impressionist_count(:filter=>:all)

@@ -3,6 +3,7 @@ include ActionView::Helpers::SanitizeHelper
 class Content < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, dependent: :delete_all
+  has_many :content_attachments
 
 	validates :external_id, uniqueness: true , :allow_blank => true, :allow_nil => true
 	validates_presence_of :publish_at
@@ -83,39 +84,46 @@ class Content < ActiveRecord::Base
 	end
 
 	def update_related!
-		contents = Content.all; related={}
+    contents = Content.all; related = {}
+    idf = inverse_document_frequency(contents)
 
-		idf = inverse_document_frequency(contents)
+    (contents.select(&:is_active?) - [self]).each do |content|
+      score = 0
+      if content.words.present? && self.words.present?
+        intersection = self.words.split(',').multiset(content.words.split(','))
+        intersection.each { |word| score += idf[word]}
+      end
 
-		(contents.select(&:is_active?).select(&:kind =="post") - [self]).each do |post|
-			score = 0
-			intersection = self.words.split(',').multiset(post.words.split(','))
-			intersection.each { |word| score += idf[word]}
-			related[post.id] = score
-		end
-		related = related.sort_by { |k,v| v}.reverse
-		related = related.collect { |k,v| k}.first (3.join(','))
-		update_columns(:related_contents => related)
-	end
+      related[content.id] = score
+    end
+
+    related = related.sort_by {|k,v| v}.reverse
+    related = related.collect {|k,v| k}.first(3).join(',')
+    update_columns(:related_contents => related)
+  end
 
 	def related
-		Content.where(:id => related_contents.split(','))
+    if related_contents.present?
+		  Content.where(:kind =>"post").where(:id => related_contents.split(','))
+    end
 	end
 
 	private
 		def inverse_document_frequency(contents)
 			words = {}
-			contents.each do |content|
-				RelatedContent.process_words(content.body) if content.words.blank?
+	    contents.each do |content|
+	      if content.words.present?
+	        text = content.words
+	        text.split(',').uniq.each do |word|
+	          words[word] = 0 if words[word].nil?
+	          words[word] += 1
+	        end
+	      end
+	    end
 
-				content.words.split(',').uniq.each do |word|
-					words[word] = 0 if words[word].nil?
-					words[word] += 1
-				end
-			end
-			words.each do |word, freq|
-				words[word] = Mathlog(content.size / freq)
-			end
-			words
+	    words.each do |word, freq|
+	      words[word] = Math.log(contents.size / freq)
+	    end
+	    words
 		end
 end

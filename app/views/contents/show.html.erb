@@ -101,9 +101,26 @@
           </div>
         </div>
       </div>
+      <!-- ADD USER BIO HERE WITH PROFILE PICTURE -->
+      <% if @related.present? %>
+        <div class="row" id="show-related-section">
+          <div class="col-xs-12">
+            <hr>
+            <h3>Related</h3>
+            <% @related.each do |content| %>
+              <div class="col-xs-12 col-sm-6">
+                <%= link_to content do %>
+                  <%= image_tag content.content_attachments.first.image if content.content_attachments.present? %>
+                  <h3><%= content.title %></h3>
+                  <% @content_user = User.where(:id=>content.author).first %>
+                <%end%>
+              </div>
+            <%end%>
+          </div>
+        </div>
+      <%end%>
     </div>
   </div>
-  <!-- ADD USER BIO HERE WITH PROFILE PICTURE -->
 
   <% if @content.has_comments%>
     <div class="row" id="show-comments-section">
