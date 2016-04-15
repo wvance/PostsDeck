@@ -1,3 +1,5 @@
+include ActionView::Helpers::SanitizeHelper
+
 class Content < ActiveRecord::Base
 	belongs_to :user
 	has_many :comments, dependent: :delete_all
@@ -8,6 +10,8 @@ class Content < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   is_impressionable
+
+  after_save :update_words!
 
   def slug_candidates
   	[
@@ -61,6 +65,57 @@ class Content < ActiveRecord::Base
 	unless :latitude.present? && :longitude.present?
 		after_validation :geocode
 	end
-
 	after_validation :reverse_geocode
+
+
+	# USED FOR TFIDF
+	def update_words!
+		require 'htmlentities'; require'nokogiri'
+		doc = Nokogiri::HTML.parse(body)
+
+		doc.xpath("//pre").remove.xpath("//code").remove
+
+		words = doc.text.gsub(/\n/, '').downcase
+		words = HTMLEntities.new.decode(sanitize(words, :tags => []))
+		words = words.split(/\W+/).reject(&:blank?).sort.join(',')
+		words.gsub(/[^a-z\,]/i, '').split(',').reject(&:blank?).sort.join(',')
+		update_columns(:words => words)
+	end
+
+	def update_related!
+		contents = Content.all; related={}
+
+		idf = inverse_document_frequency(contents)
+
+		(contents.select(&:is_active?).select(&:kind =="post") - [self]).each do |post|
+			score = 0
+			intersection = self.words.split(',').multiset(post.words.split(','))
+			intersection.each { |word| score += idf[word]}
+			related[post.id] = score
+		end
+		related = related.sort_by { |k,v| v}.reverse
+		related = related.collect { |k,v| k}.first (3.join(','))
+		update_columns(:related_contents => related)
+	end
+
+	def related
+		Content.where(:id => related_contents.split(','))
+	end
+
+	private
+		def inverse_document_frequency(contents)
+			words = {}
+			contents.each do |content|
+				RelatedContent.process_words(content.body) if content.words.blank?
+
+				content.words.split(',').uniq.each do |word|
+					words[word] = 0 if words[word].nil?
+					words[word] += 1
+				end
+			end
+			words.each do |word, freq|
+				words[word] = Mathlog(content.size / freq)
+			end
+			words
+		end
 end

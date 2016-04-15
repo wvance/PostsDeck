@@ -26,6 +26,7 @@ gem 'geocoder' 											# IP TO LOCATION
 gem "d3-rails"											#D3.JS
 gem 'sanitize'
 gem 'gibbon'
+gem 'htmlentities'
 
 gem 'gravtastic'                    # ADDED GRAVATAR: PROFILE PICTURE
 

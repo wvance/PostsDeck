@@ -154,6 +154,7 @@ GEM
       activesupport (>= 4.1.0)
     gravtastic (3.2.6)
     hashie (3.4.3)
+    htmlentities (4.3.4)
     http (1.0.4)
       addressable (~> 2.3)
       http-cookie (~> 1.0)
@@ -358,6 +359,7 @@ DEPENDENCIES
   geocoder
   gibbon
   gravtastic
+  htmlentities
   impressionist
   jbuilder
   jquery-datetimepicker-rails

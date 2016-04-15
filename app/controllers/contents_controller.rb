@@ -21,6 +21,10 @@ class ContentsController < ApplicationController
     @comments = @content.comments.all
     @comment = @content.comments.build
 
+    if @content.related.present?
+      @related = @content.related.first(3)
+    end
+
     @view_count = @content.impressionist_count(:filter=>:all)
 
     @content_attachments = ContentAttachment.where(:content_id => @content.id)
@@ -141,6 +145,9 @@ class ContentsController < ApplicationController
       @content.publish_at = DateTime.now
     end
 
+    @content.update_related!
+    @content.related.each {|p| p.update_related!}
+
     respond_to do |format|
       format.html
       format.json { render json: @geojson }  # respond with the created JSON object
@@ -193,6 +200,8 @@ class ContentsController < ApplicationController
 
     respond_to do |format|
       if @content.save
+        @content.update_related!
+        @content.related.each {|p| p.update_related!}
         format.html { redirect_to content_path(@content), notice: 'Content was successfully created.' }
         format.json { render :show, status: :created, location: @content }
       else
@@ -262,6 +271,6 @@ class ContentsController < ApplicationController
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def content_params
-      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list, :publish_at, :has_cover_photo)
+      params.require(:content).permit(:title, :author, :body, :image, :external_id, :external_link, :kind, :rating, :location, :address, :city, :state, :country, :postal, :ip, :latitude, :longitude, :is_active, :is_sticky, :has_comments, :created, :updated, :tag_list, :publish_at, :has_cover_photo, :related_contents, :words)
     end
 end
