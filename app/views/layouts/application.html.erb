@@ -11,8 +11,6 @@
 	<meta http-equiv=”content-language” content=”en-us”>
 
   <title>PostsDeck <%= yield(:title) %> - Mkyaljsk Vasjkn</title>
-  <!-- BING VALIDATE -->
-  <meta name="msvalidate.01" content="EC77DC7A959710EE16DD5634AE8259D6" />
   <meta name='description'
     content='<%= yield_meta_tag(:description, 'PostsDeck: Blogging Post') %>' />
 	<meta name='keywords'
@@ -62,15 +60,15 @@
 			  		<%= link_to root_url(:subdomain => current_user.subdomain), :class=>"navBarLinks" do%>
 							<i class="fa fa-home"></i>
 						<%end%>
+					  <%= link_to new_content_path, :class=>"navBarLinks" do%>
+					    <i class="fa fa-plus-square-o"></i>
+					  <%end%>
 						<%= link_to contents_path() do %>
 							<i class="fa fa-calendar"></i>
 						<%end%>
 						<%= link_to settings_path() do %>
 							<i class="fa fa-cog"></i>
 						<%end%>
-			  		<%= link_to(destroy_user_session_path, :method => :delete, :class=>"navBarLinks") do%>
-			  			<i class="fa fa-sign-out"></i>
-			  		<%end%>
 				  <%else%>
 			  		<%= link_to user_omniauth_authorize_path(:twitter), :class=>"navBarLinks" do%>
 							<i class="fa fa-sign-in"></i>

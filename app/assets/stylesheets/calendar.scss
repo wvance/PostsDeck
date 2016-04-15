@@ -1,53 +1,75 @@
 @import 'styles';
 
-.simple-calendar {
-  .day {
-    font-size: 14px;
+#editorialCalendar{
+  position:relative;
+  width:100%;
+  margin-top:60px;
+  padding-left:15px;
+  padding-right:0px;
+
+  .calendarDate{
+    font-size:32px;
+    padding-left:30px;
+  }
+  .dayDate{
+    font-size: 22px;
   }
 
-  .wday-0 {}
-  .wday-1 {}
-  .wday-2 {}
-  .wday-3 {}
-  .wday-4 {}
-  .wday-5 {}
-  .wday-6 {}
-
-  .today {
-    background-color: $backgroundLight !important;
-    color: $secondary !important;
-  }
-  .past {}
-  .future {}
-
-  .start-date {}
-
-  .prev-month {
-    color:$white !important;
-    background-color: $secondary !important;
-    a{
-      color:$white;
+  .simple-calendar {
+    .table, th, td{
+      border: 1px solid $secondary;
     }
-    a:visited{
-      color:$white;
+    .day {
+      font-size: 14px;
     }
-  }
-  .next-month {
-    color:$white !important;
-    background-color: $secondary !important;
-    a{
-      color:$white;
-    }
-    a:visited{
-      color:$white;
-    }
-  }
-  .current-month {
-    color: $secondary;
-    background-color: $noCalEvents;
-  }
 
-  .has-events {
-    background-color:$hasCalEvents;
+    .wday-0 {}
+    .wday-1 {}
+    .wday-2 {}
+    .wday-3 {}
+    .wday-4 {}
+    .wday-5 {}
+    .wday-6 {}
+
+    .today {
+      color: $secondary !important;
+      background-color: $white !important;
+      .dayDate{
+        // color:
+      }
+    }
+    .past {}
+    .future {}
+
+    .start-date {}
+
+    .prev-month {
+      color:$white !important;
+      background-color: $secondary !important;
+      a{
+        color:$white;
+      }
+      a:visited{
+        color:$white;
+      }
+    }
+    .next-month {
+      color:$white !important;
+      background-color: $secondary !important;
+      a{
+        color:$white;
+      }
+      a:visited{
+        color:$white;
+      }
+    }
+    .current-month {
+      color: $secondary;
+      background-color: $noCalEvents;
+    }
+
+    .has-events {
+      background-color:$hasCalEvents;
+    }
   }
 }
