@@ -182,7 +182,7 @@ class UserProvider < ActiveRecord::Base
           body:"This is a demo project! Share a hobby, resume or whatever you'd like! Get started by signing into your account and selecting 'New Project'!",
           position:0,
           github_link: "http://github.com",
-          project_link: "http://blackboxapp.io"
+          project_link: "http://postsdeck.com"
           # datetime: DateTime.now,
         )
 
@@ -199,7 +199,9 @@ class UserProvider < ActiveRecord::Base
           kind:"post",
           has_comments: "t",
           # datetime: DateTime.now,
-          body:"Welcome to BlackBox! You're life collected.",
+          body:"Welcome to PostsDeck! This is your first post.",
+          publish_at: DateTime.now,
+
           # latitude: @lat_lng[0],
           # longitude: @lat_lng[1],
           ip: @ip

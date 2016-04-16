@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415180212) do
+ActiveRecord::Schema.define(version: 20160415194713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,17 +68,11 @@ ActiveRecord::Schema.define(version: 20160415180212) do
     t.boolean  "is_sticky",                  default: false
     t.datetime "publish_at"
     t.boolean  "has_cover_photo",            default: false
-    t.text     "words"
     t.string   "related_contents"
+    t.text     "words"
   end
 
   add_index "contents", ["slug"], name: "index_contents_on_slug", using: :btree
-
-  create_table "events", force: :cascade do |t|
-    t.string   "ip_address"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "impressions", force: :cascade do |t|
     t.string   "impressionable_type"
