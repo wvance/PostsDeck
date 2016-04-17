@@ -28,18 +28,18 @@
 production:
   adapter: postgresql
   encoding: unicode
-  database: blackbox_dev
+  database: postsdeck_dev
   pool: 5
 
 development:
   adapter: postgresql
   encoding: unicode
-  database: blackbox_dev
+  database: postsdeck_dev
   pool: 5
 
 
 test:
   adapter: postgresql
   encoding: unicode
-  database: blackbox_test
+  database: postsdeck_test
   pool: 5
