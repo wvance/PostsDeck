@@ -56,6 +56,11 @@ $(document).on("turbolinks:load", function() {
     });
   });
 
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  })
+
+
   // AUTOGROW TEXT AREA
   growObject = $(".autoGrowText");
   if(growObject != null){
