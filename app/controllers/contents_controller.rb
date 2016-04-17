@@ -3,6 +3,10 @@ class ContentsController < ApplicationController
   before_action :set_author, only: [:show]
   before_action :verify_is_owner, only: [:index, :edit, :update, :destory]
 
+  # ADDS COUNT OF IMPRESSIONS ON THE CONTETNT SHOW OBJEC
+  impressionist :actions=>[:show]
+  impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash]
+
   include TwitterHelper
 
   # GET /contents
@@ -15,8 +19,6 @@ class ContentsController < ApplicationController
   # GET /contents/1
   # GET /contents/1.json
   def show
-    impressionist(@content, "Content View")
-
     @author = User.where(:id => @content.author).first
     @comments = @content.comments.all
     @comment = @content.comments.build
@@ -25,6 +27,7 @@ class ContentsController < ApplicationController
       @related = @content.related.first(2)
     end
 
+    # VIEW COUNT DEFINED HERE
     @view_count = @content.impressionist_count(:filter=>:all)
 
     @content_attachments = ContentAttachment.where(:content_id => @content.id)

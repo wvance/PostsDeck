@@ -36,9 +36,9 @@ Rails.application.routes.draw do
   # get '/settings', to: 'users#edit', as: 'settings', constraints: lambda { |r| r.subdomain.present? && r.subdomain != 'www' }
 
   # You can have the root of your site routed with "root"
-  # root to: 'welcome#index'
+  root to: 'welcome#index'
 
-  root :to => "users#show", :id => User.find_by_subdomain("wesadvance").id
+  # root :to => "users#show", :id => User.find_by_subdomain("wesadvance").id
 
 
   # Example of regular route:

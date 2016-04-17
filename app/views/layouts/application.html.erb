@@ -80,111 +80,115 @@
 
 
 		<div class="bodyWrapper">
-			<div class="fixedSideBar">
-				<div class="sideBarSection center">
-					<div class="profile">
-						<div class="profileName avatar">
-							<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
-							<%=link_to root_path() do%>
-								<h1><span class="thinFont"><span class="white"><%=@user.first_name%></span><span class="yellow"><%= @user.last_name%></span></span></h1>
-							<%end%>
+			<% unless current_page?(root_url) && !request.subdomain.present? %>
+				<div class="fixedSideBar">
+					<div class="sideBarSection center">
+						<div class="profile">
+							<div class="profileName avatar">
+								<%= image_tag @user.avatar, :class=>"profileImg img-circle"%>
+								<%=link_to root_path() do%>
+									<h1><span class="thinFont"><span class="white"><%=@user.first_name%></span><span class="yellow"><%= @user.last_name%></span></span></h1>
+								<%end%>
+							</div>
+
+							<h6 class="profileBio">
+								<%if @user.bio.present? %>
+									<span class="offWhite"><%= @user.bio%></span>
+								<%else%>
+									Hello I am @<%= @user.username.capitalize %>
+								<%end%>
+							</h6>
+
+						</div>
+						<hr class="navBreak">
+						<div class="navBarLinks">
+							<ul class="links">
+								<li>
+									<h3><%=link_to('Projects', root_path(:anchor => 'projects'))%></h3>
+								</li>
+								<li>
+									<h3><%=link_to('Blog', root_path(:anchor => 'map'))%></h3>
+								</li>
+								<% if @user.email.present? %>
+									<li>
+										<h3>
+											<%= mail_to @user.email, subject: "Project Proposal", body:"Hi " + @user.first_name + "," do %>
+											  Hire
+											<% end %>
+										</h3>
+									</li>
+								<%end%>
+							</ul>
 						</div>
 
-						<h6 class="profileBio">
-							<%if @user.bio.present? %>
-								<span class="offWhite"><%= @user.bio%></span>
-							<%else%>
-								Hello I am @<%= @user.username.capitalize %>
+						<div class="profileFooter links">
+							<% if @user.username.present? %>
+								<%= link_to "http://www.twitter.com/" + @user.username, :target => "_blank" do %>
+									<i class="fa fa-twitter"></i>
+								<%end%>
 							<%end%>
-						</h6>
 
-					</div>
-					<hr class="navBreak">
-					<div class="navBarLinks">
-						<ul class="links">
-							<li>
-								<h3><%=link_to('Projects', root_path(:anchor => 'projects'))%></h3>
-							</li>
-							<li>
-								<h3><%=link_to('Blog', root_path(:anchor => 'map'))%></h3>
-							</li>
+							<% if @user.linkedin.present? %>
+								<%= link_to "http://www.linkedin.com/in/" + @user.linkedin , :target=>"_blank" do %>
+									<i class="fa fa-linkedin"></i>
+								<%end%>
+							<%end%>
+
+							<% if @user.github.present? %>
+								<%= link_to "http://github.com/" + @user.github, :target=>"_blank" do %>
+									<i class="fa fa-github"></i>
+								<%end%>
+							<%end%>
+
+							<% if @user.facebook.present? %>
+								<%= link_to "http://facebook.com/" + @user.facebook, :target=>"_blank" do %>
+									<i class="fa fa-facebook"></i>
+								<%end%>
+							<%end%>
+
+							<% if @user.calendly.present? %>
+								<%= link_to schedule_path() do %>
+									<i class="fa fa-calendar"></i>
+								<%end%>
+							<%end%>
+
 							<% if @user.email.present? %>
-								<li>
-									<h3>
-										<%= mail_to @user.email, subject: "Project Proposal", body:"Hi " + @user.first_name + "," do %>
-										  Hire
-										<% end %>
-									</h3>
-								</li>
+								<%= mail_to @user.email , subject: "Introduction", body:"Hi Wesley, \n" do %>
+									<i class="fa fa-envelope"></i>
+								<% end %>
 							<%end%>
-						</ul>
+						</div>
 					</div>
 
-					<div class="profileFooter links">
-						<% if @user.username.present? %>
-							<%= link_to "http://www.twitter.com/" + @user.username, :target => "_blank" do %>
-								<i class="fa fa-twitter"></i>
-							<%end%>
-						<%end%>
-
-						<% if @user.linkedin.present? %>
-							<%= link_to "http://www.linkedin.com/in/" + @user.linkedin , :target=>"_blank" do %>
-								<i class="fa fa-linkedin"></i>
-							<%end%>
-						<%end%>
-
-						<% if @user.github.present? %>
-							<%= link_to "http://github.com/" + @user.github, :target=>"_blank" do %>
-								<i class="fa fa-github"></i>
-							<%end%>
-						<%end%>
-
-						<% if @user.facebook.present? %>
-							<%= link_to "http://facebook.com/" + @user.facebook, :target=>"_blank" do %>
-								<i class="fa fa-facebook"></i>
-							<%end%>
-						<%end%>
-
-						<% if @user.calendly.present? %>
-							<%= link_to schedule_path() do %>
-								<i class="fa fa-calendar"></i>
-							<%end%>
-						<%end%>
-
-						<% if @user.email.present? %>
-							<%= mail_to @user.email , subject: "Introduction", body:"Hi Wesley, \n" do %>
-								<i class="fa fa-envelope"></i>
-							<% end %>
-						<%end%>
-					</div>
 				</div>
-
-			</div>
+			<%end%>
 			<div class="mainContent">
 				<%= yield %>
 			</div>
 			<br>
 
-			<div class="footer">
-				<div class="row" id="connect">
-					<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 signature">
-						<span class="center">
-							<h4>
-								Made with love in
-								<a href="http://rubyonrails.org" target="_blank">
-									<span class="ruby">RoR</span>
-								</a> by
-								<%= link_to root_url(:subdomain => :wesadvance) do%>
-									<span class="yellow">Wesley Vance</span>
-								<%end%>
-							</h4>
-						</span>
-					</div>
-					<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-0 emailList">
-						<%= render 'emailapi/email' %>
+			<% unless current_page?(root_url) && !request.subdomain.present? %>
+				<div class="footer">
+					<div class="row" id="connect">
+						<div class="col-xs-10 col-xs-offset-1 col-sm-4 col-sm-offset-0 signature">
+							<span class="center">
+								<h4>
+									Made with love in
+									<a href="http://rubyonrails.org" target="_blank">
+										<span class="ruby">RoR</span>
+									</a> by
+									<%= link_to root_url(:subdomain => :wesadvance) do%>
+										<span class="yellow">Wesley Vance</span>
+									<%end%>
+								</h4>
+							</span>
+						</div>
+						<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-0 emailList">
+							<%= render 'emailapi/email' %>
+						</div>
 					</div>
 				</div>
-			</div>
+			<%end%>
 
 			<div class="topBottonBox">
 				<a href="#top">
