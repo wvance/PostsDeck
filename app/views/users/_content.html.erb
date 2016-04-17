@@ -31,9 +31,9 @@
 							</div>
 							<div class="blogBody">
 								<% if content.body.present? %>
-									<!-- DEFINED IN USER HELPER -->
+									<!-- DEFINED IN APP HELPER -->
 									<p>
-										<%= sanitize_markdown(content)%>
+										<%= sanitize_markdown(content, 500)%>
 									</p>
 								<%end%>
 							</div>

@@ -1,6 +1,33 @@
 <div class="row">
+	<!-- MAX WIDTH SLIDER -->
+</div>
 
+<div class="row">
+	<h1 class="center">Posts Deck</h1>
+</div>
+
+<div class="row">
+	<div class="col-xs-12">
+		<h1 class="center">Recent Posts</h1><hr>
+		<% @active_content.each do |content| %>
+			<div class="col-xs-12 col-md-4 center">
+				<%= link_to content do %>
+          <%= image_tag content.content_attachments.first.image, :class=> "recentContentPost" if content.content_attachments.present? %>
+          <h3><%= content.title.capitalize%></h3>
+          <% @content_user = User.where(:id=>content.author).first %>
+        <%end%>
+				<h4>
+					<%= sanitize_markdown(content, 100) %>
+				</h4>
+			</div>
+		<%end%>
+	</div>
+</div>
+
+<div class="welcomeContentFooter">
 	<div class="col-xs-4">
 
+	</div>
+	<div class="col-xs-4">
 	</div>
 </div>

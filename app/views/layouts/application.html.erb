@@ -161,10 +161,14 @@
 					</div>
 
 				</div>
+				<div class="mainContent">
+					<%= yield %>
+				</div>
+			<%else%>
+				<div id="welcomeContainer">
+					<%= yield %>
+				</div>
 			<%end%>
-			<div class="mainContent">
-				<%= yield %>
-			</div>
 			<br>
 
 			<% unless current_page?(root_url) && !request.subdomain.present? %>

@@ -5,7 +5,7 @@ class ContentsController < ApplicationController
 
   # ADDS COUNT OF IMPRESSIONS ON THE CONTETNT SHOW OBJEC
   impressionist :actions=>[:show]
-  impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash]
+  impressionist :unique => [:impressionable_type, :impressionable_id, :session_hash, :ip_address]
 
   include TwitterHelper
 

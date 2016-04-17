@@ -16,6 +16,10 @@ module ApplicationHelper
 		date.strftime("%B %d %Y")
 	end
 
+  def sanitize_markdown(content, length)
+    Sanitize.clean(markdown(content.body).truncate(length, separator: '', omission: '...').html_safe)
+  end
+
   def markdown(text)
     render_options = {
       autolink: true,
