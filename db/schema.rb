@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160415194713) do
+ActiveRecord::Schema.define(version: 20160418214954) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -144,6 +144,20 @@ ActiveRecord::Schema.define(version: 20160415194713) do
 
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
+  create_table "testimonials", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "summary"
+    t.string   "body"
+    t.string   "author"
+    t.string   "link"
+    t.string   "image"
+    t.datetime "created"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "testimonials", ["user_id"], name: "index_testimonials_on_user_id", using: :btree
+
   create_table "user_providers", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -205,4 +219,5 @@ ActiveRecord::Schema.define(version: 20160415194713) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "comments", "contents"
+  add_foreign_key "testimonials", "users"
 end
