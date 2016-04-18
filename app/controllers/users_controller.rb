@@ -49,6 +49,7 @@ class UsersController < ApplicationController
 		end
 
 		@projects = @userProject.page(params[:page]).per(5)
+		@testimonials = Testimonial.where(:user_id => @user.id)
 
 		@twitterLink = "http://twitter.com/" + @user.username
 

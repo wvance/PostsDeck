@@ -1,0 +1,93 @@
+<div class="row" id="newTestimonial">
+  <div class="col-xs-offset-1 col-xs-11 col-sm-3">
+    <h1 class="links adminAdd">
+      New Testimonial
+    </h1>
+    <p>
+      Share an awesome testimonial!
+    </p>
+    <hr>
+  </div>
+
+  <!-- MOVE THIS INTO A PARTIAL? -->
+  <div class="col-xs-offset-1 col-xs-10 col-sm-7">
+    <%= form_for Testimonial.new, :url => testimonials_path,  :html => {:multipart => true} do |f|  %>
+      <div class="form-horiontal">
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :summary%>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_area :summary, :placeholder => "Highlight summary", :class=>"form-control formText autoGrowText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :body %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_area :body, :placeholder => "The full testimonial", :class=>"form-control autoGrowText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :author %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_field :author, :placeholder => "Author of the testimonial", :class=>"form-control formText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :author_title, 'Title' %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_field :author_title, :placeholder => "Author's Title", :class=>"form-control formText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :author_company, 'Company' %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_field :author_company, :placeholder => "Author's Company", :class=>"form-control formText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :link %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_field :link, :placeholder => "Optional: External link", :class=>"form-control formText"%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-offset-3 col-xs-9">
+            <%= f.file_field :image %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.submit 'Submit', :class=>"btn btn-link pull-right link formButton"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

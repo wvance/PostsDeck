@@ -1,0 +1,20 @@
+@import "styles";
+
+.testimonialBody{
+  text-align:center;
+  font-size:32px;
+  font-weight: 300;
+  font-family: "ralewaylight";
+  .testimonialQuote{
+    color: $accent;
+  }
+  .destroyTestimonial{
+    font-size: 20px;
+  }
+}
+.testimonialAuthor{
+  text-align: center;
+  font-size: 20px;
+  font-weight: 200;
+  color: $secondary;
+}

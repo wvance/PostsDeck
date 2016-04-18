@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418214954) do
+ActiveRecord::Schema.define(version: 20160418230051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,8 +152,10 @@ ActiveRecord::Schema.define(version: 20160418214954) do
     t.string   "link"
     t.string   "image"
     t.datetime "created"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "author_title"
+    t.string   "author_company"
   end
 
   add_index "testimonials", ["user_id"], name: "index_testimonials_on_user_id", using: :btree

@@ -52,6 +52,32 @@
 	<%end%>
 <%end%>
 
+<div class="testimonialRows">
+	<ul id="testimonials">
+		<%= render 'testimonials' %>
+	</ul>
+</div>
+
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<hr>
+		<div class="row">
+			<div class="col-xs-12 center links">
+				<h1 class="jumboName" id="newTestimonialButton">New Testimonial</h1>
+			</div>
+		</div>
+	<%end%>
+<%end%>
+
+
+<% if user_signed_in? %>
+	<% if current_user.id == @user.id %>
+		<%= render 'newTestimonial' %>
+		<hr>
+	<%end%>
+<%end%>
+
+
 <br>
 <div class="row fullWidth">
 	<div class="col-xs-12">

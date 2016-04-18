@@ -20,3 +20,10 @@ $(document).on "turbolinks:load", ->
   		$('#newPost').show 'drop', 1000
   		return
   	return
+
+  # HIDE BUTTON AND SHOW POST ON BUTTON CLICK
+  $('#newTestimonialButton').click ->
+    $('#newTestimonialButton').hide 'drop', 500, ->
+      $('#newTestimonial').show 'drop', 1000
+      return
+    return
