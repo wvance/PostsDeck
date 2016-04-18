@@ -1,6 +1,7 @@
 /*@import url(http://fonts.googleapis.com/css?family=Raleway:200,300);*/
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300);
 @import url(http://fonts.googleapis.com/css?family=Raleway+Dots);
+@import "styles";
 /*BODY*/
 body{
   max-width:100%;
@@ -77,9 +78,9 @@ blockquote {
 }
 
 p{
-	font-size: 18px;
-	color: #696969;
-	line-height: 30px;
+	font-size: 20px;
+	color: $secondary;
+	line-height: 35px;
 }
 header h1{
 	margin-top: 8px;
