@@ -1,8 +1,8 @@
 <!-- DISPLAYS ALL PROJECTS -->
-<div class="row" id="testimonial">
-  <div class="col-xs-10 col-xs-offset-1">
-    <div id="rotating-item-wrapper">
-      <% if @testimonials.count > 0 %>
+<% if @testimonials.count > 0 %>
+  <div class="row" id="testimonial">
+    <div class="col-xs-10 col-xs-offset-1">
+      <div id="rotating-item-wrapper">
         <% @testimonials.each do |testimonial| %>
           <span class="rotating-item testimonialItem">
             <div class="testimonialBody">
@@ -26,7 +26,7 @@
             </div>
           </span>
         <%end%>
-      <%end%>
+      </div>
     </div>
   </div>
-</div>
+<%end%>

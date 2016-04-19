@@ -44,16 +44,15 @@
 		<%= render 'newProject' %>
 		<hr>
 	<%end%>
+	<br>
 <%end%>
-
-<br>
 <div class="testimonialRows">
 	<ul id="testimonials">
 		<%= render 'testimonials' %>
 	</ul>
 </div>
-<br>
 <% if user_signed_in? %>
+	<br>
 	<% if current_user.id == @user.id %>
 		<hr>
 		<div class="row">
