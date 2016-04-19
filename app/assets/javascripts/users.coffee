@@ -33,7 +33,7 @@ $(document).on "turbolinks:load", ->
     #initial fade-in time (in milliseconds)
     initialFadeIn = 1000
     #interval between items (in milliseconds)
-    itemInterval = 5000
+    itemInterval = 8000
     #cross-fade time (in milliseconds)
     fadeTime = 2500
     #count number of items
