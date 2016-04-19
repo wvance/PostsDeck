@@ -18,7 +18,7 @@
             <%= f.label :summary%>
           </div>
           <div class="col-xs-9">
-            <%= f.text_area :summary, :placeholder => "Highlight summary", :class=>"form-control formText autoGrowText", :required => true%>
+            <%= f.text_area :summary, :placeholder => "Highlight summary", :class=>"form-control formText autoGrowText", :required => true, :maxlength => 140, :size => 140%>
             <span class="bar"></span>
             <br />
           </div>

@@ -27,3 +27,34 @@ $(document).on "turbolinks:load", ->
       $('#newTestimonial').show 'drop', 1000
       return
     return
+
+  InfiniteRotator = init: ->
+    console.log("Successful Rotation")
+    #initial fade-in time (in milliseconds)
+    initialFadeIn = 1000
+    #interval between items (in milliseconds)
+    itemInterval = 5000
+    #cross-fade time (in milliseconds)
+    fadeTime = 2500
+    #count number of items
+    numberOfItems = $('.rotating-item').length
+    #set current item
+    currentItem = 0
+    #show first item
+    $('.rotating-item').eq(currentItem).fadeIn initialFadeIn
+    #loop through the items
+    if numberOfItems > 1
+      infiniteLoop = setInterval((->
+        $('.rotating-item').eq(currentItem).fadeOut fadeTime
+        if currentItem == numberOfItems - 1
+          currentItem = 0
+        else
+          currentItem++
+        $('.rotating-item').eq(currentItem).fadeIn fadeTime
+        return
+      ), itemInterval)
+      return
+  InfiniteRotator.init()
+  return
+
+
