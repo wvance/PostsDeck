@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160418230051) do
+ActiveRecord::Schema.define(version: 20160423200046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -117,6 +117,21 @@ ActiveRecord::Schema.define(version: 20160418230051) do
     t.datetime "updated_at",   null: false
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.string   "image"
+    t.integer  "user_id"
+    t.string   "position"
+    t.string   "price"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "link"
+  end
+
+  add_index "services", ["position"], name: "index_services_on_position", using: :btree
+  add_index "services", ["user_id"], name: "index_services_on_user_id", using: :btree
+
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
     t.string   "taggable_type"
@@ -221,5 +236,6 @@ ActiveRecord::Schema.define(version: 20160418230051) do
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "comments", "contents"
+  add_foreign_key "services", "users"
   add_foreign_key "testimonials", "users"
 end

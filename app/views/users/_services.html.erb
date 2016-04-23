@@ -1,0 +1,12 @@
+<!-- DISPLAYS ALL PROJECTS -->
+<% if @services.count > 0 %>
+  <div class="row center" id="service">
+    <% @services.each do |service| %>
+      <div class="col-xs-12 col-sm-6 col-md-3">
+        <%= image_tag service.image, :class=>"serviceImage", :width=>"150", :height=>"150"%>
+        <h3><%= service.title%></h3>
+        <h5><%= service.description %></h5><br>
+      </div>
+    <%end%>
+  </div>
+<%end%>

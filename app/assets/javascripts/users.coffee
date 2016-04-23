@@ -28,6 +28,13 @@ $(document).on "turbolinks:load", ->
       return
     return
 
+  # HIDE BUTTON AND SHOW POST ON BUTTON CLICK
+  $('#newServiceButton').click ->
+    $('#newServiceButton').hide 'drop', 500, ->
+      $('#newService').show 'drop', 1000
+      return
+    return
+
   InfiniteRotator = init: ->
     console.log("Successful Rotation")
     #initial fade-in time (in milliseconds)

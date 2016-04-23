@@ -1,0 +1,60 @@
+<div class="row" id="newService">
+  <div class="col-xs-offset-1 col-xs-11 col-sm-3">
+    <h1 class="links adminAdd">
+      New Service
+    </h1>
+    <p>
+      Share a Service!
+    </p>
+    <hr>
+  </div>
+
+  <!-- MOVE THIS INTO A PARTIAL? -->
+  <div class="col-xs-offset-1 col-xs-10 col-sm-7">
+    <%= form_for Service.new, :url => services_path,  :html => {:multipart => true} do |f|  %>
+      <div class="form-horiontal">
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :title%>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_area :title, :placeholder => "Name the service", :class=>"form-control formText autoGrowText", :required => true, :maxlength => 140, :size => 140%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :description %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_area :description, :placeholder => "The service description", :class=>"form-control autoGrowText", :required => true%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-3">
+            <%= f.label :link %>
+          </div>
+          <div class="col-xs-9">
+            <%= f.text_field :link, :placeholder => "Optional: link", :class=>"form-control formText"%>
+            <span class="bar"></span>
+            <br />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-xs-offset-3 col-xs-9">
+            <%= f.file_field :image %>
+          </div>
+        </div>
+        <div class="col-xs-10">
+          <%= f.submit 'Submit', :class=>"btn btn-link pull-right link formButton"%>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

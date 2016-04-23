@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers:{omniauth_callbacks:"omniauth_callbacks"}
   resources :users
   resources :testimonials
+  resources :services
   resources :content_attachments, :only => [:new, :create, :destroy]
 
   get 'content_attachment/new/:id', to: 'content_attachments#new', :as => :newContentAttachment

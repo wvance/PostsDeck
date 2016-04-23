@@ -14,8 +14,9 @@ class User < ActiveRecord::Base
 
   validates :username, presence: true, uniqueness:true
 
-  has_many :contents
-  has_many :projects
+  has_many :contents, :dependent => :destroy
+  has_many :projects, :dependent => :destroy
+  has_many :services, :dependent => :destroy
   has_many :user_providers, :dependent => :destroy
 
   require 'json'
