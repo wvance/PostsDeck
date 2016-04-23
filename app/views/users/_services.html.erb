@@ -14,11 +14,13 @@
             <%end%>
           <%end%>
         </div>
-        <%= image_tag service.image, :class=>"serviceImage", :width=>"150", :height=>"150"%>
-        <h3>
-          <%= service.title%>
-        </h3>
-        <h5><%= service.description %></h5><br>
+        <div class="links">
+          <%= link_to service.link, :class=>"" do%>
+            <%= image_tag service.image, :class=>"serviceImage", :width=>"150", :height=>"150"%>
+            <h3><%= service.title%></h3>
+          <%end%>
+          <h5><%= service.description %></h5><br>
+        </div>
       </div>
     <%end%>
   </div>
