@@ -104,6 +104,9 @@
 						<div class="navBarLinks">
 							<ul class="links">
 								<li>
+									<h3><%=link_to('Services', root_path(:anchor => 'services'))%></h3>
+								</li>
+								<li>
 									<h3><%=link_to('Projects', root_path(:anchor => 'projects'))%></h3>
 								</li>
 								<li>
@@ -112,15 +115,6 @@
 								<li>
 									<h3><%=link_to('Blog', root_path(:anchor => 'map'))%></h3>
 								</li>
-								<% if @user.email.present? %>
-									<li>
-										<h3>
-											<%= mail_to @user.email, subject: "Project Proposal", body:"Hi " + @user.first_name + "," do %>
-											  Hire
-											<% end %>
-										</h3>
-									</li>
-								<%end%>
 							</ul>
 						</div>
 

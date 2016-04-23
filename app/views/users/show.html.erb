@@ -26,25 +26,22 @@
 	<ul id="services">
 		<%= render 'services' %>
 	</ul>
+	<hr>
 </div>
 <% if user_signed_in? %>
 	<br>
 	<% if current_user.id == @user.id %>
-		<hr>
 		<div class="row">
 			<div class="col-xs-12 center links">
 				<h1 class="jumboName" id="newServiceButton">New Service</h1>
 			</div>
 		</div>
 	<%end%>
-<%end%>
-<% if user_signed_in? %>
 	<% if current_user.id == @user.id %>
 		<%= render 'newService' %>
 		<hr>
 	<%end%>
 <%end%>
-
 
 
 <div class="projectRows">
