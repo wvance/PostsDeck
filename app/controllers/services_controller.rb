@@ -24,7 +24,7 @@ class ServicesController < ApplicationController
         format.html { redirect_to request.referrer, notice: 'Service was successfully created.' }
         format.json { render :show, status: :created, location: @service }
       else
-        format.html { render :new }
+        format.html { redirect_to request.referrer}
         format.json { render json: @service.errors, status: :unprocessable_entity }
       end
     end
