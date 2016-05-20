@@ -1,7 +1,6 @@
 @import "styles";
 
 #testimonial{
-
   #rotating-item-wrapper {
     position: relative;
     width: 100%;
@@ -12,6 +11,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     padding-top:9%;
 
     .testimonialBody{
